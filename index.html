@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>Weihao Cheng&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Nihil ego, nisi Terra et Flumina.">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Nihil ego, nisi Terra et Flumina.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Weihao Cheng&#39;s Blog">
 <meta property="og:url" content="https://cwhirly.github.io/index.html">
@@ -14,273 +27,385 @@
 <meta property="og:description" content="Nihil ego, nisi Terra et Flumina.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Weihao Cheng">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Weihao Cheng's Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
   
   
   
-<link rel="stylesheet" href="/css/style.css">
+  <title>Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
 <meta name="generator" content="Hexo 8.1.1"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Weihao Cheng&#39;s Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
         
-      </nav>
-      <nav id="sub-nav">
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cwhirly.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-NOIP2025-Travel-Note" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/12/03/NOIP2025-Travel-Note/" class="article-date">
-  <time class="dt-published" datetime="2025-12-03T03:27:58.000Z" itemprop="datePublished">2025-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/12/03/NOIP2025-Travel-Note/">NOIP2025 Travel Note</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Vanitas Vanitatum, Et Omnia Vanitatum.</p>
-</blockquote>
-<h2 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h2><p>下课，回到文化课的班级，静心享受这温暖，这个令我痛恨又亲切的地方。<br>我，或是，我们，如同英雄载誉归来，却只不过是表面的繁荣罢了，他们无法想象我实际是怎样的弱小，蝼蚁一般被敌人们蔑视，不，甚至不值得被蔑视。<br>我深知他们一将功成万骨枯的深刻道理，我庆幸自己虽是蝼蚁却活着，哪怕光芒黯淡。  </p>
-<p>在教室里总是倍感安全的，或许是人口密度大或是充满人间烟火吧。轻抚悬于壁上的已有折痕的成绩单，看着他们机械地为之而厮杀，忽地发觉这将也是自己的归宿。<br>“这里会是我过往和未来的家乡；”我默念道，“他们将是我过往和未来的同伴。”  </p>
-<p>很久没有见过这样的喧嚣景象了，很久，很久。<br>依旧是扑克的噼啪声，依旧是无谓纷争的呐喊声。  </p>
-<p>“此即人间。”</p>
-<p>他依然静坐，无视这世俗纷扰，或许是正与导数鏖战？正文思泉涌？我不得而知。我不愿走近他，脑海中却浮现他的字迹来，浮现他的文章来。我何时才能企及他的高度呢？我拙劣的文笔、执着于的无意义的事，在他眼中或许如跳梁小丑般呢。  </p>
-<p>我，与他，或许是广义上的，她，大抵不会再相遇了。</p>
-<p>彷徨着，带着不愿，回到机房。<br>这充满着算计，猜忌，谎言的地方。<br>清流和浊流在此，如同泾渭分明。<br>一声长叹。</p>
-<h2 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h2><p>听了一夜骤雨，似乎一晚上没怎么合眼，考点离家远，所以很早便出发了。<br>清晨的雨小了不少，天还是漆黑的，不知为何，总觉得将晓的天空总比午夜的天空更昏暗。<br>街上几近空无一人，唯有环卫工的身影，兀自默默清扫染了满街的落叶。<br>暗橘色的街灯模糊地闪。<br>空气中腥涩的气息、冰冷的细密的雨点、若有若无的萧瑟风声，赐予人无病呻吟的快感和强烈的压抑。  </p>
-<p>紧张的情绪必然是有的，然而并不是因为比赛。<br>一个月前，另一处，当秒针转向六点三十，我便明白我将踏入新的旅程了，往后的未来，将是黑白色的，复制粘贴的每一天，直到……  </p>
-<p>透过车窗，拂开内壁的白雾，看向我的乡土，这个熟悉的城市。虽说不算繁华，远处也总有几栋高楼，在乌云的笼罩下望不到楼顶。<br>我总憧憬着某次暴雨登上去，到顶层俯瞰灰色的云海和云下闪烁的霓虹，满足自己对繁华与未来的想像，如今却不再有这样的希望了。  </p>
-<p>在车上，不知不觉地浅浅睡去，总似乎有梦，却又谈不上清晰。<br>不知从哪一天起，便总能在梦中感觉到梦的存在，并沉迷于此，不断提醒自己不要醒来。我总警戒这是精神的毒药，却又无能为力。<br>梦很短，内容是什么不再能记起，似乎是美好的。  </p>
-<p>梦醒，天明，雨未绝。<br>恍惚间撑着伞，被填充在人群中，雨声压过人声，也冲刷了内心的恐惧。<br>远处，血红的一大片，天蓝的一簇簇，是他们，不愿脱下那视为战袍之校服的敌人们，我省的荣光啊。<br>考点是敌校，血红的天地。<br>视他们为“敌”，确凿是自私的，我省不再是所谓弱省的希望，正寄托于他们，他们是伟大的、光荣的，他们所面对的困难，除了尽力不沦落成为衬托鲜妍而生的绿叶，还有那些狭隘的“我们”的无端鄙夷与争夺。<br>可是，谁踏入这条不归路，只是为了成为母校的荣光呢？因为我们的本心，我们不得不战斗，这便是残酷而令人兴奋的竞赛。<br>我不愿诬陷那些或许存在的“高尚者”，他们才是竞赛之意义所在，无愧于心，执着于此。<br>每每想到这世上或许有此等人物，便不得不羞愧不已。  </p>
-<p>踏入考场，不再是东道主，无妨。  </p>
-<p>当众人皆于机房坐定，便逐渐褪去“战袍”，为自己而战了。<br>此刻，敌，友，霎时不再分明，我的脑海里又浮现出 ICPC 的画面来，光明的，团结的，如这盛世般的，宏大、伟丽、壮阔。多彩的气球插满熙攘的体育场，人们不再为自己而战，回忆中仅剩下祥和美好的光景了。  </p>
-<p>思绪悄悄回到现实，压抑黑暗的机房里，仅能听见鞭炮似的键盘响，这只不过是缺省源而已啊。<br>高分贝总能掩盖住内心的空虚，从而震慑敌人，这是大自然的生存法则，可人类也当如禽兽一般宣誓强大吗？<br>不计代价，用尽手段，但求胜利。<br>积压已久的恐惧如天边的乌云再次蔓延，我总提醒自己，CSP 已经令我万劫不复，我不该再懦弱了，可是这弥留之际人求生的本能却更加强烈，我想远离它，却已经晚了。  </p>
-<p>蜷缩于机房角落单坐的我，写完缺省源后，不知是出于什么想法打开了窗。<br>狂风骤雨的呼啸和那高亢的键盘轰鸣在开窗的一刹那夹杂起来，混沌的纷扰，看不清眼前的一切。<br>这窗竟与你校之窗格外相似，仅可半开，便被挡住，恰好不允许一人穿过。<br>这便是所谓“名校”的黑暗面，它藏着多少不可告人的秘密，不得而知。这些无数学生小学生所趋之若鹜的地方，或许并非天堂呢。<br>听窗外、窗内刺骨的地狱交响，瑟索着。<br>我猛地意识到键盘上已有飘落的雨点，便缓缓关窗，盯着缺省源，不知不觉中看着时间一分一秒的流逝，定格在 2025-11-19 8:30。  </p>
-<p>“最后一战，拉开帷幕。”  </p>
-<p>心流。<br>键盘声在耳畔消失了。<br>短暂的二百七十分钟，眨眼便成为追忆。<br>只记得后三题的困难，从未在场上见过的困难。<br>我看到了神的黯然失色，听到了智者的哀叹，唯有我的缄默。<br>结局已定，后传如何，不重要。<br>我不愿统计我的分数，尽管它的答案少得可怜，仅看一眼便能算出……我依然不能接受提前估测它。  </p>
-<p>结束了。逆着人流踏往那学校的深处，终寻得一处开阔地了，却仍是低头盯着地面的涟漪。将我永远留在这一天吧，尽管这一天是彻底的失败——它是新的一天，是形式上的终章，是最后的期待。<br>一声闷雷，响彻天地，这是一个蝼蚁的谢幕。  </p>
-<p>回家的车上，再次昏昏沉沉地睡去，仿佛没有上午的经历。   </p>
-<blockquote>
-<p>“你回来了。你不会再离开了吧。”他，或者是广义的，她，轻轻地说。<br>“不会，再不会了。”<br>他的身体忽然光亮了，分解作无数金黄的碎片，消散而去。<br>“不要醒来啊……”</p>
-</blockquote>
-<p>夜晚，大唐不夜城上空漫天繁星，雨后的空气如泉水般清冽而透明，这本应是胜利者才可看到的景象，却也让我这失败者至少能瞥见胜利的余晖。  </p>
-<p>与母亲和曾经的好友欣赏我人生中第一次歌剧，希望能留下一个圆满的结尾。<br>“高一，我从未那样疲惫过，不知自己是如何撑过那一年的。”好友略带轻松的说辞，却使我对未来更加的恐惧起来，也更加的期待起来。<br>这位好友，一名普通的文科生，或许以后便沉入芸芸众生之中，如同剧场观众席上的每一个渺小的人影。但这不妨碍她对于生活的热爱。<br>历史无法记住自己，世界无法记住自己，尽管有多么伟大的功勋，百年、千年，皆若过往云烟罢了。<br>我们所奉献的，所拼搏的，所相信的，亦将归于虚无，包括我们自己。<br>因此我为了这虚假的世界而哀伤，而欣喜，这一切尽是取悦自己罢了。<br>既慨叹着自私的人性，又因无法取悦自己而仿徨，也不愿如市井中人般自我陶醉在虚浮的快乐之中，然而无意义的大框架下，谁不是市井中人呢？<br>自命不凡的人们沉醉于消极所带来的“深刻”，又与浅薄的快乐何异？谁又能打破“意义”的屏障，窥见生命所存在的理由？<br>所谓的平凡与伟大，不过是因为伟大的人使自己得到了或许物质上的，精神上的好处；而平凡的人仅仅是自己生命中的过客。<br>那些伟大的人们，亦是为了自己的理想——让人类社会的命运走向光明而奋斗着，终归是自己的理想。<br>自私的人们所评判的标准，不过也是价值的衡量罢了。  </p>
-<p>如此一来，我，本质上，与那些作出惊天动地事业的人物，与犯下滔天罪行之人，与禽鸟草木又有何异呢？<br>但求能在这浅薄的世界多一些价值，让自己的，和与自己相辅相成的一切有更“美好”的，至少普遍人类所认为的更“美好”的未来吧。  </p>
-<p>我从此不再企求特立独行，不再幻想，跳下独木桥，融入人海，化作流水线上的产品，期望着永不生锈。<br>其实，OI 不亦是更腥风血雨的流水线？</p>
-<p>音乐声逐渐响起，我强迫自己暂时清理掉过去，令紧张的大脑放松下来，再一次的心流。</p>
-<p>剧很感人，而未落一泪。<br>剧终，人散，月明。<br>大唐不夜城，依然人群纷然。</p>
-<h2 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h2><p>你慢些吧，你慢些吧，不要再跨入明天了，永不。<br>让我消逝在今日吧，让我安息于此吧。<br>我向时间的远方眺望，却看见了无数自己的背影无尽排列下去，我轻触前方，一尘不染的镜面。</p>
-<hr>
-<p>The novel is end, forever.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cwhirly.github.io/2025/12/03/NOIP2025-Travel-Note/" data-id="cuiddZ1UBX53ZfYzDx9EJG9Wx" data-title="NOIP2025 Travel Note" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/12/03/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-12-03T02:48:38.821Z" itemprop="datePublished">2025-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/12/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cwhirly.github.io/2025/12/03/hello-world/" data-id="cuiddZtYqRzwls-64cjOg5geq" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">十二月 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/12/03/NOIP2025-Travel-Note/">NOIP2025 Travel Note</a>
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
-          <li>
-            <a href="/2025/12/03/hello-world/">Hello World</a>
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
     </div>
   </div>
+</nav>
 
   
-</aside>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+
       
-      &copy; 2025 Weihao Cheng<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
   </div>
-</footer>
+</div>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/12/03/NOIP2025-Travel-Note/" target="_self">
+          NOIP2025 Travel Note
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/12/03/NOIP2025-Travel-Note/" target="_self">
+        <div>
+          Vanitas Vanitatum, Et Omnia Vanitatum.  Day 0下课，回到文化课的班级，静心享受这温暖，这个令我痛恨又亲切的地方。我，或是，我们，如同英雄载誉归来，却只不过是表面的繁荣罢了，他们无法想象我实际是怎样的弱小，蝼蚁一般被敌人们蔑视，不，甚至不值得被蔑视。我深知他们一将功成万骨枯的深刻道理，我庆幸自己虽是蝼蚁却活着，哪怕光芒黯淡。   在教室里总是倍感安全的，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-12-03 11:27" pubdate>
+              2025-12-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/12/03/hello-world/" target="_self">
+          Hello World
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/12/03/hello-world/" target="_self">
+        <div>
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-12-03 10:48" pubdate>
+              2025-12-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
