@@ -1,0 +1,29 @@
+/* 引入霞鹜文楷 Web 字体 */
+@font-face {
+  font-family: 'LXGWWenKai';
+  src: url('https://cdn.jsdelivr.net/gh/lxgw/LxgwWenKai@release/LXGWWenKai-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGWWenKai';
+  src: url('https://cdn.jsdelivr.net/gh/lxgw/LxgwWenKai@release/LXGWWenKai-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 应用字体 */
+body, 
+.post-content,
+.navbar,
+.footer {
+  font-family: 'LXGWWenKai', 'LXGW WenKai', '霞鹜文楷', sans-serif;
+}
+
+/* 确保代码块不使用中文字体 */
+code, pre, .code, .highlight {
+  font-family: 'Courier New', Consolas, Monaco, monospace;
+}
