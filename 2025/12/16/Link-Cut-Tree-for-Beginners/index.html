@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Severe&gt;Hard?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Link-Cut-Tree for Beginners">
+<meta property="og:url" content="https://cwhirly.github.io/2025/12/16/Link-Cut-Tree-for-Beginners/index.html">
+<meta property="og:site_name" content="Weihao Cheng&#39;s Blog">
+<meta property="og:description" content="Severe&gt;Hard?">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/6ip1v1bk.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/upv83vin.png">
+<meta property="og:image" content="https://oi-wiki.org/ds/images/splay-zig.svg">
+<meta property="og:image" content="https://oi-wiki.org/ds/images/splay-zig-zig.svg">
+<meta property="og:image" content="https://oi-wiki.org/ds/images/splay-zig-zag.svg">
+<meta property="og:image" content="https://oi-wiki.org/ds/images/lct-access-1.svg">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/wc8fmvo3.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/jdlpluj8.png">
+<meta property="article:published_time" content="2025-12-16T04:10:50.000Z">
+<meta property="article:modified_time" content="2025-12-16T04:12:17.798Z">
+<meta property="article:author" content="Weihao Cheng">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/6ip1v1bk.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Link-Cut-Tree for Beginners - Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cwhirly</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.wsq127.top/file/nnk9dyqi.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Link-Cut-Tree for Beginners"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-16 12:10" pubdate>
+          2025年12月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Link-Cut-Tree for Beginners</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>（我尽量做到不 DFS 式写博客）（<br>Link-Cut Tree，动态树的一种，似乎没有通用的中文译名。<br>实现十分容易，没有所谓的那么复杂，基本操作正常码风约 $90$ 行即可完成。<br>LCT 解决的是什么问题？</p>
+<h4 id="【Brainless-Version】"><a href="#【Brainless-Version】" class="headerlink" title="【Brainless Version】"></a>【Brainless Version】</h4><p>Q：给定一棵树，实现单点加，单点求值。<br>A：其实和树没有关系，本质上是语法题。<br>Tip：您需至少已经掌握了基本 C++ 语法。</p>
+<h4 id="【Easy-Version】"><a href="#【Easy-Version】" class="headerlink" title="【Easy Version】"></a>【Easy Version】</h4><p>Q：给定一棵树，无修改，子树求和。<br>A：同一棵子树内节点 DFN 序连续，于是把树拍成 DFN，前缀和即可。<br>Tip：一个点的 DFN 序即对树进行 DFS 时该点被第几个访问。</p>
+<h4 id="【Simple-Version】"><a href="#【Simple-Version】" class="headerlink" title="【Simple Version】"></a>【Simple Version】</h4><p>Q：给定一棵树，无修改，链求和。<br>A：倍增计算 LCA，然后树上差分。<br>Tip：如果您真的是一名普及组选手，请跳过该版本，本文可以使得您用 LCT 解决 LCA 问题。</p>
+<h4 id="【Basic-Version】"><a href="#【Basic-Version】" class="headerlink" title="【Basic Version】"></a>【Basic Version】</h4><p>Q：给定一棵树，子树加，子树求和。<br>A：在 DFN 上树状数组。<br>Tip：如果您真的是一名普及组选手，请跳过该版本。</p>
+<h4 id="【Normal-Version】"><a href="#【Normal-Version】" class="headerlink" title="【Normal Version】"></a>【Normal Version】</h4><p>Q：给定一棵树，实现换根，子树求和。<br>A：发现换根是假的，分类讨论后与 Easy Version 相差不大。<br>Tip：用 Euler Tour Tree 也可以实现。</p>
+<h4 id="【Severe-Version】"><a href="#【Severe-Version】" class="headerlink" title="【Severe Version】"></a>【Severe Version】</h4><p>Q：给定一棵树，链加，链求和，子树加，子树求和。<br>A：树链剖分后线段树维护。<br>Tip：如果您真的是一名普及组选手，请跳过该版本，本文可以使得您用 LCT 代替树链剖分。</p>
+<h4 id="【Hard-Version】"><a href="#【Hard-Version】" class="headerlink" title="【Hard Version】"></a>【Hard Version】</h4><p>Q：给定一棵树，链加，链求和，（换根），断边，加边（保证原结构始终是森林）。<br>A：LCT 模板。<br>Tip：本文将会介绍。</p>
+<p>接下来，正文开始。</p>
+<h2 id="第零部分：约定"><a href="#第零部分：约定" class="headerlink" title="第零部分：约定"></a>第零部分：约定</h2><ol>
+<li>朴素的 LCT 是难以解决子树问题的，因此理论上无需维护树上的父子关系，但是我们假定树仍然是<strong>有根树</strong>。</li>
+<li>本质上来说 LCT 维护的是森林而不是树。</li>
+<li>下文代码中：<code>fa[x]</code> 为 $x$ 的父节点，<code>ch[x][0]</code> 为 $x$ 的左儿子，<code>ch[x][1]</code> 是右儿子，<code>get(x)</code> 即为判断 $x$ 是其父节点的左儿子（返回 $0$）还是右儿子（返回 $1$）。</li>
+</ol>
+<h2 id="第一部分：AuxTree-辅助树"><a href="#第一部分：AuxTree-辅助树" class="headerlink" title="第一部分：AuxTree (辅助树)"></a>第一部分：AuxTree (辅助树)</h2><h3 id="实链剖分"><a href="#实链剖分" class="headerlink" title="实链剖分"></a>实链剖分</h3><p><em>您并不需要重链剖分的前置知识。</em><br>我们<strong>人为地</strong>钦定树上的点的<strong>某一个</strong>儿子是实儿子，其他儿子是虚儿子。<br>然后，定义一个点与它实儿子之间的边为<strong>实边</strong>，其他边为<strong>虚边</strong>。<br>若干个实边首尾相接便形成一条<strong>实链</strong>。<br>注意，每一个虚叶子节点也算作一条实链。<br>此时，原树就被划分成若干条实链，用虚边进行连接。<br>性质：实链一定是从头到尾自上而下的，也就是说，实链不存在“拐点”。<br>该结论反证是容易的。      </p>
+<h3 id="辅助树"><a href="#辅助树" class="headerlink" title="辅助树"></a>辅助树</h3><p>（再次强调，假设原树是<strong>有根树</strong>！）<br>本质上是一个<strong>辅助森林</strong>。<br>我们已经把树“切割”成了若干条实链。<br>在原树上，实链是一条链；在辅助树上，每一条实链就都变成了一棵树。<br>也就是说，辅助树就是把原树的实链拿出来爆改，然后再用虚边把这些爆改过的实链联通，当然，每个节点是不会改变的，也就是说辅助树只是对原树进行重新连边。<br>我们管被爆改过的实链叫做 “实树”（自己起的名字，轻喷）。<br>爆改实链也不能乱改，实链改完形成的“实树”必须是棵 Splay（不认识没关系，后面会说，现在你只需知道它是一棵二叉树），而且它的中序遍历必须是原树中从上到下遍历的顺序。<br>用虚边联通当然也不能乱连，原树中哪些“实链对“被虚边连接，辅助树上这对“实树”也要被虚边所连接。<br>当然，具体把两棵“实树”上哪两个点连在一起，这也是不能随意的，原来两条实链之间的虚边的上下关系不能变。<br>也就是说，原来这条虚边上面连着实链 A 中的点，下面连着实链 B 中的点，那么在辅助树中，这条虚边也必须要上面连着“实树” A 中的点，下面连着“实树” B 中的点。<br>还有就是，只有“实树”的根有权利向上连，并且这个根（设为 $r$）向上与 $v$ 连去的那条虚边唯一对应着该棵实树中序遍历的第一个点 $u$ 在原树中与 $v$ 相连的虚边。<br>听着很绕，实际上很好懂。<br>画个图举例：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/6ip1v1bk.png" srcset="/img/loading.gif" lazyload><br>灰色的虚边在原树和辅助树中的位置即如上图所示。<br>因此，原树和辅助树的虚边之间可以一一对应，并且任意一个辅助树都对应着唯一一棵原树。<br>还有一点是，辅助树的虚边是<strong>认父不认子</strong>的，以上图举例，辅助树中 $fa_r&#x3D;v$，但是 $son_v&#x3D;\text{null}$，只有“实树”内部的边才是双向的。<br>同时，虚边上面连的点在原树和辅助树中都是一样的，但是下方不一定。  </p>
+<p>我们来具体举一个例子。<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/upv83vin.png" srcset="/img/loading.gif" lazyload><br>您可以自己手造一些原树然后构造其辅助树以加深理解。<br>辅助树衍生了一些基本操作：  </p>
+<ol>
+<li>判断节点是否为某一棵“实树”的根 <code>#define isroot(x) (ch[fa[x]][0]!=x&amp;&amp;ch[fa[x]][1]!=x)</code></li>
+<li>判断节点是辅助树上其父亲的左&#x2F;右儿子 <code>bool get(int x){return (x==ch[fa[x]][1]);}</code></li>
+<li>整合左右儿子信息用的 <code>void maintain(int x){sz[x]=sz[ch[x][0]]+sz[ch[x][1]]+1;}</code> （此处以子树大小举例）</li>
+</ol>
+<h2 id="第二部分：辅助操作"><a href="#第二部分：辅助操作" class="headerlink" title="第二部分：辅助操作"></a>第二部分：辅助操作</h2><p>以下操作皆在辅助树上完成。</p>
+<h3 id="Splay-树"><a href="#Splay-树" class="headerlink" title="Splay 树"></a>Splay 树</h3><p>二叉搜索树是一棵中序遍历为升序的二叉树。<br>平衡树是一种特殊的二叉搜索树，它的树高被控制在严格 $O(\log n)$ 或均摊 $O(\log n)$。<br>Splay Tree 是一种典型的树高均摊 $O(\log n)$ 的平衡树。<br>LCT 所需要的 Splay 与正常的 Splay 有细微差别，正常的 Splay 主要用于维持树的平衡，而此处的 Splay 是为了维护动态树所需要的<strong>结构</strong>，因此您在未掌握平衡树知识的前提下也可以放心食用。<br>Splay 树的关键操作是：Splay 操作。（听起来很废话呢）<br>Splay 操作主要通过旋转来实现，它的效果是将某一个节点旋转到根。<br>旋转操作分两种：  </p>
+<h4 id="单旋"><a href="#单旋" class="headerlink" title="单旋"></a>单旋</h4><p>分为左旋（zig）和右旋（zag），它们是很对称的。<br>勉强用文字描述，其实对某个点旋转就是把它的父节点“拽”下来，放到该点的下面去。<br>具体地，如果一个点 $x$ 是其父节点 $p$ 的左儿子，那么就让 $p$ 成为 $x$ 的右儿子。<br>原来 $x$ 的右儿子怎么办？<br>让它成为现在 $p$ 的左儿子即可。<br>这就是右旋。  </p>
+<p>左旋就是把上文中的“左”字和“右”字互换即可。  </p>
+<p>这是 OI-wiki 中的演示图。<br><img src="https://oi-wiki.org/ds/images/splay-zig.svg" srcset="/img/loading.gif" lazyload><br>可以这么想象：有一个手将 $x$ “拎”了起来，$p$ 因为重力而下垂，掉到下面，顺便“抢”来了 $x$ 的一个子节点。  </p>
+<p>单旋有一个性质：单选不改变树的中序遍历（注意：此处“中序遍历”指遍历权值）。<br>这是很显然的。<br>下面是代码，它将左旋和右旋写进了同一函数中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>		<span class="hljs-type">int</span> f=fa[x],gf=fa[f],lr=<span class="hljs-built_in">get</span>(x);<br>		<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isroot</span>(f)) ch[gf][f==ch[gf][<span class="hljs-number">1</span>]]=x;<br>		ch[f][lr]=ch[x][lr^<span class="hljs-number">1</span>];		<br>		<span class="hljs-keyword">if</span>(ch[x][lr^<span class="hljs-number">1</span>]) fa[ch[x][lr^<span class="hljs-number">1</span>]]=f;<br>		ch[x][lr^<span class="hljs-number">1</span>]=f;<br>		fa[f]=x;<br>		fa[x]=gf;<br>		<span class="hljs-built_in">maintain</span>(f);<br>		<span class="hljs-built_in">maintain</span>(x);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>后面您将会知道，您目前可以认为我们保证不会对一棵“实树”的根进行 <code>rotate</code>，因此被单旋的节点的父节点一定仍在“实树“内部，但是祖父节点有可能和父节点以虚边相连接，所以需要特判 <code>isroot(f)</code>。    </p>
+<h4 id="双旋"><a href="#双旋" class="headerlink" title="双旋"></a>双旋</h4><h5 id="Zig-Zig-Zag-Zag"><a href="#Zig-Zig-Zag-Zag" class="headerlink" title="Zig-Zig&#x2F;Zag-Zag"></a>Zig-Zig&#x2F;Zag-Zag</h5><p>设 $p&#x3D;fa_x,g&#x3D;fa_p$  当 $x,p,g$ “共线”，即 $x,p$ <strong>同为</strong>左儿子或右儿子时，我们应该先转一下 $p$，再转一下 $x$，如此图。<br><img src="https://oi-wiki.org/ds/images/splay-zig-zig.svg" srcset="/img/loading.gif" lazyload><br>这样我们就可以把 $x$ 转到上面了。<br>注意到一个性质，两次旋转同为左旋&#x2F;右旋。<br>所以就叫做“zig-zig”或“zag-zag”。  </p>
+<h5 id="Zig-Zag-Zag-Zig"><a href="#Zig-Zag-Zag-Zig" class="headerlink" title="Zig-Zag&#x2F;Zag-Zig"></a>Zig-Zag&#x2F;Zag-Zig</h5><p><img src="https://oi-wiki.org/ds/images/splay-zig-zag.svg" srcset="/img/loading.gif" lazyload><br>设 $p&#x3D;fa_x,g&#x3D;fa_p$  当 $x,p,g$ “不共线”，即 $x,p$ 一个是左儿子，一个是右儿子时，我们应该转两下 $x$，如此图。<br>注意到一个性质，两次旋转一次是左旋，一次是右旋。<br>所以就叫做“zag-zig”或“zig-zag”。  </p>
+<h4 id="伸展操作（Splay-操作）"><a href="#伸展操作（Splay-操作）" class="headerlink" title="伸展操作（Splay 操作）"></a>伸展操作（Splay 操作）</h4><p>通过若干次双旋和零或一次单旋将 $x$ 旋转到根。<br>为什么最后可能有一次单旋?<br>因为我们发现，双旋要判断 $x,p,g$ 是否“共线”，但当 $x$ 为根的儿子时，$g$ 不在该棵实树内，所以只需单旋即可。<br>代码：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>		rt=x;<br>		<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isroot</span>(x))&#123;<br>				<span class="hljs-type">int</span> f=fa[x],g=fa[fa[x]];<br>				<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isroot</span>(f))&#123;<br>						<span class="hljs-keyword">if</span>(<span class="hljs-built_in">get</span>(f)==<span class="hljs-built_in">get</span>(x)) <span class="hljs-built_in">rotate</span>(f);<br>						<span class="hljs-keyword">else</span> <span class="hljs-built_in">rotate</span>(x);<br>				&#125;<br>				<span class="hljs-built_in">rotate</span>(x);<br>		&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这是易于理解的代码，但很丑陋，可以这么写：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> f=fa[x];f=fa[x],!<span class="hljs-built_in">isroot</span>(x);<span class="hljs-built_in">rotate</span>(x)) <br>        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isroot</span>(f)) <br>        	  <span class="hljs-built_in">rotate</span>((<span class="hljs-built_in">get</span>(f)==<span class="hljs-built_in">get</span>(x))?f:x);<br>    rt=x;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最好在理解第一个代码后再看第二个代码。  </p>
+<h3 id="Access-操作"><a href="#Access-操作" class="headerlink" title="Access 操作"></a>Access 操作</h3><p>Access，作为名词是通道；(使用或见到的)机会，权利；通路；入径；<br>作为及物动词是访问，存取(计算机文件)；进入；到达。<br>怎么说呢，还是比较名副其实的吧。<br>它的任务很简单，<code>access(x)</code> 表示在<strong>原树上</strong>找到节点 $x$，然后把从 $x$ 到根的路径改为一条实链，再把与这条实链连接的所有边变成虚边。<br>通俗的说，你可以认为 <code>access</code> 是把 $x$ 到原树的根“打通”。<br>那么，这个东西怎么在辅助树中处理呢？<br>非常简单。  </p>
+<p>首先，将 $x$ Splay 到其所在实树的根。<br>然后，根据辅助树的性质，此时 $x$ 的右子树都属于原树上在其下方的点。<br>这些点与 <code>access</code> 出的那条实链就没有实边相连了，于是在辅助树中果断“切掉“右子树，也就是让 $x$ 的右儿子向它连虚边。<br>现在 $x$ 和它的父亲 $f$ 之间连的还是虚边，我们就直接打通这条边，让它变为实边，而且要 $x$ 是右儿子。<br>但是你先别急，人家 $f$ 自己还有实儿子呢，这是不能要的，所以先把 $f$ Splay 到根，然后切掉右子树（也就是在 $f$ 所处的那条实链上在 $f$ 下方的所有点），然后才能把右儿子连为 $x$。<br>然后，两棵实树就连通了。<br>对 $f$ 执行同样的操作，一直连到根，就 <code>access</code> 完成了。<br>例如，对于这颗原树：<br><img src="https://oi-wiki.org/ds/images/lct-access-1.svg" srcset="/img/loading.gif" lazyload><br>我们要将 $N$ 到 $A$ 进行 <code>access</code>，辅助树上的操作就如下图所示。<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/wc8fmvo3.png" srcset="/img/loading.gif" lazyload><br>最后原树变成这样：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/jdlpluj8.png" srcset="/img/loading.gif" lazyload><br>说得复杂，代码很短。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">access</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>		<span class="hljs-type">int</span> p = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (p = <span class="hljs-number">0</span>; x; p = x, x = fa[x])&#123;<br>				<span class="hljs-built_in">splay</span>(x);<br>				<span class="hljs-built_in">rs</span>(x) = p;<br>				<span class="hljs-built_in">maintain</span>(x);<br>		&#125;<br>		<span class="hljs-keyword">return</span> p;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>它的返回值是：表示 $x$ 到根的链所在的 Splay 树的根。<br>返回值的两个性质：</p>
+<ul>
+<li>这个节点一定已经被旋转到了根节点，且父亲一定为空。</li>
+<li>连续两次 Access 操作时，第二次 Access 操作的返回值等于这两个节点在原树上的 LCA。</li>
+</ul>
+<h2 id="第三部分：反转标记"><a href="#第三部分：反转标记" class="headerlink" title="第三部分：反转标记"></a>第三部分：反转标记</h2><h3 id="Makeroot-操作"><a href="#Makeroot-操作" class="headerlink" title="Makeroot 操作"></a>Makeroot 操作</h3><p><code>makeroot(x)</code> 表示把 $x$ 换为<strong>原树的根</strong>。<br>我们不妨考虑每个节点的父节点的变化情况。<br>不难发现，如果节点 $k$ 不在 $x$ 到根的链上，那么其父节点不会变。<br>链上的父子关系则会全部反转。<br>反转链上的父子关系，怎么做？<br>非常容易，首先执行 <code>access(x)</code>，就可以将 $x$ 到根的路径拉成一条独立的实链。<br>这条实链在辅助树上既是一个独立的 Splay 树。<br>反转这条链上的父子关系，在 Splay 上的本质就是翻转所有的左右儿子关系。  </p>
+<h3 id="Pushdown-操作"><a href="#Pushdown-操作" class="headerlink" title="Pushdown 操作"></a>Pushdown 操作</h3><p>显然，直接翻转是可以被卡到 $O(n)$ 的。<br>所以我们需要沿用线段树中的<strong>懒惰标记</strong>思想。<br>但是并没有线段树基础其实也是不影响的，懒惰标记的本质实际上是<strong>延后处理</strong>，也就是说，我们不需要在每次 Makeroot 的时候都对整棵 Splay 进行左右儿子翻转，仅仅需要为 Splay 的根节点 $x$ 打上一个反转标记，然后仅仅 <code>swap</code> 根节点的左右儿子 $ls,rs$，剩下的不用管。<br>等到下次要用到 $r$ 的时候，将 $x$ 的反转标记下传到 $ls,rs$，然后清空 $r$ 的标记，翻转 $ls,rs$ 的左右儿子。<br>这就意味着，只有一个节点将要被操作或访问的话，才会下传标记，然后进行翻转，保证了复杂度。<br>于是，我们有下传标记的代码：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>		<span class="hljs-keyword">if</span> (tag[x])&#123;<br>				<span class="hljs-keyword">if</span> (<span class="hljs-built_in">ls</span>(x))&#123;<br>						tag[<span class="hljs-built_in">ls</span>(x)] ^= <span class="hljs-number">1</span>;<br>						<span class="hljs-built_in">swap</span>(<span class="hljs-built_in">ls</span>(<span class="hljs-built_in">ls</span>(x)), <span class="hljs-built_in">rs</span>(<span class="hljs-built_in">ls</span>(x)));<br>				&#125;<br>				<span class="hljs-keyword">if</span> (<span class="hljs-built_in">rs</span>(x))&#123;<br>						tag[<span class="hljs-built_in">rs</span>(x)] ^= <span class="hljs-number">1</span>;<br>						<span class="hljs-built_in">swap</span>(<span class="hljs-built_in">ls</span>(<span class="hljs-built_in">rs</span>(x)), <span class="hljs-built_in">rs</span>(<span class="hljs-built_in">rs</span>(x)));<br>				&#125;<br>				tag[x] = <span class="hljs-number">0</span>;<br>		&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Update-操作"><a href="#Update-操作" class="headerlink" title="Update 操作"></a>Update 操作</h3><p>什么时候节点会被操作或访问？<br>答案就是进行 Splay 操作的时候。<br>所以我们需要修改 Splay 操作的代码。<br>我们知道，Splay 操作仅仅涉及 $x$ 到根的节点，所以我们引入 <code>update</code> 操作：对 $x$ 到根的所有节点都执行 Pushdown 操作。<br>代码十分容易：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span>&#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isroot</span>(p)) <span class="hljs-built_in">update</span>(fa[p]);<br>    <span class="hljs-built_in">pushdown</span>(p);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因此我们有了新的 Splay 操作（仅仅增加了一句 <code>update</code>）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>		<span class="hljs-built_in">update</span>(x);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> f=fa[x];f=fa[x],!<span class="hljs-built_in">isroot</span>(x);<span class="hljs-built_in">rotate</span>(x)) <br>        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isroot</span>(f)) <br>        	  <span class="hljs-built_in">rotate</span>((<span class="hljs-built_in">get</span>(f)==<span class="hljs-built_in">get</span>(x))?f:x);<br>    rt=x;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="第四部分：主体"><a href="#第四部分：主体" class="headerlink" title="第四部分：主体"></a>第四部分：主体</h2><h3 id="Split-操作"><a href="#Split-操作" class="headerlink" title="Split 操作"></a>Split 操作</h3><p>我们知道，Access 操作可以把 $x$ 到根的路径拉成一条独立实链。<br>那么如果我们想要把 $x$ 到 $y$ 的路径拉成独立实链呢？<br>其实是容易的。<br>你只需要将 $x$ 变成根，即执行 Makeroot 操作即可。<br>然后就是正常的对 $y$ 进行 Access 操作。<br>为了方便以及保证复杂度，我们再对 $y$ 进行 Splay，以使其成为所在实树的根。<br>所以代码只有简短三行。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">split</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;<br>		<span class="hljs-built_in">makeroot</span>(x);<br>		<span class="hljs-built_in">access</span>(y);<br>		<span class="hljs-built_in">splay</span>(y);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Find-操作"><a href="#Find-操作" class="headerlink" title="Find 操作"></a>Find 操作</h3><p><code>find(x)</code> 返回 $x$ 所在<strong>原树</strong>的根，而不是辅助树。<br>考虑 Access 操作的返回值：表示 $x$ 到根的链所在的 Splay 树的根。<br>这棵 Splay 树的根并不是什么关键节点，但是根据辅助树的性质，这棵 Splay 上 DFN 序最小的节点，即“最左“的那个点，在原树上对应着原树的根。<br>所以 Access 之后从 Splay 的根开始一直往左儿子跑就能找到其所在原树的根了。<br>跑的过程中要不停的进行 Pushdown 操作以下放标记。  </p>
+<p>这是可能会有疑问：为什么 Split 的时候没有 Pushdown?<br>显然因为 Makeroot、Access、Splay 的时候已经 Pushdown 过了。  </p>
+<p>代码十分容易：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span>&#123;<br>		<span class="hljs-built_in">access</span>(p);<br>		<span class="hljs-built_in">splay</span>(p);<br>		<span class="hljs-built_in">pushdown</span>(p);<br>		<span class="hljs-keyword">while</span> (<span class="hljs-built_in">ls</span>(p))&#123;<br>				p = <span class="hljs-built_in">ls</span>(p);<br>				<span class="hljs-built_in">pushdown</span>(p);<br>		&#125;<br>		<span class="hljs-built_in">splay</span>(p);<br>		<span class="hljs-keyword">return</span> p;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同样，为了方便以及保证复杂度，最后要进行 Splay 操作。  </p>
+<h3 id="Link-操作"><a href="#Link-操作" class="headerlink" title="Link 操作"></a>Link 操作</h3><p>真正地进入 Link-Cut Tree 的关键环节。  </p>
+<p>首先，动态树显然是不能有环的，所以在 <code>link(x,y)</code> 的时候，如果 $x,y$ 本身就在同一棵原树上就不能连边。<br>怎么判断 $x,y$ 是否在同一棵原树上呢？<br>其实就是判断 <code>find(x)==find(y)</code>。<br>但是实际上我们不这么做。<br>而是先 <code>makeroot(x)</code>，然后判断 <code>x==find(y)</code>，如果没有 <code>return</code> 就 <code>splay(x)</code>。<br>其实两种是等价的，但是后者可以使得 $x$ 同时变为其所在原树和实树的根。<br>这么做的原因也很简单，因为这样以后 Link 就变得十分方便了，直接让 <code>fa[x]=y</code>，即连一条认父不认子的虚边，完事（因为只有同时作为原树和实树的根节点才有权利向上连虚边）。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;<br>		<span class="hljs-built_in">makeroot</span>(x);<br>		<span class="hljs-keyword">if</span> (x == <span class="hljs-built_in">find</span>(y)) <span class="hljs-keyword">return</span>;<br>		<span class="hljs-built_in">splay</span>(x);<br>		fa[x] = y;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Cut-操作"><a href="#Cut-操作" class="headerlink" title="Cut 操作"></a>Cut 操作</h3><p>显然如果本身 $x,y$ 之间就没有边，那么 <code>cut(x,y)</code> 是没用的。<br>怎么判断 $x,y$ 是否在原树上是否直接连边呢？<br>首先如果它们都不在同一原树上，那想都不用想，肯定没有连边，直接 <code>return</code>。<br>否则我们继续走，先 <code>split(x,y)</code>，把 $x$ 到 $y$ 的路径拿出来做一条独立实链。<br>注意，根据 Split 操作的性质，此时 $x$ 是原树的根，但是 $y$ 是实树的根。<br>也就是说 $x$ 在原树上肯定比 $y$ 深度浅，所以在实树上 $x$ 肯定在 $y$ 的左子树内。<br>如果 $x,y$ 之间有直接连边，那么 Split 之后它们所在的实树不可能还有其他节点，因此 $x$ 肯定在 $y$ 的左子树内这条性质可以强化为 $x$ 就是 $y$ 的左儿子。<br>但是你只判 <code>x==ls(y)</code> 肯定会出锅，如果 $x,y$ 之间在原树上有连边，那么 $x$ 的右子树肯定是空，要不然原树上 $y$ 的父亲就不可能是 $x$，肯定是 $x$ 右子树中最右的节点。<br>因此还需要判断 <code>rs(x)==0</code>。<br>也就是说，<code>split(x,y)</code> 之后只要有 <code>x==ls(y)&amp;&amp;!rx(x)</code> 就能保证 $x,y$ 在原树上有直接连边。<br>然后直接断开就行，也就是令 <code>ls(y)=0,fa[x]=0</code>。<br>注意，执行 <code>fa[x]=0</code> 是必要的，应为此时我们是在原树上彻底断边，而不是断实边为虚边。<br>在最后进行 <code>maintain(y)</code> 以更新。<br>代码也极其容易。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">cut</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">find</span>(x) != <span class="hljs-built_in">find</span>(y)) <span class="hljs-keyword">return</span>;<br>		<span class="hljs-built_in">split</span>(x, y);<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">ls</span>(y) == x &amp;&amp; !<span class="hljs-built_in">rs</span>(x))&#123;<br>				<span class="hljs-built_in">ls</span>(y) = fa[x] = <span class="hljs-number">0</span>;<br>				<span class="hljs-built_in">maintain</span>(y);<br>		&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> sor(i, l, r) for (int i = l; i &lt;= r; i++)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5e5</span>;<br><span class="hljs-keyword">namespace</span> Revitalize<br>&#123;<br><br>    <span class="hljs-comment">//130 without ya hang</span><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Link_Cut_Tree</span>&#123;<br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-type">int</span> a[N], sz[N], ch[N][<span class="hljs-number">2</span>], tot, fa[N], val[N], root, tag[N];<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls(x) ch[x][0]</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs(x) ch[x][1]</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> isroot(x) (ch[fa[x]][0] != x &amp;&amp; ch[fa[x]][1] != x)</span><br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">maintain</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;sz[x] = sz[ch[x][<span class="hljs-number">0</span>]] ^ sz[ch[x][<span class="hljs-number">1</span>]] ^ val[x];&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>            <span class="hljs-keyword">if</span> (tag[x])&#123;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ls</span>(x))&#123;<br>                    tag[<span class="hljs-built_in">ls</span>(x)] ^= <span class="hljs-number">1</span>;<br>                    <span class="hljs-built_in">swap</span>(<span class="hljs-built_in">ls</span>(<span class="hljs-built_in">ls</span>(x)), <span class="hljs-built_in">rs</span>(<span class="hljs-built_in">ls</span>(x)));<br>                &#125;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">rs</span>(x))&#123;<br>                    tag[<span class="hljs-built_in">rs</span>(x)] ^= <span class="hljs-number">1</span>;<br>                    <span class="hljs-built_in">swap</span>(<span class="hljs-built_in">ls</span>(<span class="hljs-built_in">rs</span>(x)), <span class="hljs-built_in">rs</span>(<span class="hljs-built_in">rs</span>(x)));<br>                &#125;<br>                tag[x] = <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<span class="hljs-keyword">return</span> (x == ch[fa[x]][<span class="hljs-number">1</span>]);&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>            <span class="hljs-type">int</span> f = fa[x], gf = fa[f], lr = <span class="hljs-built_in">get</span>(x);<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isroot</span>(f)) ch[gf][ch[gf][<span class="hljs-number">1</span>] == f] = x;<br>            ch[f][lr] = ch[x][lr ^ <span class="hljs-number">1</span>];<br>            fa[ch[x][lr ^ <span class="hljs-number">1</span>]] = f;<br>            ch[x][lr ^ <span class="hljs-number">1</span>] = f;<br>            fa[f] = x;<br>            fa[x] = gf;<br>            <span class="hljs-built_in">maintain</span>(f);<br>            <span class="hljs-built_in">maintain</span>(x);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span>&#123;<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isroot</span>(p)) <span class="hljs-built_in">update</span>(fa[p]);<br>            <span class="hljs-built_in">pushdown</span>(p);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">splay</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>            <span class="hljs-built_in">update</span>(x);<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> f; f = fa[x], !<span class="hljs-built_in">isroot</span>(x); <span class="hljs-built_in">rotate</span>(x)) <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isroot</span>(f)) <span class="hljs-built_in">rotate</span>((<span class="hljs-built_in">get</span>(f) == <span class="hljs-built_in">get</span>(x)) ? f : x);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">access</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>            <span class="hljs-type">int</span> p = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (p = <span class="hljs-number">0</span>; x; p = x, x = fa[x])&#123;<br>                <span class="hljs-built_in">splay</span>(x);<br>                <span class="hljs-built_in">rs</span>(x) = p;<br>                <span class="hljs-built_in">maintain</span>(x);<br>            &#125;<br>            <span class="hljs-keyword">return</span> p;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">makeroot</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>            x = <span class="hljs-built_in">access</span>(x);<br>            <span class="hljs-built_in">swap</span>(<span class="hljs-built_in">ls</span>(x), <span class="hljs-built_in">rs</span>(x));<br>            tag[x] ^= <span class="hljs-number">1</span>;<br>        &#125;<br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span></span>&#123;<br>            <span class="hljs-built_in">access</span>(p);<br>            <span class="hljs-built_in">splay</span>(p);<br>            <span class="hljs-built_in">pushdown</span>(p);<br>            <span class="hljs-keyword">while</span> (<span class="hljs-built_in">ls</span>(p))&#123;<br>                p = <span class="hljs-built_in">ls</span>(p);<br>                <span class="hljs-built_in">pushdown</span>(p);<br>            &#125;<br>            <span class="hljs-built_in">splay</span>(p);<br>            <span class="hljs-keyword">return</span> p;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;<br>            <span class="hljs-built_in">makeroot</span>(x);<br>            <span class="hljs-keyword">if</span> (x == <span class="hljs-built_in">find</span>(y)) <span class="hljs-keyword">return</span>;<br>            <span class="hljs-built_in">splay</span>(x);<br>            fa[x] = y;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">split</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;<br>            <span class="hljs-built_in">makeroot</span>(x);<br>            <span class="hljs-built_in">access</span>(y);<br>            <span class="hljs-built_in">splay</span>(y);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">cut</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span></span>&#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">find</span>(x) != <span class="hljs-built_in">find</span>(y)) <span class="hljs-keyword">return</span>;<br>            <span class="hljs-built_in">split</span>(x,y);<br>            <br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ls</span>(y) == x &amp;&amp; !<span class="hljs-built_in">rs</span>(x))&#123;<br>                <span class="hljs-built_in">ls</span>(y) = fa[x] = <span class="hljs-number">0</span>;<br>                <span class="hljs-built_in">maintain</span>(y);<br>            &#125;<br>        &#125;<br>    &#125; tr;<br>    <span class="hljs-type">int</span> n, m;<br><br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">work</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>        cin &gt;&gt; n &gt;&gt; m;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>        &#123;<br>            cin &gt;&gt; tr.val[i];<br>            tr.sz[i] = tr.val[i];<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        &#123;<br>            tr.<span class="hljs-built_in">find</span>(i);<br>        &#125;<br>        <span class="hljs-keyword">while</span> (m--)<br>        &#123;<br>            <span class="hljs-type">int</span> op;<br>            cin &gt;&gt; op;<br>            <span class="hljs-keyword">if</span> (op == <span class="hljs-number">0</span>)<br>            &#123;<br>                <span class="hljs-type">int</span> u, v;<br>                cin &gt;&gt; u &gt;&gt; v;<br>                tr.<span class="hljs-built_in">split</span>(u, v);<br>                cout &lt;&lt; tr.sz[v] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (op == <span class="hljs-number">1</span>)<br>            &#123;<br>                <span class="hljs-type">int</span> u, v;<br>                cin &gt;&gt; u &gt;&gt; v;<br>                tr.<span class="hljs-built_in">link</span>(u, v);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (op == <span class="hljs-number">2</span>)<br>            &#123;<br>                <span class="hljs-type">int</span> u, v;<br>                cin &gt;&gt; u &gt;&gt; v;<br>                tr.<span class="hljs-built_in">cut</span>(u, v);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (op == <span class="hljs-number">3</span>)<br>            &#123;<br>                <span class="hljs-type">int</span> u, v;<br>                cin &gt;&gt; u &gt;&gt; v;<br>                tr.<span class="hljs-built_in">splay</span>(u);<br>                tr.val[u] = v;<br>                tr.<span class="hljs-built_in">maintain</span>(u);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>), cout.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">return</span> Revitalize::<span class="hljs-built_in">work</span>(), <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>常数比较小，可以通过模板。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Link-Cut-Tree for Beginners</div>
+      <div>https://cwhirly.github.io/2025/12/16/Link-Cut-Tree-for-Beginners/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Weihao Cheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/16/Novel/" title="Novel">
+                        <span class="hidden-mobile">Novel</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Cwhirly/Cwhirly.github.io","repo-id":"R_kgDOQhfQWQ","category":"Announcements","category-id":"DIC_kwDOQhfQWc4CzUxJ","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>Nihil ego, nisi Terra et Flumina.</p> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
