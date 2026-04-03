@@ -778,7 +778,7 @@ sup > a::before,
 }
 html {
   font-size: 16px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.02em/revitalize;
 }
 html,
 body {
@@ -875,7 +875,7 @@ i.iconfont {
   :root:not([data-user-color-scheme]) {
     --body-bg-color: #181c27;
     --board-bg-color: #00000080;
-    --text-color: #c4c6c9;
+    --text-color: #e4e6e9;
     --sec-text-color: #a7a9ad;
     --post-text-color: #c4c6c9;
     --post-heading-color: #c4c6c9;
@@ -884,7 +884,7 @@ i.iconfont {
     --link-hover-bg-color: #364151;
     --line-color: #435266;
     --navbar-bg-color: #1f3144;
-    --navbar-text-color: #c4c6c9;
+    --navbar-text-color: #e4e6e9;
     --subtitle-color: #d0d0d0;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
@@ -892,7 +892,7 @@ i.iconfont {
     --button-hover-bg-color: #46647e;
     --highlight-bg-color: #1E1E1E;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
-    --fold-title-color: #c4c6c9;
+    --fold-title-color: #e4e6e9;
     --fold-border-color: #435266;
   }
   :root:not([data-user-color-scheme]) img {
@@ -929,7 +929,7 @@ i.iconfont {
   [data-user-color-scheme="dark"] {
     --body-bg-color: #181c27;
     --board-bg-color: #00000080;
-    --text-color: #c4c6c9;
+    --text-color: #e4e6e9;
     --sec-text-color: #a7a9ad;
     --post-text-color: #c4c6c9;
     --post-heading-color: #c4c6c9;
@@ -938,7 +938,7 @@ i.iconfont {
     --link-hover-bg-color: #364151;
     --line-color: #435266;
     --navbar-bg-color: #1f3144;
-    --navbar-text-color: #c4c6c9;
+    --navbar-text-color: #e4e6e9;
     --subtitle-color: #d0d0d0;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
@@ -946,7 +946,7 @@ i.iconfont {
     --button-hover-bg-color: #46647e;
     --highlight-bg-color: #1E1E1E;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
-    --fold-title-color: #c4c6c9;
+    --fold-title-color: #e4e6e9;
     --fold-border-color: #435266;
   }
   [data-user-color-scheme="dark"] img {
