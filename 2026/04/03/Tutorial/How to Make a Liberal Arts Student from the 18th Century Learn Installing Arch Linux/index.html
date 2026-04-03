@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔者是一个来自十八世纪的文科生，怎么学会装 Arch Linux?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux 文科式安装教程">
+<meta property="og:url" content="https://cwhirly.github.io/2026/04/03/Tutorial/How%20to%20Make%20a%20Liberal%20Arts%20Student%20from%20the%2018th%20Century%20Learn%20Installing%20Arch%20Linux/index.html">
+<meta property="og:site_name" content="Weihao Cheng&#39;s Blog">
+<meta property="og:description" content="笔者是一个来自十八世纪的文科生，怎么学会装 Arch Linux?">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-03T11:24:00.000Z">
+<meta property="article:modified_time" content="2026-04-03T11:24:44.205Z">
+<meta property="article:author" content="Weihao Cheng">
+<meta property="article:tag" content="System">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Arch Linux 文科式安装教程 - Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cwhirly</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.wsq127.top/file/nnk9dyqi.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Arch Linux 文科式安装教程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-03 19:24" pubdate>
+          2026年4月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Arch Linux 文科式安装教程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>前提：笔者是一个来自十八世纪的文科生 $^{[1]}$，怎么学会装 Arch Linux?  </p>
+</blockquote>
+<p>进行粗略阅读 Arch Wiki，发现读懂需要 DFS 式阅读，递归深度达到 $O(1)$ 层，甚至有可能出现环，目前认为通读<strong>较为困难</strong>。<br>电脑上装着 Windows + Arch (Hyprland (illogical-impulse) &#x2F; Niri (Noctalia)) + Ubuntu (gnome)，由于 Windows 是屎，Ubuntu 是大恶霸，所以决定学习自己装 Arch。<br>此外，还有一个冷知识是，电脑上除了 Windows 其他系统都是 Pulsar 或 Qaaxaap 帮忙装的（拜谢！拜谢！）。<br>为了迅速与现代接轨，在 Qaaxaap 的辅助下进行通读 Pulsar 的教程 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/06our748">ArchLinux 简明安装&amp;使用指南</a> 后在移动硬盘上成功安装 Arch with Hyprland。<br>然而对于我这种脑子并不好用的十八世纪文科生来说，想要完全理解全部安装步骤的核心与内涵或许需要大量时间，于是本文应运而生。<br>本质是一篇没有含金量的速成式快餐教程，方便背诵。<br>毕竟装 Arch 总比 OI 简单吧。嗯。</p>
+<h2 id="Βήματα-delta-制作-Ventoy-盘"><a href="#Βήματα-delta-制作-Ventoy-盘" class="headerlink" title="Βήματα $\delta$: 制作 Ventoy 盘"></a>Βήματα $\delta$: 制作 Ventoy 盘</h2><p>你需要一个空的 U 盘或移动硬盘之类的存储设备，大小至少要 $4\mathrm{GiB}$。<br>Ventoy 的官方下载地址在<a target="_blank" rel="noopener" href="https://github.com/ventoy/Ventoy/releases/tag/v1.1.10">这里</a>。<br>根据你的系统下载并解压。<br>点进文件夹，你应该可以看到</p>
+<h2 id="Βήματα-varepsilon-磁盘分区"><a href="#Βήματα-varepsilon-磁盘分区" class="headerlink" title="Βήματα $\varepsilon$: 磁盘分区"></a>Βήματα $\varepsilon$: 磁盘分区</h2><p>注意，这一步只是教你如何给磁盘分区，如果你会请跳过这一步。</p>
+<h3 id="对于-Windows-系统"><a href="#对于-Windows-系统" class="headerlink" title="对于 Windows 系统"></a>对于 Windows 系统</h3><p>右键任务栏 Windows 图标，在弹出的菜单里点“磁盘管理”那一项。<br>会弹出一个窗口。在窗口的下半部分，你会找到一行或若干行。<br>通常来说，那个叫作 “磁盘 0” 的那一行是你的电脑的磁盘。<br>如果你插着 U 盘或者移动硬盘的话，那么下面或许还有若干行叫作“磁盘 1”“磁盘 2”，以此类推，它们代表着你的 U 盘或移动硬盘。<br>每一行里面你会看见若干的大小不一的块，这些块就是磁盘的<strong>分区</strong>。<br>注意，你的电脑里是一块完整的磁盘，尽管你在表面上看似乎电脑上有“C 盘”“D 盘”等等，但其实它们都只是那块完整的磁盘的不同分区罢了，你可以注意到你的电脑上的磁盘可能还有别的没名字的分区，它们也各有所用，只是你平时看不到罢了。<br>分区之间是可以分裂、合并的。<br>在窗口的上半部分，你会看到各个分区的详细信息。</p>
+<p>你要在窗口的<strong>下半</strong>部分选择一个分区（也就是一个“块”状物），这个分区在你的电脑上，或者是在你的盘上。<br>右键你选择的分区，点“压缩卷”，在弹出的窗口中，你会先看到一个“查询压缩空间”的窗口，等待片刻则会看到一个“压缩”的窗口。你会发现其中有一栏叫作“输入压缩空间量”可以输入，输入的数单位为 $\mathrm{MiB}^{[3]}$, 其中 $1024\mathrm{MiB}&#x3D;1\mathrm{GiB}$。然后点击压缩。  </p>
+<p>压缩后你将看到一块空分区。</p>
+<h3 id="对于-Linux-系统"><a href="#对于-Linux-系统" class="headerlink" title="对于 Linux 系统"></a>对于 Linux 系统</h3><p>电脑开机前把你的 Ventoy 盘插进去，点开机键之后猛按 <code>F12</code>, 会进一个界面，进去之后选择你的盘的名字（一般叫 <code>USB Device xxx……</code>），就可以进入 Ventoy 界面。<br>选择 Gparted Live，进去之后啥也不要管，遇到<strong>选项</strong>就直接无脑按 <code>Enter</code>。  </p>
+<p>直到进到一个长得比较神秘的桌面里面。<br>会弹出一个窗口。在窗口的上半部分，你会找到一行。<br>一行里面你会看见若干的大小不一的块，这些块就是磁盘的<strong>分区</strong>。<br>你可以看到，这些磁盘名字都叫 <code>/dev/nvme*n*p*</code>，这就代表着你的电脑上的系统盘。<br>如果你插 U 盘或移动硬盘的话，你可以点击窗口的右上角，会发现还有一个 <code>/dev/sd*</code>，那个 <code>*</code> 是某个字母，你可以点一下它，然后就会切到你的 U 盘或移动硬盘。<br>你要在窗口的<strong>下半</strong>部分选择一个分区（也就是一个“块”状物），这个分区在你的电脑上，或者是在你的盘上。<br>右键窗口下半部分你选择的分区，点“Resize”，在弹出的窗口中，你会先看到一个“查询压缩空间”的窗口，等待片刻则会看到一个“压缩”的窗口。你会发现其中有一栏叫作“输入压缩空间量”可以输入，输入的数单位为 $\mathrm{MiB}^{[3]}$, 其中 $1024\mathrm{MiB}&#x3D;1\mathrm{GiB}$。然后点击压缩。  </p>
+<p>现在，你要选择你是要在电脑上装 Arch 还是在盘上装 Arch。<br>在电脑上就代表着你的电脑会变成<strong>双系统</strong>，在盘上装代表着你以后如果想要启动 Arch 需要在开机之前插上盘，然后从盘上启动。<br>是的，在盘上装意味着，你的 U 盘或移动硬盘将会成为你真正的电脑 $^{[2]}$。等价的表述是，你将不用再携带一个大体积的电脑，只需要带一个盘，到有设备的地方，就可以<strong>随时启动你的电脑</strong>。</p>
+<h2 id="Βήματα-1-安装之前"><a href="#Βήματα-1-安装之前" class="headerlink" title="Βήματα 1: 安装之前"></a>Βήματα 1: 安装之前</h2><p>在 Linux 命令行中：<br><code>cd &lt;目录&gt;</code> 用于将目前命令行所在的位置跳转到你输入的目录的位置。目录其实就是文件夹所在的路径。注意尖括号只是为了说明这是一个依实际情况而定的某种可变项，不代表在实际输入中真的有这个尖括号。<br><code>vim &lt;文件&gt;</code> 用 vim 在命令行中打开文件，vim 是一种代码编辑器。事实上，对于任何代码编辑器都是同理，比如说 <code>code &lt;文件&gt;</code> 就是用 Visual Studio Code 打开文件，<code>emacs &lt;文件&gt;</code> 就是用 Emacs 打开文件。如果文件不存在，就会建立一个空文件并用你所选的编辑器打开。<br><code>touch &lt;文件&gt;</code> 是在目前所在目录新建一个某文件但不打开。<br>命令前面加 <code>sudo</code> 代表以管理员权限运行，可以干一些更深层的东西。<br><code>su</code> 代表着下次关机之前，后面的所有命令都将以 <code>sudo</code> 权限运行。<br>在命令行中复制粘贴是 <code>Ctrl+Shift+C/V</code>, 不是 <code>Ctrl+C/V</code>。<br><code>Ctrl+c</code> 在命令行中代表着强制中断现在运行的命令的运行。<br>你大概知道这些就差不多了吧。后文中看不懂的可以不用管或自行查阅。毕竟本文只是为了速装以及背诵。  </p>
+<p>特别地，在 Arch Linux 中：<br>pacman 是官方<strong>软件包管理器</strong>，yay&#x2F;paru 是 AUR 中的软件包管理器，其实就是非官方的。<br>软件包其实就是安装应用程序用的，Arch Linux 中所有软件都靠软件包安装，没有显式的图形化安装。简洁地说，就是仅仅靠命令行安装程序。这意味着你将不需要去任何软件的官网去自己下载，也不需要考虑软件装在哪里，仅仅需要联网然后在命令行里输入命令就可以安装程序。使得各种软件的管理比 Windows 要方便许多。<br><code>sudo pacman -S &lt;软件包名&gt;</code> 以及 <code>sudo yay -S &lt;软件包名&gt;</code> 用来安装软件包。pacman 其实是 yay 的子集，所以理论上来说你只需要用 yay 就可以了。<br><code>yay &lt;软件包名&gt;</code> 用来查找该软件包，找到之后你可以直接选择安装哪个。<br><code>sudo pacman -R &lt;软件包名&gt;</code> 以及 <code>sudo yay -R &lt;软件包名&gt;</code> 用来删除软件包。<br>注意，最好不要用 <code>sudo</code> 权限来运行 <code>yay ...</code>，然而 <code>pacman ...</code> 必须需要 <code>sudo</code> 权限。 </p>
+<p>你需要掌握一些基本的 Vim 使用技巧：<br>进入 Vim 编辑器后，按 <code>i</code> 进入插入模式，进入插入模式之后你便可以随意进行输入与删除，按 <code>esc</code> 退出插入模式。输入 <code>:wq</code> 并回车代表保存并退出 Vim，<code>:q!</code> 并回车代表强制退出不保存。按 <code>V</code> 进入拖选模式，按 <code>gg</code> 光标到文章首，按 <code>G</code> 光标到文章末，按 <code>x</code> 删除字符并存入剪贴板，按 <code>y</code> 复制选中的内容，按 <code>p</code> 粘贴剪贴板中的内容，按 <code>u</code> 回退到上一步操作之前。<code>h,j,k,l</code> 分别代表光标向左、下、上、右移动一格。当然你也可以使用传统方法的方向键进行这一步。<br>根据此，我们得知，<strong>将文章内容全部删除的命令是 <code>ggVGx</code></strong>。（你猜我为什么加粗这句）  </p>
+<p>以及一些更根本的东西：</p>
+<ol>
+<li><code>/</code> 是 Linux 系统的根目录，一切文件都在其中</li>
+<li><code>~</code> 是 Linux 系统的主文件夹，你的文档，下载内容，图片，桌面等等都在其中。</li>
+<li>Linux 的文件路径格式是 <code>/.../.../.../...</code>，比如说 <code>~</code> 的本质其实是 <code>/home/&lt;username&gt;/</code>。</li>
+<li>Linux 是一类操作系统的总称，Arch Linux 是 Linux 的一种。</li>
+</ol>
+<p>以及最重要的一点：</p>
+<ol>
+<li><strong>Windows 是屎！</strong></li>
+</ol>
+<p>我想到的你<strong>最起码</strong>要知道的就这些了。  </p>
+<h2 id="Βήματα-2-安装时"><a href="#Βήματα-2-安装时" class="headerlink" title="Βήματα 2: 安装时"></a>Βήματα 2: 安装时</h2><p>将你的 Ventoy 盘插上，然后开机过程中狂按 <code>F12</code>，进去之后选择形如 <code>archlinux******.iso</code> 可以调出 Arch Linux 安装程序。<br>进去之后默认选项不要动直接回车。<br>过一会你会看到一个 Welcome to Archlinux！的字样。<br>然后输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl stop reflector.service  <br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!abstract]- 如果使用无线网络而非插网线联网 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">iwctl <span class="hljs-comment"># 进入交互式命令行 </span><br>device list <span class="hljs-comment"># 列出无线网卡设备名，比如无线网卡可能叫 wlan0 </span><br>station &lt;无线网卡设备名&gt; scan <span class="hljs-comment"># 扫描网络 </span><br>station &lt;无线网卡设备名&gt; get-networks <span class="hljs-comment"># 列出所有 wifi 网络 </span><br>station &lt;无线网卡设备名&gt; connect &lt;wifi-name&gt;<br><br><span class="hljs-comment"># 输入 Wifi 密码，那种需要网站上登录的 WiFi 是不行的，注意它并不会提醒你密码错误  </span><br><span class="hljs-comment"># 输入后离开</span><br><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure></blockquote>
+<p>现在连上网了。<br>继续。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">timedatectl set-ntp <span class="hljs-literal">true</span> <br>timedatectl status          <br>vim /etc/pacman.d/mirrorlist<br><br><span class="hljs-comment"># 进入后清空全部（ggVGx）并进入插入模式（i），输入</span><br>Server = https://mirrors.ustc.edu.cn/archlinux/<span class="hljs-variable">$repo</span>/os/<span class="hljs-variable">$arch</span><br><span class="hljs-comment"># 保存并离开 vim  </span><br></code></pre></td></tr></table></figure>
+
+<p>输入 <code>lsblk</code> 查看磁盘情况，找到你要装 Arch 的磁盘的名字，我们把它记作 <code>&lt;disk&gt;</code>。<br>这个名字或许是 <code>sd*,nvme*n*p</code>, 注意，这是磁盘名，不是分区名，它的最后一位不是数字而是字母。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs bash">cfdisk /dev/&lt;disk&gt;<br><span class="hljs-comment"># 进入 cfdisk，注意你现在用方向键以及回车键来进行选择  </span><br><br><span class="hljs-comment"># 注意，你也可以在装 Arch 之前提前分好三个 2GB，16GB，若干GB 的分区，如果提前分好了的话就不需要执行接下来的三个 New 【请参考 Βήματα ε】 </span><br><span class="hljs-comment"># 注意每次 New 的时候选中的都是 Free Space</span><br>[New] <br>2GB  <br><span class="hljs-comment"># 回车</span><br>[New]<br>16GB <br><span class="hljs-comment"># 回车</span><br>[New]<br><span class="hljs-comment"># 回车</span><br><br><br><span class="hljs-comment"># 对于 2GB 的分区</span><br>[Type]<br>[EFI System]<br><br><span class="hljs-comment"># 对于 16GB 的分区</span><br>[Type]<br>[Linux Swap]<br><br><span class="hljs-comment"># 对于最后一个剩下的大分区</span><br>[Type]<br>[Linux Filesystem]<br><br><br>[Write]<br><span class="hljs-built_in">yes</span><br>[Quit]<br></code></pre></td></tr></table></figure>
+
+<p>现在你应该已经成功分好区了！<br>运行 <code>lsblk</code> 复查，并记住你的三个分区的名字（注意这次是分区名），按照大小从小到大记作 <code>&lt;efi&gt;,&lt;swap&gt;,&lt;main&gt;</code>。  </p>
+<p>继续。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkswap /dev/&lt;swap&gt;  <br>swapon /dev/&lt;swap&gt;  <br><span class="hljs-comment"># mkfs.vfat /dev/&lt;efi&gt; # 注意虚拟机或者没装过系统的实体机上才运行这个！！</span><br>mkfs.btrfs -L &lt;卷标&gt; /dev/&lt;swap&gt; <span class="hljs-comment"># &lt;卷标&gt; 是自定义名称，就用英文，大小写随便，不要有特殊字符比如说空格</span><br>btrfs subvolume create /mnt/@<br>btrfs subvolume create /mnt/@home<br>mount -t btrfs -o subvol=/@,compress=zstd /dev/&lt;main&gt; /mnt           <br><span class="hljs-built_in">mkdir</span> /mnt/home                                                         <br>mount -t btrfs -o subvol=/@home,compress=zstd /dev/&lt;main&gt; /mnt/home  <br><span class="hljs-built_in">mkdir</span> /mnt/boot<br>mount /dev/&lt;main&gt; /mnt/boot                                                  <br><span class="hljs-built_in">mkdir</span> /mnt/etc<br><span class="hljs-built_in">touch</span> /mnt/etc/vconsole.conf       <br>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs networkmanager vim <span class="hljs-built_in">sudo</span> zsh zsh-completions<br>genfstab -U /mnt &gt; /mnt/etc/fstab<br>arch-chroot /mnt<br>vim /etc/hostname<br><span class="hljs-comment"># 按 i 进入插入模式，输入主机名，依然是英文，不要有特殊字符</span><br>&lt;Name&gt;<br><span class="hljs-comment"># :wq 退出</span><br>vim /etc/hosts<br><span class="hljs-comment"># 在最后一行添加</span><br>127.0.1.1    Arch.localdomain Arch<br><span class="hljs-comment"># :wq 退出</span><br><span class="hljs-built_in">ln</span> -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>hwclock --systohc<br>vim /etc/locale.gen <br><span class="hljs-comment"># 将以下两项取消注释（也就是删掉这两项开头的 #） </span><br>en_US.UTF-8 UTF-8<br>zh_CN.UTF-8 UTF-8 (root)$ locale-gen<br><span class="hljs-comment"># :wq 退出</span><br>locale-gen<br>passwd root<br><span class="hljs-comment"># 设个密码，不限制强度</span><br>pacman -S intel-ucode grub efibootmgr os-prober<br>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=&lt;Name&gt;<br>vim /etc/default/grub<br><span class="hljs-comment"># 把前面的这一句中的 &quot;loglevel=3,quiet&quot; 改成 &quot;loglevel=5&quot;</span><br>GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;loglevel=5&quot;</span><br><span class="hljs-comment"># 翻到最后，把这一句取消注释，也就是将 # 删掉</span><br>GRUB_DISABLE_OS_PROBER=<span class="hljs-literal">false</span><br><span class="hljs-comment"># 按 :wq 退出</span><br>grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
+
+<p>到这里算是装好 Arch 了。  </p>
+<h2 id="Βήματα-3-安装完成"><a href="#Βήματα-3-安装完成" class="headerlink" title="Βήματα 3: 安装完成"></a>Βήματα 3: 安装完成</h2><p>接下来，我们将要离开安装程序，进入 Arch Linux 系统。</p>
+<hr>
+<p><strong>【附录】</strong><br>$[1]$：笔者并不知道什么是“电脑”。<br>$[2]$：<br>$[3]$：尽管显示的单位是 $\mathrm{MB}$，但 $\mathrm{MB}$ 是 $1000$ 进制的，实际的单位是 $1024$ 进制的 $\mathrm{MiB}$。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/System/" class="print-no-link">#System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Arch Linux 文科式安装教程</div>
+      <div>https://cwhirly.github.io/2026/04/03/Tutorial/How to Make a Liberal Arts Student from the 18th Century Learn Installing Arch Linux/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Weihao Cheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/04/03/Tutorial/How%20to%20Change%20from%20OIer%20to%20Shield&#39;s%20Nigger/" title="Rust 学习笔记">
+                        <span class="hidden-mobile">Rust 学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Cwhirly/Cwhirly.github.io","repo-id":"R_kgDOQhfQWQ","category":"Announcements","category-id":"DIC_kwDOQhfQWc4CzUxJ","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>Nihil ego, nisi Terra et Flumina.</p> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
