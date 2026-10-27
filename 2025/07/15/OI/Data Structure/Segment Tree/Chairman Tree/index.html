@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="可持久化线段树。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chairman Tree">
+<meta property="og:url" content="https://cwhirly.github.io/2025/07/15/OI/Data%20Structure/Segment%20Tree/Chairman%20Tree/index.html">
+<meta property="og:site_name" content="Weihao Cheng&#39;s Blog">
+<meta property="og:description" content="可持久化线段树。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/5l4h77dj.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/s4pz5rge.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rjk2ixb5.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/03xe0hru.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/wuzmkvp7.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/58bo4q9c.png">
+<meta property="article:published_time" content="2025-07-15T03:25:33.000Z">
+<meta property="article:modified_time" content="2026-10-27T13:38:37.325Z">
+<meta property="article:author" content="Weihao Cheng">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/5l4h77dj.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Chairman Tree - Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cwhirly</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.wsq127.top/file/bp7pk21w.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Chairman Tree"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-15 11:25" pubdate>
+          2025年7月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Chairman Tree</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>建议先学习平衡树，这样会对一些复杂的树操作理解地更快、更好一些。</p>
+</blockquote>
+<h2 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h2><p>网上和 OI-wiki 上对于主席树的介绍<strong>大多</strong>较简洁，对我这种入门水平选手非常不友好。<br>于是写一篇<del>十分拙劣的</del>面向普及的主席树。</p>
+<h2 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h2><p>主席树，目前最普遍的说法是将它解释为“可持久化<strong>权值线段树</strong>“，因其发明人缩写为“HJT”而得名。分析它的名字：</p>
+<ul>
+<li>首先，线段树。说明它是 Leafty 的，也就是说，每个单个数据的信息都存在叶子节点内，剩下的节点存的都是整合左右儿子的信息。比如说，线段树、树状数组都是 Leafty 的。而二叉搜索树就不是，因为它的每个节点都存着一个单个的数据信息。这个表述或许有些难懂，不过感性理解还是挺容易的。</li>
+<li>然后，权值。意思是说，它维护的是值域，而不是下标。也就是说，它存的是每个值所对应的数集中的数的个数。举个例子，假设某个数组 $a$ 是 ${1,5,3,6,4,2,3,4,1,1,1}$ ，那么我们根据 $a$ 来建立一个 $c$ 数组，$c_i$ 定义为<strong>数字</strong> $i$ 在 $a$ 中的<strong>出现次数</strong>。于是 $c$ 就是 ${4,1,2,2,1,1}$（以 $1$ 为开头）。那么，普通线段树相当于维护的是 $a$ 数组，权值线段树维护的是 $c$ 数组。换句话说，权值线段树不关心数字在原序列中的先后顺序，只关心它们具体的值。从这点上来说，我们可以理解为普通线段树维护序列，权值线段树维护<strong>集合</strong>。</li>
+<li>最后，可持久化。<br>可持久化通常分为部分可持久化和完全可持久化。<br>部分可持久化是指所有的历史版本都可以访问，但不能修改。（除最新版本之外）<br>完全可持久化是指所有的历史版本既可以访问，也可以修改。<br>所谓“历史版本”，就是曾经该数据结构的一个状态。<br>连起来，“可持久化权值线段树”得名。</li>
+</ul>
+<h2 id="二、暴力保留历史版本"><a href="#二、暴力保留历史版本" class="headerlink" title="二、暴力保留历史版本"></a>二、暴力保留历史版本</h2><p>我们先考虑普通的“可持久化线段树“。<br>已知普通的线段树每次修改时就会覆盖掉曾经的版本，以后就再也无法查询曾经的那个版本。<br>因此，我们每次修改之前，都要把修改前的版本“保存一份”。<br>如何保存？<br>很显然，最无脑的方法是直接将整棵线段树复制成两份，然后在其中一份上进行修改，另一份则可以保留。<br>此时假设节点数 $n$ 为 $10^5$，那么每棵线段树就需要 $2\times10^5-1$ 个节点（此处使用动态开点线段树）。再假设操作数也是 $10^5$ 级别的，那么总的空间就是 $2\times10^{10}$ 级别的，直接炸。<br>那么就需要考虑，哪些空间是浪费的？</p>
+<h2 id="三、树结构"><a href="#三、树结构" class="headerlink" title="三、树结构"></a>三、树结构</h2><h3 id="1-空间优化"><a href="#1-空间优化" class="headerlink" title="1. 空间优化"></a>1. 空间优化</h3><p>简便起见，在保存上一个版本时，我们管被复制的节点叫做被“分裂”。（此处注意与“线段树分裂”算法并没有关系）<br>那么在暴力算法中，每个节点都分裂成了的两个同样节点。<br>此处只考虑单点修改，在修改一个点时，只有它本身及其所有祖先节点的值发生了改变。<br>所以我们只让这些被改动的节点分裂，其余不管。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5l4h77dj.png" srcset="/img/loading.gif" lazyload></p>
+<p>如图所示，假设我们要修改序列中的 $3$ 号位，也就是图中树的 $7$ 号节点，那么 $1$，$2$，$6$，$7$ 节点就会发生改变。<br>所以分裂它们，得到 $16$，$17$，$18$，$19$ 号节点，然后在这四个节点上进行修改即可。<br>按照原线段树的左右子树关系，这个线段树就长这个样子。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/s4pz5rge.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以发现，图中其实包含了两个线段树，只不过他们共用了一些节点，所以空间就大大减少。</p>
+<h3 id="2-修改节点"><a href="#2-修改节点" class="headerlink" title="2. 修改节点"></a>2. 修改节点</h3><p>具体实现这个步骤也差不多：</p>
+<ol>
+<li>建立先前版本根节点的副本。</li>
+<li>先以先前版本根节点的左右儿子作为副本的左右儿子。</li>
+<li>找要修改的节点在左子树还是在右子树。</li>
+<li>如果在左子树，就递归，顺便把副本的左儿子改成先前版本根节点左儿子的副本。</li>
+<li>在右子树同理。</li>
+<li>剩下的那个儿子就还是原先的儿子，因为剩下的那一棵子树没有变化，与先前版本共用。<br>代码：</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls(p) st[p].l</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs(p) st[p].r</span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> pos,<span class="hljs-type">int</span> rt)</span></span>&#123;<br>	<span class="hljs-type">int</span> create=++cnt;<br>	<span class="hljs-built_in">ls</span>(create)=<span class="hljs-built_in">ls</span>(rt),<span class="hljs-built_in">rs</span>(create)=<span class="hljs-built_in">rs</span>(rt);<br>	<span class="hljs-keyword">if</span>(l==r)&#123;<span class="hljs-comment">/*进行相应修改*/</span>;<span class="hljs-keyword">return</span> create;&#125;<br>	<span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>(pos&lt;=mid) <span class="hljs-built_in">ls</span>(create)=<span class="hljs-built_in">update</span>(l,mid,pos,<span class="hljs-built_in">ls</span>(create));<br>	<span class="hljs-keyword">else</span> <span class="hljs-built_in">rs</span>(create)=<span class="hljs-built_in">update</span>(mid<span class="hljs-number">+1</span>,r,pos,<span class="hljs-built_in">rs</span>(create));<br>	<span class="hljs-comment">/*pushup*/</span><br>	<span class="hljs-keyword">return</span> create;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>这个代码似乎有些难懂，下面还有一种写法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls(p) st[p].l</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs(p) st[p].r</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> pre,<span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>	p=++cnt;<br>	<span class="hljs-built_in">ls</span>(p)=<span class="hljs-built_in">ls</span>(pre),<span class="hljs-built_in">rs</span>(p)=<span class="hljs-built_in">rs</span>(pre);<br>	<span class="hljs-keyword">if</span>(l==r) &#123;<span class="hljs-comment">/*进行相应修改*/</span>;<span class="hljs-keyword">return</span> ;&#125;<br>	<span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>(pos&lt;=mid) <span class="hljs-built_in">update</span>(l,mid,<span class="hljs-built_in">ls</span>(pre),<span class="hljs-built_in">ls</span>(p));<br>	<span class="hljs-keyword">else</span> <span class="hljs-built_in">update</span>(mid<span class="hljs-number">+1</span>,r,<span class="hljs-built_in">rs</span>(pre),<span class="hljs-built_in">rs</span>(p));<br>	<span class="hljs-comment">/*pushup*/</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>注意这里 <code>p</code> 是引用类型（不知道怎么用？<del>建议重学 C++</del>），以及第一个写法中的 $rt$ 或第二个写法的 $pre$。</p>
+<p>最后主函数中我们定义 $root_i$ 为第 $i$ 个历史版本的线段树的根节点的编号。<br>显而易见，调用的时候应该调用 <code>update(1,n,root[h],root[i])</code>，意思是第 $i$ 次操作时对编号为 $h$ 的版本进行修改。<br>最好跟着代码手推一遍。</p>
+<p>这个代码只是一个框架，具体的修改和 <code>pushup</code> 我并没有写。<br>其中 $ls(p)$ 指节点 $p$ 的左儿子，$rs(p)$ 指节点 $p$ 的右儿子，$cnt$ 为总节点数。关于这个写法，我们下一节再说。</p>
+<h3 id="3-树结构"><a href="#3-树结构" class="headerlink" title="3. 树结构"></a>3. 树结构</h3><p>不加优化的主席树就是整体分裂，而加优化的主席树就是局部分裂。而根据这种分裂方法，我们还能得出几个性质：</p>
+<ol>
+<li>除叶子节点外，分裂之后的每个节点都有两个子节点。</li>
+<li>每次修改后，根节点都会分裂。</li>
+<li>每次修改会有 $\log_2n$ 个节点分裂。<br>根据第一个和第二个性质，可以得到，给定某个根节点的版本，就可以确定一棵线段树。<br>再重申一遍，这棵线段树的某些节点可能与曾经的线段树共用，这代表这些节点在本次修改中没有被改变。<br>根据第三个性质，可以得到可持久化线段树的空间复杂度为 $O(n+m\log n)$，$m$ 为操作次数。<br>这样就绝对不会 MLE 了！</li>
+</ol>
+<p>最后，再详细说一下新版本线段树的左右儿子关系。<br>当某个节点被复制，也就是分裂的时候，判断被修改的位置是在左子树还是右子树，我们管被修改的位置所处的子树叫做子树 $A$，另一棵子树叫做子树 $B$，那么这个分裂出来的新节点可以直接连向老版本线段树的子树 $B$ 的根，这样子树 $B$ 就共用了。然后把子树 $A$ 的根分裂，连边之后向下走一步。<br>这一步还是挺简单的。</p>
+<h2 id="四、建树"><a href="#四、建树" class="headerlink" title="四、建树"></a>四、建树</h2><p>与经典的线段树原理一样，只不过我们要使用动态开点线段树。<br>此时，节点 $a$ 的左右儿子不再是 $2a$ 和 $2a+1$ ，而是 $ls_a$ 和 $rs_a$，分别表示 $a$ 的左儿子和右儿子。<br>这样做的目的是，新版本的线段树因为有分裂操作，所以很难保证满足左右儿子为 $2a$ 与 $2a+1$ 的条件。<br>具体就是每次递归时新建一个节点，然后把这个新结点作为左儿子或右儿子，这可以用返回值的方法来实现。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r)</span></span>&#123;<br>	<span class="hljs-type">int</span> rt=++cnt;<br>	<span class="hljs-keyword">if</span>(l==r)&#123;<br>		<span class="hljs-comment">//此处进行基本的单点赋初始值</span><br>	    <span class="hljs-keyword">return</span> rt;<br>	&#125;<br>	<span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-built_in">ls</span>(rt)=<span class="hljs-built_in">build</span>(l,mid);<br>	<span class="hljs-built_in">rs</span>(rt)=<span class="hljs-built_in">build</span>(mid<span class="hljs-number">+1</span>,r);<br>	<span class="hljs-comment">//此处进行 pushup 操作</span><br>	<span class="hljs-keyword">return</span> rt;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以发现，此时传参就不用传节点编号了。<br>还有就是，这种写法会省出一半空间，最原始的那棵线段树所使用的空间会从 $4n$ 变为 $2n$。</p>
+<h2 id="五、常规操作"><a href="#五、常规操作" class="headerlink" title="五、常规操作"></a>五、常规操作</h2><p>可持久化数据结构最经典的操作就是在某个历史版本中访问并修改。我们以<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3919">可持久化数组</a>为例，要求：</p>
+<ul>
+<li>修改某个历史版本中的一个值；</li>
+<li>查询某个历史版本中的一个值。<br>对于第 $i$ 个操作，生成一个新的版本，编号为 $i$。<br>初始数组的版本号为 $0$。<br>那么对于建树和修改来说应该是没有什么问题了，然后是 <code>query</code>，与基本的线段树无异。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-comment">//#define int long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">namespace</span> Opshacom&#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">30000005</span>;<br>    <span class="hljs-type">int</span> a[N],n,m,cnt,b[N];<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">chairmantree</span>&#123;<br>        <span class="hljs-keyword">public</span>:<br>            <span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>                <span class="hljs-type">int</span> ls,rs,d;<br>            &#125;st[N];<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>                p=++cnt;<br>                <span class="hljs-keyword">if</span>(l==r)&#123;<br>                    st[p].d=a[l];<br>                    <span class="hljs-keyword">return</span>;<br>                    <span class="hljs-comment">//return p;</span><br>                &#125;<br>                <span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">build</span>(l,mid,st[p].ls);<br>                <span class="hljs-built_in">build</span>(mid<span class="hljs-number">+1</span>,r,st[p].rs);<br>                <span class="hljs-comment">//return p;</span><br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> &amp;p,<span class="hljs-type">int</span> c,<span class="hljs-type">int</span> x)</span></span>&#123;<br>                ++cnt;<br>                st[cnt]=st[p];<br>                p=cnt;<br>                <span class="hljs-keyword">if</span>(l==r)&#123;<br>                    st[p].d=c;<br>                    <span class="hljs-keyword">return</span> ;<br>                    <span class="hljs-comment">// return p;</span><br>                &#125;<br>                <span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">if</span>(x&lt;=mid) <span class="hljs-built_in">update</span>(l,mid,st[p].ls,c,x);<br>                <span class="hljs-keyword">if</span>(x&gt;mid) <span class="hljs-built_in">update</span>(mid<span class="hljs-number">+1</span>,r,st[p].rs,c,x);<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> p,<span class="hljs-type">int</span> id)</span></span>&#123;<br>                <span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> st[p].d;<br>                <span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">if</span>(id&lt;=mid) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(l,mid,st[p].ls,id);<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(mid<span class="hljs-number">+1</span>,r,st[p].rs,id);<br>            &#125;<br><br>    &#125;cmt;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">work</span><span class="hljs-params">()</span></span>&#123;<br>        cin&gt;&gt;n&gt;&gt;m;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];<br>        cmt.<span class="hljs-built_in">build</span>(<span class="hljs-number">1</span>,n,b[<span class="hljs-number">0</span>]);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;<br>            <span class="hljs-type">int</span> his,op,id,c;<br>            cin&gt;&gt;his&gt;&gt;op;<br>            <span class="hljs-keyword">if</span>(op==<span class="hljs-number">1</span>)&#123;<br>                cin&gt;&gt;id&gt;&gt;c;<br>                b[i]=b[his];<br>                cmt.<span class="hljs-built_in">update</span>(<span class="hljs-number">1</span>,n,b[i],c,id);<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                cin&gt;&gt;id;<br>                cout&lt;&lt;cmt.<span class="hljs-built_in">query</span>(<span class="hljs-number">1</span>,n,b[his],id)&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>                b[i]=b[his];<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    Opshacom::<span class="hljs-built_in">work</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><del>码风比较清奇</del>，主要是主函数中调用的部分是重点。<br>此题中需要注意的是 $N$ 要开到 $3e7$ 才能过。</p>
+<h2 id="六、区间-k-小值"><a href="#六、区间-k-小值" class="headerlink" title="六、区间 $k$ 小值"></a>六、区间 $k$ 小值</h2><p>到这里，我们再开始说真正的“主席树”，也就是可持久化<strong>权值</strong>线段树。<br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3834">可持久化线段树 2</a> 要求我们完成的操作是：</p>
+<ul>
+<li>求出一个序列某个区间的第 $k$ 小值。<br>其中 $k$ 小值是指该区间从小到大排序后的第 $k$ 个值。</li>
+</ul>
+<h3 id="1-权值线段树"><a href="#1-权值线段树" class="headerlink" title="1. 权值线段树"></a>1. 权值线段树</h3><p>在学习这部分之前，最好先通过<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1908">逆序对</a>。<br>先考虑，如何求出序列的每个前缀的区间 $k$ 小值。<br>用权值线段树维护一个 $cnt$ 数组（其实是一个桶），初始的时候全为 $0$。<br>在计算长度为 $i$ 的前缀的第 $k$ 小值时，$cnt_j$ 表示的是值 $j$ 在 $a_1$ 到 $a_i$ 中出现的次数。<br>请仔细阅读上面这个定义。<br>这等价于，在算到前缀 $i$ 的答案时，将 $cnt_{a_i}$ 加 $1$。<br>然后，权值线段树要维护什么呢？<br>设 $d_p&#x3D;\displaystyle\sum_{i&#x3D;l}^{r}cnt_i$。区间 $[l,r]$ 为节点 $p$ 的管辖区间。<br>每次查询时调用 <code>query(1,mx,k,1)</code>。<br>为了准确地表示出 <code>query</code> 的含义，我们举个例子。</p>
+<p>假设<strong>目前</strong>的 $i&#x3D;8,k&#x3D;5$，$a$ 数组的前 $8$ 项为：</p>
+<p>$$<br>3,1,2,3,3,6,1,2<br>$$</p>
+<p>那么此时的 $cnt$ 即为：</p>
+<p>$$<br>2,2,3,0,0,1<br>$$</p>
+<p>建立线段树：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/rjk2ixb5.png" srcset="/img/loading.gif" lazyload></p>
+<p>图中节点上的数字代表这个节点的 $d$ 值。<br>初始的时候我们在根节点。<br>发现 $k$ 小于等于左儿子的 $d$ 值，所以答案一定在左子树内。（这一步应该很容易理解吧）<br>向下走一步，得到下图：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/03xe0hru.png" srcset="/img/loading.gif" lazyload></p>
+<p>这次我们发现 $k$ 大于左儿子的 $d$，那就走到右子树。<br>重点！此时 $k$ 需要减去左儿子的 $d$，也就是说现在的 $k$ 改为 $3$！<br>为什么呢？<br>现在就不得不提 <code>query</code> 的定义了。<br><code>query(l,r,k,p)</code> 可以被定义为，<strong>可重集</strong> $S&#x3D;\left{t\in\set{a_1,a_2,\cdots,a_i}|l\le t\le r\right}$ 的第 $k$ 小值，$[l,r]$ 是 $p$ 的管辖范围。<br>我非常喜欢数学语言，因为它比较严谨直观，且不容易发生歧义。<br>简便起见，我们记之为 $Q(l,r,k)$。<br>设 $\mu&#x3D;\lfloor\dfrac{l+r}{2}\rfloor$。也就是代码中的 <code>mid</code>。<br>再设可重集 $S_1&#x3D;\left{t\in\set{a_1,a_2,\cdots,a_i}|l\le t\le \mu\right},S_2&#x3D;\left{t\in\set{a_1, a_2,\cdots, a_i}|\mu+1\le t\le r\right}$<br>如果 $k\le|S_1|$，则 $Q(l,r,k)&#x3D;Q(l,\mu,k)$，否则 $Q(l,r,k)&#x3D;Q(\mu+1,r,k-|S_1|)$。<br>这样就变得易于理解多了！因为 $S_1$ 就是 $S$ 中前 $|S_1|$ 小的所有数，所以当 $k&gt;\mu$ 时，$S_2$ 的第 $k-|S_1|$ 小的值就是 $S$ 中第 $k$ 小的值啦！<br>综上所述，如果走右子树的话，$k$ 需要减去左子树的 $d$ 值。<br>于是向下走：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/wuzmkvp7.png" srcset="/img/loading.gif" lazyload></p>
+<p>走完发现还在右子树（$k&gt;2$）, 于是 $k$ 减去 $2$，得到 $1$。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/58bo4q9c.png" srcset="/img/loading.gif" lazyload></p>
+<p>最后走到了值 $3$ 所对应的叶子节点。<br>所以答案是 $3$。</p>
+<p>一个例子跑完，对权值线段树的理解加深了不少。<br>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> k,<span class="hljs-type">int</span> p)</span></span>&#123;<br>	<span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>,num=d[<span class="hljs-built_in">ls</span>(p)];<br>	<span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> l;<br>	<span class="hljs-keyword">if</span>(k&lt;=num) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(l,mid,k,<span class="hljs-built_in">ls</span>(p));<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(mid<span class="hljs-number">+1</span>,r,k-num,<span class="hljs-built_in">rs</span>(p));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-主席树"><a href="#2-主席树" class="headerlink" title="2. 主席树"></a>2. 主席树</h3><p>现在考虑任意区间的 $k$ 小值。<br>还是以 ${3,1,2,3,3,6,1,2}$ 为例。<br>当 $i$ 为 $3$ 的时候，$cnt&#x3D;{1,1,1,0,0,0}$。<br>当 $i$ 为 $8$ 的时候，$cnt&#x3D;{2,2,3,0,0,1}$。<br>也就是说，$i$ 在从 $4$ 到 $8$ 的过程中，$cnt$ 的变化量就是 $\Delta cnt&#x3D;{+1,+1,+2,+0,+0,+1}$。<br>再回头一看，$a_4$ 到 $a_8$ 中，不就是恰好有 $1$ 个 $1$、$1$ 个 $2$、$2$ 个 $3$，和 $1$ 个 $6$ 吗？<br>所以就是说，通过 $r$，$l-1$ 两个版本的 $cnt$ 的相减，就可以得到下标区间 $[l, r]$ 所对应的那个 $\Delta cnt$，也就可以得到从 $a_l$ 到 $a_r$ 每个数字出现几次了！<br>这是非常好的。现在只需要考虑用可持久化权值线段树来记录 $cnt$ 的每一个历史版本就好了！<br>具体地，对于每次 $i\gets i+1$ 的时候，建立一个新的版本，然后在新的版本上对 $cnt_{a_i}$ 进行加一就可以了。</p>
+<p>数学地说，我们定义节点 $\lambda,\rho$，为第 $l-1$ 个版本以及第 $r$ 个版本的线段树中，管辖范围为值域 $[L, R]$ 的两个节点。<br>再定义 $cnt_i^{(h)}$ 为第 $h$ 个版本中的 $cnt_i$。<del>（$h$ 阶导？）</del><br>与之前对 $d$ 的定义几乎不变。<br>$d_{\lambda}&#x3D;\displaystyle\sum_{i&#x3D;L}^R cnt_i^{(l-1)}, d_{\rho}&#x3D;\displaystyle\sum_{i&#x3D;L}^R cnt_i^{(r)}$。<br>那么设 $\xi (l, r, L, R)&#x3D;d_{\rho}-d_{\lambda}&#x3D;\displaystyle\sum_{i&#x3D;l}^r cnt_i^{(r)}-cnt_{i}^{(l-1)}$。<br>和之前的方法一样，我们定义 $Q (l, r, k, p)$ 为：<strong>可重集</strong> $\color{red}{S&#x3D;\left{t\in\set{a_l, a_{l+1},\cdots, a_{r-1}, a_r}|L\le t\le R\right}}$ 的第 $k$ 小值，$[L, R]$ 是 $p$ 的管辖范围。<br><del>这很合理。</del><br>设 $\mu&#x3D;\lfloor\dfrac{L+R}{2}\rfloor$。也就是代码中的 <code>mid</code>。<br>再设可重集 $S_1&#x3D;\left{t\in\set{a_l,\cdots, a_r}|L\le t\le \mu\right}, S_2&#x3D;\left{t\in\set{a_l,\cdots, a_r}|\mu+1\le t\le R\right}$<br>如果 $k\le|S_1|$，则 $Q (l, r, k, p)&#x3D;Q (l,r,k,ls (p))$，否则 $Q (l, r, k, p)&#x3D;Q (l, r, k-|S_1|, rs (p))$。<br>这样就比所谓“感性理解“看着好多了。</p>
+<p>现在只需要算出 $|S_1|$ 就可以了！<br>它不就是 $\displaystyle\sum_{i&#x3D;L}^\mu cnt_i^{(r)}-cnt_i^{(l-1)}$ 吗？不就是 $\xi (l, r, L,\mu)$ 吗？<br>完美！<br>我们如复制粘贴般的就写好了 <code>query</code> :</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">Int <span class="hljs-title">query</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> s, <span class="hljs-type">int</span> t, <span class="hljs-type">int</span> k)</span></span>&#123;<br>	Int mid=(s+t)&gt;&gt;<span class="hljs-number">1</span>, xi=d[<span class="hljs-built_in">ls</span> (r)]-d[<span class="hljs-built_in">ls</span> (l)];<br>	<span class="hljs-built_in">If</span> (s==t) <span class="hljs-keyword">return</span> s;<br>	<span class="hljs-built_in">If</span> (k&lt;=xi) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span> (<span class="hljs-built_in">ls</span> (l), <span class="hljs-built_in">ls</span> (r), s, mid, k);<br>	<span class="hljs-function">Else <span class="hljs-keyword">return</span> <span class="hljs-title">query</span> <span class="hljs-params">(rs (l), rs (r), mid<span class="hljs-number">+1</span>, t, k-xi)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后需要考虑的是求出 $d$ 数组。<br>这简单多了，根据可持久化线段树的原理，在 <code>query</code> 之前先把先把整个序列遍历一遍，每遍历到一个数就执行之前说过的单点修改（也就是加 $1$）即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">Void <span class="hljs-title">update</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> rt, <span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>	P=++cnt;<br>	<span class="hljs-built_in">Ls</span> (p)=<span class="hljs-built_in">ls</span> (rt), <span class="hljs-built_in">rs</span> (p)=<span class="hljs-built_in">rs</span> (rt), d[p]=d[rt]<span class="hljs-number">+1</span>;<br>	<span class="hljs-built_in">If</span> (l==r) <span class="hljs-keyword">return</span> ;<br>	Int mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-built_in">If</span> (pos&lt;=mid) <span class="hljs-built_in">update</span> (l,mid,pos,<span class="hljs-built_in">ls</span> (rt), <span class="hljs-built_in">ls</span> (p));<br>	<span class="hljs-function">Else <span class="hljs-title">update</span> <span class="hljs-params">(mid<span class="hljs-number">+1</span>,r,pos,rs (rt), rs (p))</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>值得一提的是，本题由于 $a_i$ 的值是 $10^9$ 级别，所以需要离散化。<br><del>（总不能对着一个 <code>map</code> 建线段树吧）</del></p>
+<p>然后就通过了本题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls (p) st[p]. Ls</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs (p) st[p]. Rs</span><br>Using <span class="hljs-keyword">namespace</span> std;<br>Namespace Opshacom&#123;<br>    Const <span class="hljs-type">int</span> N=<span class="hljs-number">5</span> e <span class="hljs-number">6</span><span class="hljs-number">+7</span>;<br>    Int n, m, a[N], tmp[N];<br>    Int len;<br>    Class Chairman&#123;<br>        Private: <span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<span class="hljs-type">int</span> ls, rs;&#125;st[N];<br>        Public:<br>            Int cnt, root[N], sum[N];<br>            <span class="hljs-function">Void <span class="hljs-title">build</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>                P=++cnt;<br>                <span class="hljs-built_in">If</span> (l==r) <span class="hljs-keyword">return</span> ;<br>                Int mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">Build</span> (l,mid,<span class="hljs-built_in">ls</span> (p)); <span class="hljs-built_in">build</span> (mid<span class="hljs-number">+1</span>,r,<span class="hljs-built_in">rs</span> (p));<br>            &#125;<br>            <span class="hljs-function">Void <span class="hljs-title">update</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> rt, <span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>                P=++cnt;<br>                <span class="hljs-built_in">Ls</span> (p)=<span class="hljs-built_in">ls</span> (rt), <span class="hljs-built_in">rs</span> (p)=<span class="hljs-built_in">rs</span> (rt), sum[p]=sum[rt]<span class="hljs-number">+1</span>;<br>                <span class="hljs-built_in">If</span> (l==r) <span class="hljs-keyword">return</span> ;<br>                Int mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">If</span> (pos&lt;=mid) <span class="hljs-built_in">update</span> (l,mid,pos,<span class="hljs-built_in">ls</span> (rt), <span class="hljs-built_in">ls</span> (p));<br>                <span class="hljs-function">Else <span class="hljs-title">update</span> <span class="hljs-params">(mid<span class="hljs-number">+1</span>,r,pos,rs (rt), rs (p))</span></span>;<br>            &#125;<br>            <span class="hljs-function">Int <span class="hljs-title">query</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> s, <span class="hljs-type">int</span> t, <span class="hljs-type">int</span> k)</span></span>&#123;<br>                Int mid=(s+t)&gt;&gt;<span class="hljs-number">1</span>, num=sum[<span class="hljs-built_in">ls</span> (r)]-sum[<span class="hljs-built_in">ls</span> (l)];<br>                <span class="hljs-built_in">If</span> (s==t) <span class="hljs-keyword">return</span> s;<br>                <span class="hljs-built_in">If</span> (k&lt;=num) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span> (<span class="hljs-built_in">ls</span> (l), <span class="hljs-built_in">ls</span> (r), s, mid, k);<br>                <span class="hljs-function">Else <span class="hljs-keyword">return</span> <span class="hljs-title">query</span> <span class="hljs-params">(rs (l), rs (r), mid<span class="hljs-number">+1</span>, t, k-num)</span></span>;<br>            &#125;<br>    &#125;tr;<br>    <span class="hljs-function">Inline <span class="hljs-type">void</span> <span class="hljs-title">Discretization</span> <span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-built_in">Memcpy</span> (tmp,a,<span class="hljs-built_in">sizeof</span> (tmp));<br>        <span class="hljs-built_in">Sort</span> (tmp<span class="hljs-number">+1</span>, tmp+n<span class="hljs-number">+1</span>);<br>        Len=<span class="hljs-built_in">unique</span> (tmp<span class="hljs-number">+1</span>, tmp+n<span class="hljs-number">+1</span>)-tmp<span class="hljs-number">-1</span>;<br>        Tr.<span class="hljs-built_in">Build</span> (<span class="hljs-number">1</span>, len, tr. Root[<span class="hljs-number">0</span>]);<br>        <span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++) tr.<span class="hljs-built_in">Update</span> (<span class="hljs-number">1</span>, len, <span class="hljs-built_in">lower_bound</span> (tmp<span class="hljs-number">+1</span>, tmp+len<span class="hljs-number">+1</span>, a[i])-tmp, tr. Root[i<span class="hljs-number">-1</span>], tr. Root[i]);<br>    &#125;<br>    <span class="hljs-function">Inline <span class="hljs-type">void</span> <span class="hljs-title">work</span> <span class="hljs-params">()</span></span>&#123;<br>        Cin&gt;&gt;n&gt;&gt;m;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n;i++) cin&gt;&gt;a[i];<br>        <span class="hljs-built_in">Discretization</span> ();<br>        <span class="hljs-built_in">While</span> (m--)&#123;<br>            Int l, r, k;<br>            Cin&gt;&gt;l&gt;&gt;r&gt;&gt;k;<br>            Cout&lt;&lt;tmp[tr.<span class="hljs-built_in">Query</span> (tr. Root[l<span class="hljs-number">-1</span>], tr. Root[r], <span class="hljs-number">1</span>, len, k)]&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-function">Int <span class="hljs-title">main</span> <span class="hljs-params">()</span></span>&#123;<br>    Ios:: <span class="hljs-built_in">sync_with_stdio</span> (<span class="hljs-number">0</span>);<br>    Cin.<span class="hljs-built_in">Tie</span> (<span class="hljs-number">0</span>), cout.<span class="hljs-built_in">Tie</span> (<span class="hljs-number">0</span>);<br>    Return Opshacom:: <span class="hljs-built_in">work</span> (), <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码其实挺短的，细节也不是很多？<br>其实这个还可以带修，套一个树状数组即可。因为『这是一篇（wǒ）面向（tài）普及选手（cài）的文章（le）』，所以不展开说。</p>
+<h2 id="七、树上第-k-小"><a href="#七、树上第-k-小" class="headerlink" title="七、树上第 $k$ 小"></a>七、树上第 $k$ 小</h2><p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2633">Count on a Tree</a>。<br>其实就是求树上一条链上的第 $k$ 小值。<br>乍一看是树链剖分，其实还是主席树的板。<br>在序列上，我们从前往后遍历，依次单点修改，每次生成一个新的历史版本。<br>在树上，我们按 DFS 的顺序遍历，依次单点修改，每次生成一个新的历史版本。<br>在序列上，$\xi (l, r, L, R)&#x3D;d_{\rho}-d_{\lambda}$，<br>在树上，$\xi (l, r, L, R)&#x3D;d_{\rho}+d_{\lambda}-d_{v}-d_{u}$。<br>节点 $\rho,\lambda, v, u$ 的管辖区间都是值域 $[L, R]$，它们所处的线段树的版本分别是 $l, r,\operatorname{LCA}(l, r), fa (\operatorname{LCA}(l, r))$。<br>其实就是<a target="_blank" rel="noopener" href="https://oi-wiki.org/basic/prefix-sum/#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86">树上差分</a>的原理！<br>AC 代码：（竟然一遍过）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br>Using <span class="hljs-keyword">namespace</span> std;<br>Int n, m; <span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">2</span> e <span class="hljs-number">5</span><span class="hljs-number">+5</span>;<br>Struct edge&#123;<span class="hljs-type">int</span> to, nxt;&#125;e[N&lt;&lt;<span class="hljs-number">1</span>];<br>Int head[N], cntt;<br><span class="hljs-function">Inline <span class="hljs-type">void</span> <span class="hljs-title">add</span> <span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span></span>&#123;<br>    E[++cntt]. To=v;<br>    E[cntt]. Nxt=head[u];<br>    Head[u]=cntt;<br>&#125;<br>Int cnt, sum[N&lt;&lt;<span class="hljs-number">5</span>], ls[N&lt;&lt;<span class="hljs-number">5</span>], rs[N&lt;&lt;<span class="hljs-number">5</span>], a[N], tmp[N], len, root[N], fa[N], zx[N][<span class="hljs-number">32</span>], dep[N];<br><span class="hljs-function">Void <span class="hljs-title">build</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>    P=++cnt;<br>    <span class="hljs-built_in">If</span> (l==r) <span class="hljs-keyword">return</span> ;<br>    Int mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">Build</span> (l, mid, ls[p]);<br>    <span class="hljs-built_in">Build</span> (mid<span class="hljs-number">+1</span>, r, rs[p]);<br>&#125;<br><span class="hljs-function">Void <span class="hljs-title">update</span> <span class="hljs-params">(<span class="hljs-type">int</span> id, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> lst, <span class="hljs-type">int</span> &amp;p)</span></span>&#123;<br>    P=++cnt;<br>    Ls[p]=ls[lst], rs[p]=rs[lst], sum[p]=sum[lst]<span class="hljs-number">+1</span>;<br>    <span class="hljs-built_in">If</span> (l==r) <span class="hljs-keyword">return</span> ;<br>    Int mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">If</span> (id&lt;=mid) <span class="hljs-built_in">update</span> (id, l, mid, ls[lst], ls[p]);<br>    <span class="hljs-function">Else <span class="hljs-title">update</span> <span class="hljs-params">(id, mid<span class="hljs-number">+1</span>, r, rs[lst], rs[p])</span></span>;<br>&#125;<br><span class="hljs-function">Inline <span class="hljs-type">void</span> <span class="hljs-title">Discretization</span> <span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">Memcpy</span> (tmp,a,<span class="hljs-built_in">sizeof</span> (tmp));<br>    <span class="hljs-built_in">Sort</span> (tmp<span class="hljs-number">+1</span>, tmp+n<span class="hljs-number">+1</span>);<br>    Len=<span class="hljs-built_in">unique</span> (tmp<span class="hljs-number">+1</span>, tmp+n<span class="hljs-number">+1</span>)-tmp<span class="hljs-number">-1</span>;<br>    <span class="hljs-built_in">Build</span> (<span class="hljs-number">1</span>, len, root[<span class="hljs-number">0</span>]);<br>&#125;<br><span class="hljs-function">Void <span class="hljs-title">dfs</span> <span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<br>    <span class="hljs-built_in">Update</span> (<span class="hljs-built_in">lower_bound</span> (tmp<span class="hljs-number">+1</span>, tmp+len<span class="hljs-number">+1</span>, a[u])-tmp, <span class="hljs-number">1</span>, len, root[fa[u]], root[u]);<br>    <span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> i=head[u]; i; i=e[i]. Nxt)&#123;<br>        Int v=e[i]. To;<br>        <span class="hljs-built_in">If</span> (v==fa[u]) <span class="hljs-keyword">continue</span>;<br>        Fa[v]=u; dep[v]=dep[u]<span class="hljs-number">+1</span>; <span class="hljs-built_in">dfs</span> (v);<br>    &#125;<br>&#125;<br><span class="hljs-function">Int <span class="hljs-title">query</span> <span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> lca, <span class="hljs-type">int</span> flc, <span class="hljs-type">int</span> s, <span class="hljs-type">int</span> t, <span class="hljs-type">int</span> k)</span></span>&#123;<br>    Int num=sum[ls[l]]+sum[ls[r]]-sum[ls[lca]]-sum[ls[flc]];<br>    <span class="hljs-built_in">If</span> (s==t) <span class="hljs-keyword">return</span> s;<br>    Int mid=(s+t)&gt;&gt;<span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">If</span> (k&lt;=num) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span> (ls[l], ls[r], ls[lca], ls[flc], s, mid, k);<br>    <span class="hljs-function">Else <span class="hljs-keyword">return</span> <span class="hljs-title">query</span> <span class="hljs-params">(rs[l], rs[r], rs[lca], rs[flc], mid<span class="hljs-number">+1</span>, t, k-num)</span></span>;<br>&#125;<br><span class="hljs-function">Inline <span class="hljs-type">void</span> <span class="hljs-title">init</span> <span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++) zx[i][<span class="hljs-number">0</span>]=fa[i];<br>    <span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>; j&lt;=<span class="hljs-number">30</span>; j++) <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++) zx[i][j]=zx[zx[i][j<span class="hljs-number">-1</span>]][j<span class="hljs-number">-1</span>];<br>&#125;<br><span class="hljs-function">Int <span class="hljs-title">LCA</span> <span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span></span>&#123;<br>	<span class="hljs-built_in">If</span> (u==v) <span class="hljs-keyword">return</span> u;<br>	<span class="hljs-built_in">If</span> (dep[u]&gt;dep[v]) <span class="hljs-built_in">swap</span> (u, v);<br>	<span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">30</span>; j&gt;=<span class="hljs-number">0</span>; j--) <span class="hljs-keyword">if</span> (dep[u]&lt;=dep[v]-(<span class="hljs-number">1</span>&lt;&lt;j)) v=zx[v][j];<br>	<span class="hljs-built_in">If</span> (u==v) <span class="hljs-keyword">return</span> u;<br>	<span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> j=<span class="hljs-number">30</span>; j&gt;=<span class="hljs-number">0</span>; j--)&#123;<span class="hljs-keyword">if</span> (zx[v][j]!=zx[u][j])&#123;v=zx[v][j]; u=zx[u][j];&#125;&#125;<br>	Return zx[u][<span class="hljs-number">0</span>];<br>&#125;<br><span class="hljs-function">Int <span class="hljs-title">main</span> <span class="hljs-params">()</span></span>&#123;<br>    Ios:: <span class="hljs-built_in">sync_with_stdio</span> (<span class="hljs-literal">false</span>);<br>    Cin.<span class="hljs-built_in">Tie</span> (<span class="hljs-number">0</span>), cout.<span class="hljs-built_in">Tie</span> (<span class="hljs-number">0</span>);<br>    Cin&gt;&gt;n&gt;&gt;m;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n;i++) cin&gt;&gt;a[i];<br>    <span class="hljs-built_in">Discretization</span> ();<br>    <span class="hljs-built_in">For</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;n; i++)&#123;<br>        Int u, v;<br>        Cin&gt;&gt;u&gt;&gt;v;<br>        <span class="hljs-built_in">Add</span> (u, v);<br>        <span class="hljs-built_in">Add</span> (v, u);<br>    &#125;<br>    Dep[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>; <span class="hljs-built_in">dfs</span> (<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">Init</span> ();<br>    Int lst=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">While</span> (m--)&#123;<br>        Int l, r, k;<br>        Cin&gt;&gt;l&gt;&gt;r&gt;&gt;k;<br>        L^=lst;<br>        Int lca=<span class="hljs-built_in">LCA</span> (l, r); <span class="hljs-type">int</span> f=fa[lca];<br>        Lst=tmp[<span class="hljs-built_in">query</span> (root[l], root[r], root[lca], root[f], <span class="hljs-number">1</span>, len, k)];<br>        Cout&lt;&lt;lst&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>    &#125;<br>    Return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>完结撒花！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OI/" class="print-no-link">#OI</a>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Chairman Tree</div>
+      <div>https://cwhirly.github.io/2025/07/15/OI/Data Structure/Segment Tree/Chairman Tree/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Weihao Cheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/07/Math/Algebra/Linear%20Space/" title="Linear Space">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linear Space</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/08/Math/Mathematical%20Analysis/Limits/Function%20Limit/" title="Function Limit">
+                        <span class="hidden-mobile">Function Limit</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Cwhirly/Cwhirly.github.io","repo-id":"R_kgDOQhfQWQ","category":"Announcements","category-id":"DIC_kwDOQhfQWc4CzUxJ","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>Nihil ego, nisi Terra et Flumina.</p> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="把树拍成链。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heavy Path Decomposition">
+<meta property="og:url" content="https://cwhirly.github.io/2026/03/05/OI/Graph%20Theory/Tree%20Theory/Heavy%20Path%20Decomposition/index.html">
+<meta property="og:site_name" content="Weihao Cheng&#39;s Blog">
+<meta property="og:description" content="把树拍成链。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://oi-wiki.org/graph/images/hld.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/1rojfzd3.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/v8xq3d8v.png">
+<meta property="article:published_time" content="2026-03-05T00:09:40.000Z">
+<meta property="article:modified_time" content="2026-10-27T13:38:37.327Z">
+<meta property="article:author" content="Weihao Cheng">
+<meta property="article:tag" content="Graph Theory">
+<meta property="article:tag" content="OI">
+<meta property="article:tag" content="Tree Theory">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oi-wiki.org/graph/images/hld.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Heavy Path Decomposition - Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cwhirly</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.wsq127.top/file/bp7pk21w.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Heavy Path Decomposition"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-05 08:09" pubdate>
+          2026年3月5日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Heavy Path Decomposition</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>一道好好的数据结构题，有的出题人会把它放在树上来强迫选手写树剖。</p>
+</blockquote>
+<p><em>例题引入：有根树上 $n$ 个点有点权，$4$ 种操作：</em><br><em>1. 将一条链上的所有点加上一个值。</em><br><em>2.查询一条链的点权和。</em><br><em>3.将一棵子树的所有点加上一个值。</em><br><em>4.查询一棵子树的点权和。</em>    </p>
+<p><strong>（注意：本文中某个节点的“子树”包含该节点）</strong></p>
+<h2 id="1-朴素做法"><a href="#1-朴素做法" class="headerlink" title="1. 朴素做法"></a>1. 朴素做法</h2><p>暴力 ,挨个修改子树&#x2F;链上的每一个值。<br>如果有 $q$ 次操作&#x2F;询问，那么复杂度就是 $\Theta(qn\log n)$  。<br>其中那个 $\log$ 是 LCA 带的。    </p>
+<h2 id="2-结构"><a href="#2-结构" class="headerlink" title="2. 结构"></a>2. 结构</h2><p>看到这些操作，长得就像线段树，所以考虑线段树。<br>树链剖分主要分为：  </p>
+<ol>
+<li>重链剖分  </li>
+<li>长链剖分  </li>
+<li>实链剖分（LCT 用）<br><del>可能还有别的，但我太菜了不知道……</del><br>通常情况下，我们说“树链剖分”都是指重链剖分。</li>
+</ol>
+<p>我们知道线段树只能处理序列问题。<br>所以树链剖分就要帮线段树把树“剖”成一个序列。<br>总体上来说，树链剖分就是一个<strong>插件</strong>，装到线段树上，它就能处理树上问题。<br>现在的问题是，怎么剖？<br>我们此时先做几个定义：   </p>
+<ul>
+<li>重子节点：一个节点的子树节点数最多的儿子  </li>
+<li>轻子节点：一个节点的非重子节点儿子  </li>
+<li>重边：这个节点到重子节点的边  </li>
+<li>轻边：其他边  </li>
+<li>重链：若干条首尾衔接的重边</li>
+</ul>
+<p><img src="https://oi-wiki.org/graph/images/hld.png" srcset="/img/loading.gif" lazyload><br>如上图所示。<br>发现如果这个节点是轻子节点，那么它就是一条重链的顶端，它的逆命题同样正确。<br>特别地，<strong>根是轻子节点</strong>。<br>我们发现了一个性质：假设一个节点 $R$ 的子树大小为 $s$，那么该节点的所有<strong>轻子节点</strong>的子树大小不超过 $\lfloor \frac s 2\rfloor$。<br>这个性质是很显然的，但学过数学分析的看不惯“显然”二字，故略证：</p>
+<blockquote>
+<p>反证，假设存在 $R$ 的一个轻子节点 $S$，满足 $S$ 的子树大小 $siz_S&gt;\lfloor\dfrac{siz_R}{2}\rfloor$。<br>则不存在另一子节点 $T$ 的子树大小大于 $\lfloor\dfrac{siz_R}{2}\rfloor$，否则 $siz_T+siz_S&gt;siz_R$，矛盾。<br>因此 $S$ 的子树大小是 $R$ 的所有儿子里最大的一个。<br>所以 $S$ 是重子节点。矛盾！<br>$\square$</p>
+</blockquote>
+<p>所以，树上的任意一条路径上的所有节点最多属于 $\log n$ 个不同的重链。</p>
+<blockquote>
+<p>证明：<br>每一条重链的顶部都是一个轻子节点。<br>每一条从 $u$ 到 $v$ 的路径都可以被拆成以 LCA 为分界点的两条子路径。<br>每条子路径上节点的深度是依次递增的。<br>假设两条子路径中较长的一条为 $\Psi$，并使 $\Psi$ 上的所有节点属于 $k$ 条重链。<br>那么 $\Psi$ 上有 $k$ 个轻子节点。<br>每个轻子节点的子树大小都不超过其父节点子树大小的一半。<br>所以 $\Psi$ 的末端节点的子树大小 $S$ 必定小于 $\dfrac{L}{2^k}$。<br>其中 $L$ 是 LCA 的子树大小，有 $L\le n$。<br>所以有 $S\le \dfrac{n}{2^k}$。<br>又因为自己也是自己子树的一个节点，所以任何节点的子树大小至少是 $1$。<br>所以有 $1\le\dfrac{n}{2^k}$，又因为 $\dfrac{n}{2^k}$ 是正数，故 $2^k\le n$，即 $k\le \log_2n$。<br>$\square$  </p>
+</blockquote>
+<p>这个不等式其实放得挺宽的，那些能否取等的问题我没有仔细考虑，不过最后至少说明结论是正确的。<br>所以再带上一个线段树的 $O(\log n)$，树链剖分的复杂度为 $O(q\log^2n)$。<br>$q$ 是询问次数。</p>
+<h2 id="3-初始"><a href="#3-初始" class="headerlink" title="3. 初始"></a>3. 初始</h2><p>任何一个树链剖分的程序都需要写 $2$ 个 DFS。  </p>
+<p>第一个用来预处理每个节点的：  </p>
+<blockquote>
+<p>深度、父亲、子树大小、重儿子。  </p>
+</blockquote>
+<p>第二个用来预处理：</p>
+<blockquote>
+<p>每个节点所在重链顶部节点，每个节点的 DFN 序，每个 DFN 序所对应的节点。  </p>
+<p>第一个 DFS 属于基本操作，普及难度：  </p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build1</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<span class="hljs-comment">//记录父节点、深度、子树大小、重子节点。</span><br>	son[u]=<span class="hljs-number">-1</span>;<br>	siz[u]=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nxt)&#123;<br>		<span class="hljs-type">int</span> v=e[i].to;<br>		<span class="hljs-keyword">if</span>(v==fa[u]) <span class="hljs-keyword">continue</span>;<br>		dep[v]=dep[u]<span class="hljs-number">+1</span>;<br>		fa[v]=u;<br>		<span class="hljs-built_in">build1</span>(v);<br>		siz[u]+=siz[v];<br>		<span class="hljs-keyword">if</span>(son[u]==<span class="hljs-number">-1</span>||siz[v]&gt;siz[son[u]]) son[u]=v;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>第二个 DFS 如果掌握了 Tarjan 算法也是极其容易的。<br>此处说明，一个节点的 DFN 序为该节点在 DFS 的过程中是第几个被访问的。<br>只不过还有一个要求是<strong>同一重链上的节点的 DFN 序必须连续</strong>。<br>于是每次递归时先递归重子节点即可。<br>至于为什么要满足这个性质，我们到下一部分来说。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build2</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> tp)</span></span>&#123;<br>	top[u]=tp;<br>	dfn[u]=++num;<br>	a[num]=at[u];<br>	rnk[dfn[u]]=u;<br>	<span class="hljs-keyword">if</span>(son[u]==<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> ;<br>	<span class="hljs-built_in">build2</span>(son[u],tp);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nxt)&#123;<br>		<span class="hljs-type">int</span> v=e[i].to;<br>		<span class="hljs-keyword">if</span>(son[u]!=v&amp;&amp;v!=fa[u]) <span class="hljs-built_in">build2</span>(v,v);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意一下，$rnk_i$ 代表的是 DFN 序为 $i$ 的节点的编号。<br>还有就是 $at_i$ 表示<strong>编号</strong>为 $i$ 的节点的点权，$a_i$ 表示 <strong>DFN 序</strong>为 $i$ 的节点的点权。<br>接下来就是树链剖分的精髓。</p>
+<h2 id="4-剖分"><a href="#4-剖分" class="headerlink" title="4. 剖分"></a>4. 剖分</h2><p>树剖，”树”我们已经说得差不多了，接下来就是”剖”。<br>我们先考虑路径加以及路径求和。<br>现在我们有一棵线段树和一大堆 DFN 序连续的重链……  </p>
+<p>是的！我们只需要把这棵线段树“安装”到 DFN 序上就可以了！<br>如何安装？  </p>
+<p>假设我们要求从节点 $u$ 到节点 $v$ 的路径中的点的点权和。<br>首先我们知道这条路径一定可以被拆成最多 $\log n$ 条（<strong>可能不完整的</strong>）重链，又因为重链内部的 DFN 序连续，所以就相当于<strong>以 DFN 序为下标，查询 $\log n$ 个下标连续的段</strong>！<br>相当于我们将每个点重新编号，以 DFN 序作为其新编号，然后把每个点以新编号从小到大排列起来。然后用线段树来维护。<br>（我认为已经说得非常清楚了。）  </p>
+<p>下一步就是，考虑如何拆出这 $\log n$ 个链。  </p>
+<blockquote>
+<ol>
+<li>找到 $u$ 和 $v$ 所在重链的顶点，即 $top_u$ 和 $top_v$。</li>
+<li>如果它们不相等，比较这两个顶点的深度，若 $dep(top_u)&lt;dep(top_v)$，则交换 $u$ 和 $v$，使得 $dep(top_u)&gt;dep(top_v)$，如果相等，则退出循环。</li>
+<li>用线段树求出 DFN 序从 $dfn_{top_u}$ 到 $dfn_u$ 的节点的点权和，也就是从 $u$ 到 $top_u$ 的点权和。</li>
+<li>$u$ 跳到 $top_u$ 的上面，即 $u\gets fa_{top_u}$。</li>
+<li>返回第一步。</li>
+</ol>
+</blockquote>
+<p>这 $5$ 步乍一看似乎有些复杂，但只要思路顺着这个代码捋一遍，再自己推一遍，会发现其实特别地简单。</p>
+<p>需要提醒的是，在第四步中，$u$ 不可能跳到 $u$，$v$ 的 LCA 的上面。<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/1rojfzd3.png" srcset="/img/loading.gif" lazyload alt="640"><br>如图，左边红色的是 $u$ 的重链，右边绿色的是 $v$ 的重链。<br>如果 $u$ 跳到了 LCA 的上面，说明 $top_v$ 一定是严格处于 LCA 的下面的，此时不满足 $dep(top_u)&gt;dep(top_v)$ 的条件，矛盾！  </p>
+<p>好了，现在这一步结束了，$u$ 和 $v$ 跳到同一条重链上了，它们之间所有点的 DFN 序是连续的了，直接用线段树把它们之间的点权和加起来就行了。<br>上代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">psum</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v)</span></span>&#123;<br>	<span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>		<span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v);<br>		res+=<span class="hljs-built_in">query</span>(dfn[top[u]],dfn[u],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>		u=fa[top[u]];<br>	&#125;<br>	<span class="hljs-keyword">if</span>(dep[u]&gt;dep[v]) <span class="hljs-built_in">swap</span>(u,v);<br>	res+=<span class="hljs-built_in">query</span>(dfn[u],dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>	<span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>路径加法同理：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pupd</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v,<span class="hljs-type">int</span> c)</span></span>&#123;<br>	<span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>		<span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v);<br>		<span class="hljs-built_in">update</span>(dfn[top[u]],dfn[u],c,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>		u=fa[top[u]];<br>	&#125;<br>	<span class="hljs-keyword">if</span>(dep[u]&gt;dep[v]) <span class="hljs-built_in">swap</span>(u,v);<br>	<span class="hljs-built_in">update</span>(dfn[u],dfn[v],c,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>树链剖分最困难的部分结束了，Congratulation！</p>
+<h2 id="5-子树问题"><a href="#5-子树问题" class="headerlink" title="5. 子树问题"></a>5. 子树问题</h2><p>显然，一棵子树内的所有节点的 DFN 序时连续的，且该子树的根的 DFN 序最小。<br>毕竟做 DFS 的时候就是一棵子树一棵子树地递归嘛！<br>于是代码极短。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">ssum</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<span class="hljs-comment">//子树求和</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(dfn[u],dfn[u]+siz[u]<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">supd</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> c)</span></span>&#123;<span class="hljs-comment">//子树加法</span><br>	<span class="hljs-built_in">update</span>(dfn[u],dfn[u]+siz[u]<span class="hljs-number">-1</span>,c,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>放一下完整代码。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int unsigned long long</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">6e5</span><span class="hljs-number">+10</span>;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">edge</span>&#123;<br>	<span class="hljs-type">int</span> to,nxt;<br>&#125;e[N&lt;&lt;<span class="hljs-number">1</span>];<br><span class="hljs-type">int</span> n,m,r,mod,fa[N],siz[N],dfn[N],rnk[N],num;<br><span class="hljs-type">int</span> head[N],cnt,son[N],dep[N],top[N];<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">HPD</span>&#123;<br>	<span class="hljs-keyword">private</span>:<br>		<span class="hljs-type">int</span> d[N],tag[N],a[N],at[N];<br>		<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v)</span></span>&#123;<br>			e[++cnt].to=v;<br>			e[cnt].nxt=head[u];<br>			head[u]=cnt;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build1</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123; <br>			son[u]=<span class="hljs-number">-1</span>;<br>			siz[u]=<span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nxt)&#123;<br>				<span class="hljs-type">int</span> v=e[i].to;<br>				<span class="hljs-keyword">if</span>(v==fa[u]) <span class="hljs-keyword">continue</span>;<br>				dep[v]=dep[u]<span class="hljs-number">+1</span>;<br>				fa[v]=u;<br>				<span class="hljs-built_in">build1</span>(v);<br>				siz[u]+=siz[v];<br>				<span class="hljs-keyword">if</span>(son[u]==<span class="hljs-number">-1</span>||siz[v]&gt;siz[son[u]]) son[u]=v;<br>			&#125; <br>		&#125; <br>		<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build2</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> tp)</span></span>&#123;<br>			top[u]=tp;<br>			dfn[u]=++num;<br>			a[num]=at[u];<br>			rnk[dfn[u]]=u;<br>			<span class="hljs-keyword">if</span>(son[u]==<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> ;<br>			<span class="hljs-built_in">build2</span>(son[u],tp);<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nxt)&#123;<br>				<span class="hljs-type">int</span> v=e[i].to;<br>				<span class="hljs-keyword">if</span>(son[u]!=v&amp;&amp;v!=fa[u]) <span class="hljs-built_in">build2</span>(v,v);<br>			&#125;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> t,<span class="hljs-type">int</span> m,<span class="hljs-type">int</span> p)</span></span>&#123;<br>			d[p&lt;&lt;<span class="hljs-number">1</span>]+=tag[p]*(m-s<span class="hljs-number">+1</span>);<br>			d[p&lt;&lt;<span class="hljs-number">1</span>]%=mod;<br>			d[(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>]+=tag[p]*(t-m);<br>			d[(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>]%=mod;<br>			tag[p&lt;&lt;<span class="hljs-number">1</span>]+=tag[p];<br>			tag[p&lt;&lt;<span class="hljs-number">1</span>]%=mod;<br>			tag[(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>]+=tag[p];<br>			tag[(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>]%=mod;<br>			tag[p]=<span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> p)</span></span>&#123;<br>			<span class="hljs-keyword">if</span>(l==r) d[p]=a[l];<br>			<span class="hljs-keyword">else</span>&#123;<br>				<span class="hljs-type">int</span> mid=l+((r-l)&gt;&gt;<span class="hljs-number">1</span>);<br>				<span class="hljs-built_in">build</span>(l,mid,p&lt;&lt;<span class="hljs-number">1</span>);<br>				<span class="hljs-built_in">build</span>(mid<span class="hljs-number">+1</span>,r,(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>);<br>				d[p]=d[p&lt;&lt;<span class="hljs-number">1</span>]%mod+d[(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>]%mod; <br>				d[p]%=mod;<br>			&#125;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> t,<span class="hljs-type">int</span> p)</span></span>&#123;<br>			<span class="hljs-keyword">if</span>(l&lt;=s&amp;&amp;t&lt;=r)&#123;<br>				d[p]%=mod;<br>				<span class="hljs-keyword">return</span> d[p];<br>			&#125;	<br>			<span class="hljs-type">int</span> mid=s+((t-s)&gt;&gt;<span class="hljs-number">1</span>),S=<span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">if</span>(tag[p]) <span class="hljs-built_in">pushdown</span>(s,t,mid,p);<br>			<span class="hljs-keyword">if</span>(l&lt;=mid)&#123;<br>				S+=<span class="hljs-built_in">query</span>(l,r,s,mid,p&lt;&lt;<span class="hljs-number">1</span>)%mod;<br>				S%=mod;<br>			&#125;<br>			<span class="hljs-keyword">if</span>(r&gt;mid)&#123;<br>				S+=<span class="hljs-built_in">query</span>(l,r,mid<span class="hljs-number">+1</span>,t,(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>);<br>				S%=mod;<br>			&#125;<br>			<span class="hljs-keyword">return</span> S%mod;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> c,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> t,<span class="hljs-type">int</span> p)</span></span>&#123;<br>			<span class="hljs-keyword">if</span>(l&lt;=s&amp;&amp;t&lt;=r)&#123;<br>				d[p]+=(t-s<span class="hljs-number">+1</span>)*c;<br>				d[p]%=mod;<br>				tag[p]+=c;<br>				tag[p]%=mod;<br>				<span class="hljs-keyword">return</span> ;<br>			&#125;<br>			<span class="hljs-type">int</span> mid=s+((t-s)&gt;&gt;<span class="hljs-number">1</span>);<br>			<span class="hljs-keyword">if</span>(tag[p]&amp;&amp;s!=t) <span class="hljs-built_in">pushdown</span>(s,t,mid,p);<br>			<span class="hljs-keyword">if</span>(l&lt;=mid) <span class="hljs-built_in">update</span>(l,r,c,s,mid,p&lt;&lt;<span class="hljs-number">1</span>);<br>			<span class="hljs-keyword">if</span>(r&gt;mid) <span class="hljs-built_in">update</span>(l,r,c,mid<span class="hljs-number">+1</span>,t,(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>);<br>			d[p]=d[p&lt;&lt;<span class="hljs-number">1</span>]%mod+d[(p&lt;&lt;<span class="hljs-number">1</span>)<span class="hljs-number">+1</span>]%mod; <br>			d[p]%=mod;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">psum</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v)</span></span>&#123;<br>			<span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>				<span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v);<br>				res+=<span class="hljs-built_in">query</span>(dfn[top[u]],dfn[u],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>				res%=mod;<br>				u=fa[top[u]];<br>			&#125;<br>			<span class="hljs-keyword">if</span>(dep[u]&gt;dep[v]) <span class="hljs-built_in">swap</span>(u,v);<br>			res+=<span class="hljs-built_in">query</span>(dfn[u],dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>			res%=mod;<br>			<span class="hljs-keyword">return</span> res;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pupd</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v,<span class="hljs-type">int</span> c)</span></span>&#123;<br>			c%=mod;<br>			<span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>				<span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v);<br>				<span class="hljs-built_in">update</span>(dfn[top[u]],dfn[u],c,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>				u=fa[top[u]];<br>			&#125;<br>			<span class="hljs-keyword">if</span>(dep[u]&gt;dep[v]) <span class="hljs-built_in">swap</span>(u,v);<br>			<span class="hljs-built_in">update</span>(dfn[u],dfn[v],c,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">ssum</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(dfn[u],dfn[u]+siz[u]<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>)%mod;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">supd</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> c)</span></span>&#123;<br>			c%=mod;<br>			<span class="hljs-built_in">update</span>(dfn[u],dfn[u]+siz[u]<span class="hljs-number">-1</span>,c,<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>		&#125;	<br>	<span class="hljs-keyword">public</span>:<br>		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span></span>&#123;<br>			cin&gt;&gt;n&gt;&gt;m&gt;&gt;r&gt;&gt;mod;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;at[i];<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;<br>				<span class="hljs-type">int</span> x,y;<br>				cin&gt;&gt;x&gt;&gt;y;<br>				<span class="hljs-built_in">add</span>(x,y);<br>				<span class="hljs-built_in">add</span>(y,x);<br>			&#125;<br>			<span class="hljs-built_in">build1</span>(r);<br>			<span class="hljs-built_in">build2</span>(r,r);<br>			<span class="hljs-built_in">build</span>(<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;<br>				<span class="hljs-type">int</span> op;<br>				cin&gt;&gt;op;<br>				<span class="hljs-keyword">if</span>(op==<span class="hljs-number">1</span>)&#123;<br>					<span class="hljs-type">int</span> x,y,z;<br>					cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;<br>					<span class="hljs-built_in">pupd</span>(x,y,z);<br>				&#125;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(op==<span class="hljs-number">2</span>)&#123;<br>					<span class="hljs-type">int</span> x,y;<br>					cin&gt;&gt;x&gt;&gt;y;<br>					cout&lt;&lt;<span class="hljs-built_in">psum</span>(x,y)&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>				&#125;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(op==<span class="hljs-number">3</span>)&#123;<br>					<span class="hljs-type">int</span> x,z;<br>					cin&gt;&gt;x&gt;&gt;z;<br>					<span class="hljs-built_in">supd</span>(x,z);<br>				&#125;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(op==<span class="hljs-number">4</span>)&#123;<br>					<span class="hljs-type">int</span> x;<br>					cin&gt;&gt;x;<br>					cout&lt;&lt;<span class="hljs-built_in">ssum</span>(x)&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>				&#125;<br>			&#125;<br>		&#125;<br>&#125;st;<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>	st.<span class="hljs-built_in">fun</span>();<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以注意到，在 <code>build</code> 中我们是对数组 $a$ 建立的线段树，而 $a_i$ 又代表的是 DFN 序为 $i$ 的节点的点权。所以也就是说树链剖分所维护的那颗线段树是以 DFN 序作为每个点的“编号“的。</p>
+<p>这是 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3384">P3384</a> 的 AC 代码。<br>$\color{red}{\text{PLEASE DO NOT COPY.}}$</p>
+<h2 id="6-边权处理"><a href="#6-边权处理" class="headerlink" title="6. 边权处理"></a>6. 边权处理</h2><p>我们发现，树链剖分的模板是维护点权，那么边权该如何处理？譬如说，查询从 $u$ 到 $v$ 的路径和。<br>其实这是非常容易的。<br>我们知道除了根，所有的节点都只有一个父节点，也就是说每条边与其<strong>下方</strong>的点可以<strong>一一对应</strong>。<br>于是每条边的边权都可以转化为其下方连的点的点权。<br>如果转化为上方的点的点权的话，那么一个点因为可能有多个儿子，所以可能要表示多条边的边权，这当然是不可以的。<br>然后就愉快地转化为点权问题了！  </p>
+<p>最后有一个需要注意的点，在处理 $u$ 到 $v$ 的路径和时，要<strong>忽略它们的 LCA 的点权</strong>！（此处“点权”指从边权转化过来的点权）<br>如图：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/v8xq3d8v.png" srcset="/img/loading.gif" lazyload><br>LCA 的点权所对应的边的边权是那条红色边的边权，但它并不在要查询的路径上。<br>那么如何把它规避掉？<br>我们知道，很显然地，LCA 的是这条路径中 DFN 序最小的一个。<br>而跳完重链后， $u$ 和 $v$ 已经在同一重链上时，它们中必有一个是原先的 LCA。<br>原因是重链必定是直直地从上往下的，不可能在某一点“拐弯”。<br>我们之前处理点权时路径求和的代码的最后一步是这样的：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span>(dep[u]&gt;dep[v]) <span class="hljs-built_in">swap</span>(u,v);<br>res+=<span class="hljs-built_in">query</span>(dfn[u],dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br><span class="hljs-keyword">return</span> res;<br></code></pre></td></tr></table></figure>
+<p><code>swap</code> 完了之后保证了 $u$ 的 DFN 序小于 $v$ 的 DFN 序，因此现在的 $u$ 就是原先的 LCA。<br>我们假设现在 $u$ 的 DFN 序是 $d$，那么 DFN 序为 $d+1$ 的那个点就既是 $u$ 的儿子，又是处于<strong>现在的</strong> $u$ 和 $v$ 之间的路径上的。<br>所以最后的询问就改为：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">res+=<span class="hljs-built_in">query</span>(dfn[u]<span class="hljs-number">+1</span>,dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
+<p>即可。这样就既保证了 LCA 被规避掉，又计入了所有该被计入的节点。<br>此时可能会有疑问：如果跳完重链之后，$u$ 直接就等于 $v$ 了，那么 $dfn_u+1$ 不就大于 $dfn_v$ 了吗？<br>其实无需担心。<br>跳重链之后不可能有 $u&#x3D;v$ 的情况。<br>否则 LCA 就会引出 $2$ 条重链了！这不可能！  </p>
+<p>最后，如果既有点权又有边权，那么开 $2$ 棵线段树就好了。  </p>
+<h2 id="7-维护不可交换信息"><a href="#7-维护不可交换信息" class="headerlink" title="7. 维护不可交换信息"></a>7. 维护不可交换信息</h2><p>建议先学习线段树最大子段和，了解不可交换的 <code>pushup</code> 的原理。<br>我们先前说，如果要统计路径和的话，直接把路径拆成重链然后把重链的和加起来就完了。<br>这是因为加法具有交换律，即 $a+b&#x3D;b+a$。<br>但是现在有这么一个问题：  </p>
+<blockquote>
+<p>树上的每一个节点都有一个颜色。<br>每次修改将某条路径的所有点染成某个颜色。<br>每次询问某条路径上的连续颜色段数。<br>比如，序列 <code>1111233112231113</code> 就有 $8$ 个颜色段，分别为：<br><code>1111</code>，<code>2</code>，<code>33</code>，<code>11</code>，<code>22</code>，<code>3</code>，<code>111</code>， <code>3</code>。<br>（<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2486">SDOI 2011 染色</a>）</p>
+</blockquote>
+<p>先退化为一条链上的问题，很简单，线段树的每个节点维护 $3$ 个值就够了。<br>它们分别为<strong>该节点管辖区间的</strong>：左端点的颜色（$l$）、右端点的颜色（$r$）、连续颜色段数（$ans$）。<br>修改和懒标记的下放都非常的简单，把连续颜色段数改成 $1$，左右端点颜色改成将要染上的颜色即可。<br><code>pushup</code> 的时候考虑<strong>左区间右端点的颜色</strong>与<strong>右区间左端点的颜色</strong>是否相同。（好长的一句话）<br>相同的话就代表着中间的两段颜色可以合并成一段，合并后节点的 $ans$ 就是左右区间的 $ans$ 之和再减去 $1$。<br>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(node &amp;res,node resl,node resr)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(resl.r==resr.l) res.d=resl.d+resr.d<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">else</span> res.d=resl.d+resr.d;<br>	res.l=resl.l;<br>	res.r=resr.r;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>还是挺简单的。  </p>
+<p>为了解决这个问题在树上的版本，我们先做几个定义（我自己编的）：<br>定义一条从 $u$ 到 $v$ 的路径可以被拆成最多 $3$ 个<strong>路径段</strong>：  </p>
+<ol>
+<li>左路径：从 $u$ 到 LCA 的路径中除 LCA 之外的部分。    </li>
+<li>右路径：从 $v$ 到 LCA 的路径中除 LCA 之外的部分。  </li>
+<li>LCA：$u$ 和 $v$ 的最近公共祖先。</li>
+</ol>
+<p>这个“路径段”很重要！<strong>一定要理解</strong>它的意思！  </p>
+<p>我们知道，本题的 <code>pushup</code> 是不可交换的，换句话说，$a$ 和 $b$ 进行合并的结果与 $b$ 和 $a$ 进行合并的结果是不一样的。<br>那么我们处理完某条重链的答案后，如何“加“到总答案里面去？<br>我们需要知道上一个被处理的重链处于的路径段与此次处理的重链所在的路径段是否相同。<br>如果不相同：<br>	说明这两条重链不相接，于是就不用管，直接加；<br>如果相同，那么我们考察：<br>	已知跳重链是从下往上跳的，而越往下的节点 DFN 序越大。<br>	也就是说此次处理的重链一定是接在上次处理的重链的“左边”的。<br>	于是我们就需要关注此次处理的重链的“右端点“与上次处理的重链的“左端点”是否颜色相等。<br>	如果相等，把此次的答案加到总答案里然后减一。同 <code>pushup</code>。<br>注意，刚才说的所谓“左”，“右”，都是在<strong>以 DFN 序为下标的序列</strong>，即线段树所维护的那个序列上所考虑的。    </p>
+<p>好了，现在返回去，是时候该想想怎么判断上一个被处理的重链处于的路径段与此次处理的重链所在的路径段是否相同了。<br>简单！开两个变量 $ans1$，$ans2$，分别记录：<br>现在的路径段上的<strong>前一个</strong>被处理的重链的左端点的颜色，<br>另一个路径段上的<strong>前一个</strong>被处理的重链的右端点的颜色。<br>最后 LCA 再单独处理——它与两个路径段都相接。  </p>
+<blockquote>
+<p>Talk is cheap. Show me your code.  </p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ask</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v)</span></span>&#123;<br>	<span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> ans1=<span class="hljs-number">-1</span>,ans2=<span class="hljs-number">-1</span>;<br>	<span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>		<span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v),<span class="hljs-built_in">swap</span>(ans1,ans2);<br>		node tmp=<span class="hljs-built_in">query</span>(dfn[top[u]],dfn[u],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>		res+=tmp.d;<br>		<span class="hljs-keyword">if</span>(tmp.r==ans1) res--;<br>		ans1=tmp.l;<br>		u=fa[top[u]];<br>	&#125;<br>	<span class="hljs-keyword">if</span>(dfn[u]&gt;dfn[v]) <span class="hljs-built_in">swap</span>(u,v),<span class="hljs-built_in">swap</span>(ans1,ans2);<br>	node tmp=<span class="hljs-built_in">query</span>(dfn[u],dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>	res+=tmp.d;<br>	<span class="hljs-keyword">if</span>(tmp.l==ans1) res--;<br>	<span class="hljs-keyword">if</span>(tmp.r==ans2) res--;<br>	<span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>第五行中，$u$ 和 $v$ 互换了。这说明这次要处理的重链相较于上次改变了路径段，于是 $ans1$ 和 $ans2$ 自然也要互换。<br>其他的有什么问题就看代码吧。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">namespace</span> Opshacom&#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">100005</span>;<br>    <span class="hljs-type">int</span> n,m;<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">edge</span>&#123;<br>        <span class="hljs-type">int</span> to,nxt;<br>    &#125;e[N&lt;&lt;<span class="hljs-number">1</span>];<br><br>    <span class="hljs-type">int</span> head[N],cnt;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v)</span></span>&#123;<br>        e[++cnt].to=v;<br>        e[cnt].nxt=head[u];<br>        head[u]=cnt;<br>    &#125;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">HPD</span>&#123;<br>        <span class="hljs-keyword">private</span>:<br>            <span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>                <span class="hljs-type">int</span> d,tag,l,r;<br>                <span class="hljs-type">bool</span> is;<br>            &#125;st[N&lt;&lt;<span class="hljs-number">2</span>];<br>            <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(node &amp;res,node resl,node resr)</span></span>&#123;<br>                <span class="hljs-keyword">if</span>(resl.r==resr.l) res.d=resl.d+resr.d<span class="hljs-number">-1</span>;<br>                <span class="hljs-keyword">else</span> res.d=resl.d+resr.d;<br>                res.l=resl.l;<br>                res.r=resr.r;<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> p,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> mid)</span></span>&#123;<br>                <span class="hljs-keyword">if</span>(st[p].is)&#123;<br>                    st[p&lt;&lt;<span class="hljs-number">1</span>].is=st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>].is=<span class="hljs-number">1</span>;<br>                    st[p&lt;&lt;<span class="hljs-number">1</span>].d=st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>].d=<span class="hljs-number">1</span>;<br>                    st[p&lt;&lt;<span class="hljs-number">1</span>].l=st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>].l=st[p].tag;<br>                    st[p&lt;&lt;<span class="hljs-number">1</span>].r=st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>].r=st[p].tag;<br>                    st[p&lt;&lt;<span class="hljs-number">1</span>].tag=st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>].tag=st[p].tag;<br>                    st[p].tag=st[p].is=<span class="hljs-number">0</span>;<br>                &#125;<br>            &#125;<br>        <span class="hljs-keyword">public</span>:<br>            <span class="hljs-type">int</span> dep[N],num,dfn[N],a[N],at[N],fa[N],sz[N],top[N],son[N];<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> p)</span></span>&#123;<br>                <span class="hljs-keyword">if</span>(l==r)&#123;<br>                    st[p].d=<span class="hljs-number">1</span>;<br>                    st[p].l=st[p].r=a[l];<br>                    <span class="hljs-keyword">return</span> ;<br>                &#125;<br>                <span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">build</span>(l,mid,p&lt;&lt;<span class="hljs-number">1</span>);<br>                <span class="hljs-built_in">build</span>(mid<span class="hljs-number">+1</span>,r,p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>);<br>                <span class="hljs-built_in">pushup</span>(st[p],st[p&lt;&lt;<span class="hljs-number">1</span>],st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>]);<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> t,<span class="hljs-type">int</span> p,<span class="hljs-type">int</span> c)</span></span>&#123;<br>                <span class="hljs-keyword">if</span>(l&lt;=s&amp;&amp;t&lt;=r)&#123;<br>                    st[p].d=<span class="hljs-number">1</span>;<br>                    st[p].l=st[p].r=c;<br>                    st[p].tag=c;<br>                    st[p].is=<span class="hljs-number">1</span>;<br>                    <span class="hljs-keyword">return</span>;<br>                &#125;<br>                <span class="hljs-type">int</span> mid=(s+t)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">pushdown</span>(p,s,t,mid);<br>                <span class="hljs-keyword">if</span>(l&lt;=mid) <span class="hljs-built_in">update</span>(l,r,s,mid,p&lt;&lt;<span class="hljs-number">1</span>,c);<br>                <span class="hljs-keyword">if</span>(r&gt;mid) <span class="hljs-built_in">update</span>(l,r,mid<span class="hljs-number">+1</span>,t,p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>,c);<br>                <span class="hljs-built_in">pushup</span>(st[p],st[p&lt;&lt;<span class="hljs-number">1</span>],st[p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>]);<br>            &#125;<br>            <span class="hljs-function">node <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> t,<span class="hljs-type">int</span> p)</span></span>&#123;<br>                <span class="hljs-keyword">if</span>(l&lt;=s&amp;&amp;t&lt;=r) <span class="hljs-keyword">return</span> st[p];<br>                <span class="hljs-type">int</span> mid=(s+t)&gt;&gt;<span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">pushdown</span>(p,s,t,mid);<br>                <span class="hljs-keyword">if</span>(r&lt;=mid) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(l,r,s,mid,p&lt;&lt;<span class="hljs-number">1</span>);<br>                <span class="hljs-keyword">if</span>(l&gt;mid) <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(l,r,mid<span class="hljs-number">+1</span>,t,p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>);<br>                node tmp1=<span class="hljs-built_in">query</span>(l,r,s,mid,p&lt;&lt;<span class="hljs-number">1</span>);<br>                node tmp2=<span class="hljs-built_in">query</span>(l,r,mid<span class="hljs-number">+1</span>,t,p&lt;&lt;<span class="hljs-number">1</span>|<span class="hljs-number">1</span>);<br>                node res;<br>                <span class="hljs-built_in">pushup</span>(res,tmp1,tmp2);<br>                <span class="hljs-keyword">return</span> res;<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build1</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<br>                sz[u]=<span class="hljs-number">1</span>;<br>                son[u]=<span class="hljs-number">-1</span>;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nxt)&#123;<br>                    <span class="hljs-type">int</span> v=e[i].to;<br>                    <span class="hljs-keyword">if</span>(v==fa[u]) <span class="hljs-keyword">continue</span>;<br>                    fa[v]=u;<br>                    dep[v]=dep[u]<span class="hljs-number">+1</span>;<br>                    <span class="hljs-built_in">build1</span>(v);<br>                    sz[u]+=sz[v];<br>                    <span class="hljs-keyword">if</span>(son[u]==<span class="hljs-number">-1</span>||sz[v]&gt;sz[son[u]]) son[u]=v;<br>                &#125;<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build2</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> tp)</span></span>&#123;<br>                top[u]=tp;<br>                dfn[u]=++num;<br>                a[dfn[u]]=at[u];<br>                <span class="hljs-keyword">if</span>(son[u]==<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> ;<br>                <span class="hljs-built_in">build2</span>(son[u],tp);<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[u];i;i=e[i].nxt)&#123;<br>                    <span class="hljs-type">int</span> v=e[i].to;<br>                    <span class="hljs-keyword">if</span>(v!=fa[u]&amp;&amp;v!=son[u]) <span class="hljs-built_in">build2</span>(v,v);<br>                &#125;<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">change</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v,<span class="hljs-type">int</span> c)</span></span>&#123;<br>                <span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>                    <span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v);<br>                    <span class="hljs-built_in">update</span>(dfn[top[u]],dfn[u],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>,c);<br>                    u=fa[top[u]];<br>                &#125;<br>                <span class="hljs-keyword">if</span>(dfn[u]&gt;dfn[v]) <span class="hljs-built_in">swap</span>(u,v);<br>                <span class="hljs-built_in">update</span>(dfn[u],dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>,c);<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ask</span><span class="hljs-params">(<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> v)</span></span>&#123;<br>                <span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;<br>                <span class="hljs-type">int</span> ans1=<span class="hljs-number">-1</span>,ans2=<span class="hljs-number">-1</span>;<br>                <span class="hljs-keyword">while</span>(top[u]!=top[v])&#123;<br>                    <span class="hljs-keyword">if</span>(dep[top[u]]&lt;dep[top[v]]) <span class="hljs-built_in">swap</span>(u,v),<span class="hljs-built_in">swap</span>(ans1,ans2);<br>                    node tmp=<span class="hljs-built_in">query</span>(dfn[top[u]],dfn[u],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>                    res+=tmp.d;<br>                    <span class="hljs-keyword">if</span>(tmp.r==ans1) res--;<br>                    ans1=tmp.l;<br>                    u=fa[top[u]];<br>                &#125;<br>                <span class="hljs-keyword">if</span>(dfn[u]&gt;dfn[v]) <span class="hljs-built_in">swap</span>(u,v),<span class="hljs-built_in">swap</span>(ans1,ans2);<br>                node tmp=<span class="hljs-built_in">query</span>(dfn[u],dfn[v],<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>                res+=tmp.d;<br>                <span class="hljs-keyword">if</span>(tmp.l==ans1) res--;<br>                <span class="hljs-keyword">if</span>(tmp.r==ans2) res--;<br>                <span class="hljs-keyword">return</span> res;<br>            &#125;<br>    &#125;tr;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">work</span><span class="hljs-params">()</span></span>&#123;<br>        cin&gt;&gt;n&gt;&gt;m;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;tr.at[i];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;<br>            <span class="hljs-type">int</span> x,y;<br>            cin&gt;&gt;x&gt;&gt;y;<br>            <span class="hljs-built_in">add</span>(x,y);<br>            <span class="hljs-built_in">add</span>(y,x);<br>        &#125;<br>        tr.<span class="hljs-built_in">build1</span>(<span class="hljs-number">1</span>);<br>        tr.<span class="hljs-built_in">build2</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>        tr.<span class="hljs-built_in">build</span>(<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">while</span>(m--)&#123;<br>            <span class="hljs-type">char</span> op;<br>            <span class="hljs-type">int</span> u,v,w;<br>            cin&gt;&gt;op;<br>            <span class="hljs-keyword">if</span>(op==<span class="hljs-string">&#x27;C&#x27;</span>)&#123;<br>                cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;<br>                tr.<span class="hljs-built_in">change</span>(u,v,w);<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123; <br>                cin&gt;&gt;u&gt;&gt;v;<br>                cout&lt;&lt;tr.<span class="hljs-built_in">ask</span>(u,v)&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    Opshacom::<span class="hljs-built_in">work</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>至于其他的问题也是同一个道理，维护 $ans1$ 和 $ans2$，然后考虑合并。<br>譬如说路径最大子段和，路径上统计相邻同色点对，还有很多……</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OI/" class="print-no-link">#OI</a>
+      
+        <a href="/tags/Graph-Theory/" class="print-no-link">#Graph Theory</a>
+      
+        <a href="/tags/Tree-Theory/" class="print-no-link">#Tree Theory</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Heavy Path Decomposition</div>
+      <div>https://cwhirly.github.io/2026/03/05/OI/Graph Theory/Tree Theory/Heavy Path Decomposition/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Weihao Cheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/05/OI/Data%20Structure/Segment%20Tree/Segment%20Tree/" title="Segment Tree">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Segment Tree</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/04/Math/Algebra/Rank/" title="Rank">
+                        <span class="hidden-mobile">Rank</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Cwhirly/Cwhirly.github.io","repo-id":"R_kgDOQhfQWQ","category":"Announcements","category-id":"DIC_kwDOQhfQWc4CzUxJ","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>Nihil ego, nisi Terra et Flumina.</p> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

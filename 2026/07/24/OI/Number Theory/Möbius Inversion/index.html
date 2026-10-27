@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="P2257、P3327，以及生成函数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Möbius Inversion">
+<meta property="og:url" content="https://cwhirly.github.io/2026/07/24/OI/Number%20Theory/M%C3%B6bius%20Inversion/index.html">
+<meta property="og:site_name" content="Weihao Cheng&#39;s Blog">
+<meta property="og:description" content="P2257、P3327，以及生成函数。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-24T14:23:08.000Z">
+<meta property="article:modified_time" content="2026-10-27T13:38:37.330Z">
+<meta property="article:author" content="Weihao Cheng">
+<meta property="article:tag" content="Number Theory">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Möbius Inversion - Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cwhirly</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.wsq127.top/file/bp7pk21w.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Möbius Inversion"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-24 22:23" pubdate>
+          2026年7月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Möbius Inversion</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-P2257"><a href="#1-P2257" class="headerlink" title="1. P2257"></a>1. P2257</h2><p>Problem : There are $T$ groups of querys, in each query, give two numbers $n$, $m$, print the value of<br>$$<br>\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^m[\gcd(i,j)\in\mathbb{P}]<br>$$<br>Solution :<br>$$<br>\begin{aligned}<br>\text{ans}&amp;&#x3D;\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^m[\gcd(i,j)\in\mathbb{P}]\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^m[\gcd(i,j)&#x3D;p]\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^{\lfloor\frac n p\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m p\rfloor}[\gcd(ip,jp)&#x3D;p]\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^{\lfloor\frac n p\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m p\rfloor}[\gcd(i,j)&#x3D;1]\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^{\lfloor\frac n p\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m p\rfloor}\varepsilon(\gcd(i,j))\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^{\lfloor\frac n p\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m p\rfloor}(\mu\ast1)(\gcd(i,j))\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^{\lfloor\frac n p\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m p\rfloor}\sum_{d|\gcd(i,j)}\mu(d)\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{i&#x3D;1}^{\lfloor\frac n p\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m p\rfloor}\sum_{d|i,d|j}\mu(d)\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{d&#x3D;1}^{\min({\lfloor\frac n p\rfloor},{\lfloor\frac m p\rfloor})}\mu(d)\sum_{i&#x3D;1}^{\lfloor \frac{\lfloor\frac n p\rfloor}{d}\rfloor}\sum_{j&#x3D;1}^{\lfloor \frac{\lfloor\frac m p\rfloor}{d}\rfloor}1\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{d&#x3D;1}^{\min({\lfloor\frac n p\rfloor},{\lfloor\frac m p\rfloor})}\mu(d)\lfloor\frac{n}{dp}\rfloor\lfloor\frac{m}{dp}\rfloor\<br>&amp;&#x3D;\sum_{p\in\mathbb{P}}\sum_{d&#x3D;1}^{\min({\lfloor\frac n p\rfloor},{\lfloor\frac m p\rfloor})}\mu(d)\lfloor\frac{n}{\xi}\rfloor\lfloor\frac{m}{\xi}\rfloor\<br>&amp;&#x3D;\sum_{\xi&#x3D;1}^{\min(n,m)}\sum_{p\in\mathbb{P},p|\xi}\mu(\frac \xi p)\lfloor\frac{n}{\xi}\rfloor\lfloor\frac{m}{\xi}\rfloor\<br>&amp;&#x3D;\sum_{\xi&#x3D;1}^{\min(n,m)}\lfloor\frac{n}{\xi}\rfloor\lfloor\frac{m}{\xi}\rfloor\sum_{p\in\mathbb{P},p|\xi}\mu(\frac \xi p)\<br>\end{aligned}<br>$$</p>
+<p>Let $\psi(n)&#x3D;\displaystyle\sum_{p\in\mathbb{P},p|n}\mu(\dfrac n p)$</p>
+<p>Noticed that we can pretreat $\psi$ and the sum of it, so this problem can be solved with the time complexity of $O(n\log\log n+T\sqrt{n})$.  </p>
+<h2 id="2-P3327"><a href="#2-P3327" class="headerlink" title="2. P3327"></a>2. P3327</h2><p>Problem : Give two integers $n$ and $m$, get the value of $\displaystyle\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^md(ij)$.<br>Solution :<br>$$<br>\begin{aligned}<br>\text{ans}&amp;&#x3D;\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^m\sum_{x|i}\sum_{y|j}\varepsilon(\gcd(x,y))\<br>&amp;&#x3D;\sum_{x&#x3D;1}^n\sum_{y&#x3D;1}^m\sum_{i&#x3D;1}^{\lfloor\frac n x\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m y\rfloor}\varepsilon(\gcd(x,y))\<br>&amp;&#x3D;\sum_{x&#x3D;1}^n\sum_{y&#x3D;1}^m\sum_{i&#x3D;1}^{\lfloor\frac n x\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m y\rfloor}\sum_{d|x,d|y}\mu(d)\<br>&amp;&#x3D;\sum_{x&#x3D;1}^n\sum_{y&#x3D;1}^m\sum_{d|x,d|y}\mu(d)\sum_{i&#x3D;1}^{\lfloor\frac n x\rfloor}\sum_{j&#x3D;1}^{\lfloor\frac m y\rfloor}1\<br>&amp;&#x3D;\sum_{x&#x3D;1}^n\sum_{y&#x3D;1}^m\sum_{d|x,d|y}\mu(d)\lfloor\frac n x\rfloor\lfloor\frac m y\rfloor\<br>&amp;&#x3D;\sum_{d&#x3D;1}^{\min(n,m)}\mu(d)\sum_{x&#x3D;1}^{\lfloor\frac n d\rfloor}d\sum_{y&#x3D;1}^{\lfloor\frac m d\rfloor}d\lfloor\frac {n} {dx}\rfloor\lfloor\frac m {dy}\rfloor\<br>&amp;&#x3D;\sum_{d&#x3D;1}^{\min(n,m)}\mu(d)d^2\sum_{x&#x3D;1}^{\lfloor\frac n d\rfloor}\lfloor\frac {n} {dx}\rfloor\sum_{y&#x3D;1}^{\lfloor\frac m d\rfloor}\lfloor\frac {m} {dy}\rfloor\<br>&amp;&#x3D;\sum_{d&#x3D;1}^{\min(n,m)}\mu(d)\Psi(\lfloor\frac n d\rfloor)\Psi(\lfloor\frac m d\rfloor)\<br>&amp;\Psi(n)&#x3D;\sum_{i&#x3D;1}^ni\lfloor \frac n i\rfloor<br>\end{aligned}<br>$$<br>Now we can use integer division partition to solve this problem with the time complexity of $O(n\sqrt n+T\sqrt n)$。</p>
+<p>主要内容来自《具体数学》和《组合数学》</p>
+<h2 id="1-特征方程方法"><a href="#1-特征方程方法" class="headerlink" title="1. 特征方程方法"></a>1. 特征方程方法</h2><p>如何求斐波拉契数列的通项公式？这里的斐波拉契数列定义为满足：</p>
+<p>$$\begin{aligned}f_0&#x3D;&amp;0\f_1&#x3D;&amp;1\f_i&#x3D;&amp;f_{i-1}+f_{i-2}\end{aligned}$$</p>
+<p>的数列 $\langle f_n\rangle$。</p>
+<p>仔细观察我们可以猜测该数列是若干等比数列的和，于是我们设其中一个等比数列公比为 $\lambda$，就应满足：</p>
+<p>$$\lambda^2&#x3D;\lambda+1$$</p>
+<p>解方程得 $\lambda&#x3D;\dfrac{1\pm\sqrt 5}{2}$，即黄金分割率 $\phi\approx1.61803$ 和 $1-\phi\approx-0.61803$，为了方便我们将 $1-\phi$ 记作 $\hat \phi$。（注：黄金分割率也有人定义为 $\dfrac{\sqrt 5 -1}{2}&#x3D;-\hat \phi\approx 0.61803$。）</p>
+<p>然后我们来算一下系数，令 $f_n&#x3D;c_1\phi^n+c_2\phi^n$，得方程组：</p>
+<p>$$\begin{cases}f_0&#x3D;c_1+c_2&#x3D;0\f_1&#x3D;\phi c_1+\hat\phi c_2&#x3D;1\end{cases}$$</p>
+<p>解得 $c_1&#x3D;\dfrac{1}{\phi-\hat\phi}&#x3D;\dfrac{1}{\sqrt5},c_2&#x3D;\dfrac{1}{\hat\phi-\phi}&#x3D;-\dfrac{1}{\sqrt 5}$，从而有 $f_n&#x3D;\dfrac{\phi^n-\hat\phi^n}{\sqrt 5}$。</p>
+<p>由于实际上在 $n\ge0$ 时 $\hat\phi^n&#x2F;\sqrt5 &lt;\dfrac{1}{2}$，所以也有 $f_n&#x3D;\left\lfloor\dfrac{\phi^n}{\sqrt 5}+\dfrac{1}{2}\right\rfloor$（$n&#x3D;0$ 时 $\dfrac{1}{\sqrt5}+\dfrac{1}{2}\approx0.947213595499958&lt;1$，公式仍然成立）。</p>
+<p>也因此，有 $\lim\limits_{n\to\infty}f_n&#x2F;f_{n-1}&#x3D;\phi$。</p>
+<p>显然的是，这个方法是可以推广的，所以我们已经解决了这类问题，当然也有明显的问题，那就是我们需要解高次方程，没关系！利用一些注意力，这个方法还是很有用的。</p>
+<p>但是我们来考虑数列 $\langle g_n\rangle$，它满足：</p>
+<p>$$\begin{aligned}g_0&#x3D;&amp;0\g_1&#x3D;&amp;1\g_i&#x3D;&amp;2g_{i-1}-g_{i-2}\end{aligned}$$</p>
+<p>这看起来和斐波拉契数列没啥区别，无非是换了系数，可不难注意到，$g_n&#x3D;n$，很明显这并不是等比数列的和。</p>
+<p>我们来套用一下之前的方法，设公比为 $\lambda$，有：</p>
+<p>$$\lambda^2&#x3D;2\lambda-1$$</p>
+<p>所以 $\lambda&#x3D;1$。</p>
+<p>再设 $g_n&#x3D;c$，得方程组</p>
+<p>$$\begin{cases}g_0&#x3D;c&#x3D;0\g_1&#x3D;c&#x3D;1\end{cases}$$</p>
+<p>显然无解。</p>
+<p>看来这个方法有点问题，我们并不能保证最后得出的方程组有唯一解。</p>
+<p>但只要稍加改动也能使其有效，具体来说，我们设 $f_n&#x3D;(c_1+c_2n)\lambda^n&#x3D;c_1+c_2n$</p>
+<p>然后便得到了 $f_n&#x3D;n$。</p>
+<p>让我们总结一下简单的情况吧，对于数列 $\langle h_n\rangle$，若满足：</p>
+<p>$$h_n&#x3D;\sum_{j&#x3D;1}^{k}a_jh_{n-j},n\ge k,a_k\not&#x3D;0$$</p>
+<p>且 $h_0,h_1,\dots,h_{k-1}$ 有初值。</p>
+<p>令复数 $q_1,q_2,\dots,q_k$ 为多项式方程 $q^k-\sum_{j&#x3D;1}^{k}a_{j}q^{k-j}&#x3D;0$ 的 $k$ 个根（算重根），若关于 $c_1,c_2,\dots,c_k$ 的方程组</p>
+<p>$$\begin{cases}c_1+c_2+\dots+c_k&amp;&#x3D;h_{0}\q_1c_1+q_2c_2+\dots+q_kc_k&amp;&#x3D;h_1\q_1^2c_1+q_2^2c_2+\dots+q_k^2c_k&amp;&#x3D;h_2\&amp;\vdots\q_1^{k-1}c_1+q_2^{k-1}c_2+\dots+q_k^{k-1}c_k&amp;&#x3D;h_k\end{cases}$$</p>
+<p>有唯一解，则 $h_n&#x3D;\sum_{j&#x3D;1}^{k}c_jq_j^n$。</p>
+<p>如何判定该方程组有唯一解呢？应用一点基础的线性代数知识，该方程组的系数矩阵</p>
+<p>$$\left[\begin{matrix}1&amp;1&amp;\dots&amp;1\q_1&amp;q_2&amp;\dots&amp;q_k\q_1^2&amp;q_2^2&amp;\dots&amp;q_k^2\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\q_1^{k-1}&amp;q_2^{k-1}&amp;\dots&amp;q_k^{k-1}\end{matrix}\right]$$</p>
+<p>为范德蒙德矩阵，其行列式为</p>
+<p>$$\prod_{1\le i,j \le k}(q_j-q_i)$$</p>
+<p>在 $q_1,q_2,\dots,q_k$ 互不相同时有唯一解。</p>
+<p>范德蒙德矩阵逆并无简单形式，不过可以使用 FFT 快速计算。（哈哈，不会）</p>
+<p>我们得到的多项式方程 $q^k-\sum_{j&#x3D;1}^{k}a_{j}q^{k-j}&#x3D;0$ 被称作<strong>特征方程</strong>，其 $k$ 个根 $q_1,q_2,\dots,q_k$<br>被称为<strong>特征根</strong>，数列 $h_n$ 的递推关系被称作<strong>常系数线性递推关系</strong>。</p>
+<p>这就够用了，稍加改进，它便完全能解决常系数齐次线性递推了（假设你会解高次方程）。</p>
+<h2 id="2-（普通）生成函数法"><a href="#2-（普通）生成函数法" class="headerlink" title="2.（普通）生成函数法"></a>2.（普通）生成函数法</h2><p>对于数列 $\langle a_n\rangle$，函数</p>
+<p>$$F(z)&#x3D;\sum_{i&#x3D;0}^{\infty}a_iz^i$$</p>
+<p>被称作数列 $\langle a_n\rangle$ 的<strong>生成函数 (GF)</strong>，这里我们用 $[z^n]F(z)$ 表示 $z^n$ 的系数，即 $a_n$。</p>
+<p>现在我们来考虑斐波拉契数列的生成函数，令其为 $F(z)$，可以得到</p>
+<p>$$z^2F(z)+zF(z)+z&#x3D;F(z)$$</p>
+<p>所以：</p>
+<p>$$F(z)&#x3D;\dfrac{z}{1-z-z^2}$$</p>
+<p>这该怎么解出系数？</p>
+<p>我们考虑生成函数 $\dfrac{\alpha}{1-\beta x}$，用等比数列求和得 $\dfrac{\alpha}{1-\beta x}&#x3D;\sum\limits_{n&#x3D;0}^{\infty}\alpha\beta^nx^n$。</p>
+<p>出于某种信任，我们相信 $F(z)&#x3D;\dfrac{c_1}{1-\lambda_1z}+\dfrac{c_2}{1-\lambda_2z}$。</p>
+<p>稍微算一下就有 $c_1&#x3D;\dfrac{1}{\sqrt 5},c_2&#x3D;-\dfrac{1}{\sqrt 5},\lambda_1&#x3D;\phi,\lambda_2&#x3D;\hat\phi$，所以</p>
+<p>$$F(z)&#x3D;\dfrac{1}{\sqrt 5}\left(\dfrac{1}{1-\phi z}-\dfrac{1}{1-\hat\phi z}\right)&#x3D;\sum_{n&#x3D;0}^{\infty}\dfrac{1}{\sqrt 5}(\phi^n-\hat\phi^n)x^n$$</p>
+<p>就得到了通项，这正是正确的结果。</p>
+<p>你可能会关心生成函数是否收敛，有的生成函数在 $z\not&#x3D;0$ 时永远发散，斐波拉契数列的生成函数只有在 $\vert x\vert&lt;1$ 时收敛，但这并不妨碍我们处理它。可以证明，关于生成函数的大部分操作永远有效，而不必关心是否收敛。</p>
+<p>现在，我们来考查一下常系数线性递推数列的生成函数。省略若干细节，我们总能得到生成函数 $F(z)&#x3D;\dfrac{P(z)}{Q(z)}+R(z)$，$P(z),Q(z),R(z)$ 都是整式，且 $P(z)$ 的次数小于 $Q(z)$ 的次数。</p>
+<h2 id="3-无重根的有理展开定理"><a href="#3-无重根的有理展开定理" class="headerlink" title="3. 无重根的有理展开定理"></a>3. 无重根的有理展开定理</h2><p>$$<br>\begin{aligned}<br>&amp;&#x3D;\sum_{i&#x3D;1}^a\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sigma_0(ijk)\<br>&amp;&#x3D;\sum_{i&#x3D;1}^a\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sum_{x|i}\sum_{y|jk}\varepsilon(\gcd(x,y))\<br>&amp;&#x3D;\sum_{i&#x3D;1}^a\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sum_{x|i}\sum_{y|jk}\sum_{d|x,d|y}\mu(d)\<br>&amp;&#x3D;\sum_{x&#x3D;1}^a\sum_{i&#x3D;1}^{\lfloor\frac{a}{x}\rfloor}\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sum_{y|jk}\sum_{d|x,d|y}\mu(d)\<br>&amp;&#x3D;\sum_{x&#x3D;1}^a\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sum_{y|jk}\sum_{d|x,d|y}\mu(d)\lfloor\frac{a}{x}\rfloor\<br>&amp;&#x3D;\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sum_{y|jk}\sum_{d|y}\mu(d)\sum_{x&#x3D;1}^{\lfloor\frac{a}{d}\rfloor}\lfloor\frac{a}{xd}\rfloor\<br>&amp;&#x3D;\sum_{j&#x3D;1}^b\sum_{k&#x3D;1}^c\sum_{d|jk}\mu(d)\sigma_0(\frac{jk}{d})\sum_{x&#x3D;1}^{\lfloor\frac{a}{d}\rfloor}\lfloor\frac{a}{xd}\rfloor\<br>\end{aligned}<br>$$</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OI/" class="print-no-link">#OI</a>
+      
+        <a href="/tags/Number-Theory/" class="print-no-link">#Number Theory</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Möbius Inversion</div>
+      <div>https://cwhirly.github.io/2026/07/24/OI/Number Theory/Möbius Inversion/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Weihao Cheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/04/OI/Data%20Structure/Dynamic%20Tree/Link-Cut%20Tree/" title="Link-Cut Tree">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Link-Cut Tree</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/03/Math/Mathematical%20Analysis/Derivative/Derivative%20For%20High%20School/" title="Derivative For High School">
+                        <span class="hidden-mobile">Derivative For High School</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Cwhirly/Cwhirly.github.io","repo-id":"R_kgDOQhfQWQ","category":"Announcements","category-id":"DIC_kwDOQhfQWc4CzUxJ","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>Nihil ego, nisi Terra et Flumina.</p> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

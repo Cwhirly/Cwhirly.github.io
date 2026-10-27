@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/gv0xh7mi.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Weihao Cheng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Stern-Brocot 树与数论分块。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Number Theory Fml Bucket">
+<meta property="og:url" content="https://cwhirly.github.io/2026/10/22/OI/Number%20Theory/Number%20Theory%20Fml%20Bucket/index.html">
+<meta property="og:site_name" content="Weihao Cheng&#39;s Blog">
+<meta property="og:description" content="Stern-Brocot 树与数论分块。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/l38byd4l.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/qia0g3wh.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/xwfm15na.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pbqbiqk2.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/nyb0d1h0.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/4v5iotqp.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rsmsg7mq.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rk17k2h8.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/7amjonep.webp">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/l88zkexg.webp">
+<meta property="article:published_time" content="2026-10-22T12:53:35.000Z">
+<meta property="article:modified_time" content="2026-10-27T13:38:37.332Z">
+<meta property="article:author" content="Weihao Cheng">
+<meta property="article:tag" content="Number Theory">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/l38byd4l.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Number Theory Fml Bucket - Weihao Cheng&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"cwhirly.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cwhirly</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://image.wsq127.top/file/bp7pk21w.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Number Theory Fml Bucket"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-10-22 20:53" pubdate>
+          2026年10月22日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Number Theory Fml Bucket</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Z由于不是全家桶而是半家桶，故 Family 变成了 Fml。</p>
+<h1 id="一、Stern-Brocot-Tree"><a href="#一、Stern-Brocot-Tree" class="headerlink" title="一、Stern-Brocot Tree"></a>一、Stern-Brocot Tree</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><blockquote>
+<p>Stern–Brocot 树是一种维护分数的优雅的结构，包含所有不同的正有理数．这个结构分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年独立发现．</p>
+</blockquote>
+<p>上文出自 OI-wiki。</p>
+<h2 id="1-DIVCNT1"><a href="#1-DIVCNT1" class="headerlink" title="1. DIVCNT1"></a>1. DIVCNT1</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP26073">SP26073 DIVCNT1</a>。<br>题面极其简洁，即求出：<br>$$\sum_{i&#x3D;1}^n\sigma_0(i)$$<br>的值，其中 $\sigma_0(i)$ 是 $i$ 的因数个数。  </p>
+<p>直接欧拉筛然后暴力求和显然开销巨大，考虑展开 $\sigma_0(i)&#x3D;\sum_{d|i}1$，于是原式化简为：<br>$$<br>\begin{aligned}<br>&amp;\sum_{i&#x3D;1}^n\sigma_0(i)\<br>&#x3D;&amp;\sum_{i&#x3D;1}^n\sum_{d|i}1\<br>&#x3D;&amp;\sum_{d&#x3D;1}^n\sum_{i&#x3D;1}^{\lfloor\frac{n}{d}\rfloor}1\<br>&#x3D;&amp;\sum_{d&#x3D;1}^n\left\lfloor\frac{n}{d}\right\rfloor\<br>\end{aligned}<br>$$<br>数论分块即可做到 $\mathcal{O}(\sqrt{n})$。</p>
+<h3 id="I-数论分块"><a href="#I-数论分块" class="headerlink" title="I. 数论分块"></a>I. 数论分块</h3><p>普遍意义上数论分块解决的是形如 $\displaystyle\sum_{i&#x3D;1}^nf(i)g(\left\lfloor\dfrac{n}{i}\right\rfloor)$ 的问题，当然也可以扩展到上取整、高维的情况，思想本质是一致的。  </p>
+<p>$\left\lfloor\dfrac{n}{i}\right\rfloor$ 只有 $\mathcal{O}(\sqrt{n})$ 个不同的取值，对于 $i\le\sqrt n$，最多只有 $\sqrt n$ 种不同的 $\left\lfloor\dfrac{n}{i}\right\rfloor$，而对于 $i&gt;\sqrt n$，必然有 $\left\lfloor\dfrac{n}{i}\right\rfloor\le\sqrt{n}$，也最多只有 $\sqrt n$ 种不同的取值。又因为 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 是非严格单调递减的，所以使 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 取值相同的 $i$ 都是一个个连续段，因此我们可以逐连续段处理。  </p>
+<p>对于同一个极长连续段 $[l,r]$，$\left\lfloor\dfrac{n}{l}\right\rfloor&#x3D;\left\lfloor\dfrac{n}{l+1}\right\rfloor&#x3D;\cdots&#x3D;\left\lfloor\dfrac{n}{r}\right\rfloor$，所以这些 $g$ 值是相等的，不妨用 $g_l$ 来表示，记 $f$ 的前缀和为 $F$，则这段连续段的贡献即为 $(F_r-F_{l-1})g_l$。  </p>
+<p>因此只要我们能 $\mathcal O(1)$ 计算 $F,g$，就可以 $\mathcal{O}(\sqrt{n})$ 计算 $\displaystyle\sum_{i&#x3D;1}^nf(i)g(\left\lfloor\dfrac{n}{i}\right\rfloor)$。  </p>
+<p>对于一个极长连续段 $[l,r]$，容易说明 $r&#x3D;\min\left(n,\left\lfloor\dfrac{n}{\left\lfloor\frac{n}{l}\right\rfloor}\right\rfloor\right)$。若存在下一个连续段，则下一个连续段的 $l$ 即为当前连续段的 $r+1$。  </p>
+<p>对于本题，$f&#x3D;1,F&#x3D;g&#x3D;\mathrm{id}$，数论分块容易处理。</p>
+<h3 id="II-Stern-Brocot-Tree"><a href="#II-Stern-Brocot-Tree" class="headerlink" title="II. Stern-Brocot Tree"></a>II. Stern-Brocot Tree</h3><p>但是本题的 $n$ 高达 $2^{63}$，我们需要更快的做法。  </p>
+<h4 id="1-化简原式"><a href="#1-化简原式" class="headerlink" title="1. 化简原式"></a>1. 化简原式</h4><p>考虑 $\displaystyle\sum_{d&#x3D;1}^n\left\lfloor\frac{n}{d}\right\rfloor$ 的几何意义。考虑反比例函数 $y&#x3D;\dfrac{n}{x}$ 的图像。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/l38byd4l.webp" srcset="/img/loading.gif" lazyload></p>
+<p>绿线即为 $y&#x3D;\dfrac{n}{x}$ 的图像，而根据要求的式子，答案则是该图像下<strong>正整数点</strong>的数量，即可视作为蓝线下的面积, 毕竟一个正整数格点和一个单位方格是一一对应的。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/qia0g3wh.webp" srcset="/img/loading.gif" lazyload></p>
+<p>如上图所示，数论分块其实就是在同高的蓝框内拆矩形，并快速计算矩形面积。</p>
+<p>现在我们考虑优化。</p>
+<p>我们先假定 $n$ <strong>不是完全平方数</strong>，然后对原式进行拆分， $\displaystyle\sum_{d&#x3D;1}^n\left\lfloor\frac{n}{d}\right\rfloor&#x3D;\displaystyle\sum_{d&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{d}\right\rfloor+\displaystyle\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{n}\left\lfloor\frac{n}{d}\right\rfloor$，而：<br>$$<br>\begin{aligned}<br>&amp;\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{n}\left\lfloor\frac{n}{d}\right\rfloor\<br>&#x3D;&amp;\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{n}\sum_{i&#x3D;1}^{\lfloor\frac{n}{d}\rfloor}1\<br>&#x3D;&amp;\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\sum_{\lfloor\sqrt{n}\rfloor&lt;d\le n\land \left\lfloor\frac{n}{d}\right\rfloor\ge i}1\<br>&#x3D;&amp;\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\sum_{\lfloor\sqrt{n}\rfloor&lt;d\le n\land \left\lfloor\frac{n}{i}\right\rfloor\ge d}1\<br>&#x3D;&amp;\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{\left\lfloor\frac{n}{i}\right\rfloor}1\<br>&#x3D;&amp;\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}(\left\lfloor\frac{n}{i}\right\rfloor-\lfloor\sqrt{n}\rfloor)\<br>&#x3D;&amp;\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{i}\right\rfloor-(\lfloor\sqrt{n}\rfloor)^2\<br>\end{aligned}<br>$$<br>代入原式，得到 $\displaystyle\sum_{d&#x3D;1}^n\left\lfloor\frac{n}{d}\right\rfloor&#x3D;2\displaystyle\sum_{d&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{d}\right\rfloor-(\lfloor\sqrt{n}\rfloor)^2$。对于 $n$ 是完全平方数的情况，这个式子是完全一致的，只是推导过程有一部分加一减一的变化。  </p>
+<p>因此我们将问题规约为求 $\displaystyle\sum_{d&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{d}\right\rfloor$ 的值。</p>
+<p>由于 $\displaystyle\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{n}\left\lfloor\frac{n}{d}\right\rfloor&#x3D;\displaystyle\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{i}\right\rfloor-(\lfloor\sqrt{n}\rfloor)^2$，则 $\displaystyle\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{i}\right\rfloor&#x3D;\displaystyle\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{n}\left\lfloor\frac{n}{d}\right\rfloor+(\lfloor\sqrt{n}\rfloor)^2$。我们要算的即为下图的正整数点个数，或可视为面积。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/xwfm15na.webp" srcset="/img/loading.gif" lazyload></p>
+<p>当然，简便的理解方法是，考虑最终要求的整个部分，容易证明其关于 $y&#x3D;x$ 是对称的，所以直接将 $\displaystyle\sum_{i&#x3D;1}^{\lfloor\sqrt{n}\rfloor}\left\lfloor\frac{n}{i}\right\rfloor$ 的部分沿 $y&#x3D;x$ 翻转即可得到 $\displaystyle\sum_{d&#x3D;\lfloor\sqrt{n}\rfloor+1}^{n}\left\lfloor\frac{n}{d}\right\rfloor+(\lfloor\sqrt{n}\rfloor)^2$ 。  </p>
+<p>注意“面积”是辅助理解的，实际上我们数的是正整点数量，同时我们发现正整点对应着一个单位正方形的右上角。 </p>
+<h4 id="2-构造凸包"><a href="#2-构造凸包" class="headerlink" title="2. 构造凸包"></a>2. 构造凸包</h4><p>考虑构造一个凸包，如下图所示。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/pbqbiqk2.webp" srcset="/img/loading.gif" lazyload></p>
+<p>这个凸包的定义是 $\mathrm{conv}{(x,y)\in\mathbb{Z}^2|xy&gt;n,\left\lfloor\frac{n}{\lfloor\sqrt{n}\rfloor}\right\rfloor\le x\le n+1,1\le y\le\lfloor\sqrt{n}\rfloor+1}$ 其必然存在。</p>
+<p>这个凸包具有如下性质：</p>
+<ul>
+<li>凸包下边界的每一个顶点都是整点，且这些整点都在 $y&#x3D;\dfrac{n}{x}$ 的严格上方。</li>
+<li>凸包下边界与蓝框边界之间（不含两个边界上的整点）不存在任何整点。</li>
+<li>在符合上述条件的前提下，该凸包下边界从左上到右下每一条向量的斜率绝对值都尽可能的小。</li>
+</ul>
+<p>:::info[三条性质为何成立？]</p>
+<ul>
+<li>性质一直接根据定义得到。  </li>
+<li>性质二也几乎直接根据定义得到，在矩形 $[1,n]\times[1,\lfloor\sqrt{n}\rfloor]$ 中，所有的点要么在凸包内，要么在蓝框内，即我们的计算范围内。 </li>
+<li>性质三可以做反证，如果对于某条向量的右端点，不取使其斜率绝对值最小的点，那根据凸包的性质，这个点必然在凸包内部而不在凸包边界上。<br>:::</li>
+</ul>
+<p>由于后面的步骤，我们希望构成凸包下边界的所有向量都满足，其 $\Delta x$ 与 $\Delta y$ 互质。  </p>
+<p>如果有不互质的，我们会人为的将其拆成 $\gcd(\Delta x,\Delta y)$ 条长度相等，方向相同的向量即可，参考上图所示凸包下边界的第一条与第二条向量，斜率相同但被拆成两条。  </p>
+<p>这样一是保证了后面 Stern-Brocot Tree 对其的维护，二是使得一个向量内仅端点为整点。  </p>
+<p>为什么凸包的上边界是 $y&#x3D;\lfloor\sqrt{n}\rfloor+1$，左边界是 $x&#x3D;\left\lfloor\frac{n}{\lfloor\sqrt{n}\rfloor}\right\rfloor$ ？ 参考上图，第一条向量的设置看起来十分多余。</p>
+<p>我们的计算逻辑是，对于每个向量 $\vec{v}$，计算其“左边”“上开下闭”区域的整点数，  </p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/nyb0d1h0.webp" srcset="/img/loading.gif" lazyload></p>
+<p>对于上图，第一至四条向量处理的分别为灰线、绿线、橙线、紫线上的正整数点。</p>
+<p>因此第一条向量是必要的。</p>
+<p>现在考虑一条边的贡献。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/4v5iotqp.webp" srcset="/img/loading.gif" lazyload></p>
+<p>不包含上边界（我们前面已经提到该结构维护的是上开下闭的点集）与 $y$ 轴上的点（非正整数），左侧矩形贡献的有效正整点数为 $xq$。  </p>
+<p>右侧三角形的贡献不容易直接得出，我们先给出一个引理：</p>
+<p>:::info[Pick 定理]<br>给定顶点均为整点的简单多边形，Pick 定理说明了其面积 $A$ 和内部格点数目 $i$、边上格点数目 $b$ 的关系：$A&#x3D;i+\dfrac{b}{2}-1$。<br>:::</p>
+<p>边上与内部的点总贡献即为 $i+b&#x3D;A+\dfrac{b}{2}+1$，由于是三角形，则 $A&#x3D;\dfrac{qp}{2}$，又因为 $\gcd(q,p)&#x3D;1$，斜边上只有端点是整点，故可算得 $b&#x3D;p+q+1$。  </p>
+<p>整理得 $i+b&#x3D;\dfrac{1}{2}(qp+q+p+1)+1$，再加上矩形的 $xq$，减去重复贡献，即三角形与矩形相交的那条边上 $q$ 个点，再减去不应记入贡献的 $2$ 个点 $(x,y),(x+p,y-q)$，最终整个向量的贡献即为 $\dfrac{1}{2}(qp+q+p+1)+1+xq-q-2$，化简得到下式：<br>$$<br>xq+\frac{1}{2}(p-1)(q+1)<br>$$</p>
+<h4 id="3-Stern-Brocot-树上二分"><a href="#3-Stern-Brocot-树上二分" class="headerlink" title="3. Stern-Brocot 树上二分"></a>3. Stern-Brocot 树上二分</h4><p>现在我们已经知道了解法的框架，只需要知道该如何快速算出构成凸包下边界的每个向量是什么，就可以解决原问题了！</p>
+<p>引入 Stern-Brocot 树这个结构。  </p>
+<p>首先要定义 Stern-Brocot 序列，它是无穷个有理数序列的总称，其中第 $k$ 个序列（编号从 $0$ 开始）被称作第 $k$ 阶 Stern-Brocot 序列。  </p>
+<p>递归地定义它：设第 $k$ 阶 Stern-Brocot 序列为： $${\dfrac{a_1}{b_1},\dfrac{a_2}{b_2},\cdots,\dfrac{a_n}{b_n}}$$则第 $(k+1)$ 阶 Stern-Brocot 序列即为：<br>$$<br>{\dfrac{a_1}{b_1},\dfrac{a_1+a_2}{b_1+b_2},\dfrac{a_2}{b_2},\dfrac{a_2+a_3}{b_2+b_3},\cdots,\dfrac{a_{n-1}+a_{n}}{b_{n-1}+b_{n}},\dfrac{a_n}{b_n}}<br>$$<br>通俗地说，就是在第 $k$ 阶 Stern-Brocot 序列每相邻两项 ${\dfrac{a_{i}}{b_{i}},\dfrac{a_{i+1}}{b_{i+1}}}$ 之间插入一个新的有理数 $\dfrac{a_{i}+a_{i+1}}{b_{i}+b_{i+1}}$，这样就得到了第 $(k+1)$ 阶 Stern-Brocot 序列。尽管中位分数的定义本身允许分数的约分，但是在 Stern–Brocot 序列的构造中，只需要直接将分子和分母分别相加即可，而不必担心约分的问题，这个事情我们将会在后文给出证明。  </p>
+<p>递归的起点是第 $0$ 阶 Stern-Brocot 序列 ${\dfrac{0}{1},\dfrac{1}{0}}$，这两项将是所有 Stern-Brocot 序列的第一项和最后一项。  </p>
+<p>注意 $\dfrac{1}{0}$ 在此处可视作正无穷。</p>
+<p>由此，可以迭代地构造出所有阶的 Stern–Brocot 序列．前几次迭代的结果如下：<br>$$<br>\begin{array}{ccccccccc}<br>&amp;&amp;&amp;\dfrac{0}{1}, &amp; \dfrac{1}{1}, &amp; \dfrac{1}{0} &amp;&amp;&amp;\\<br>&amp;&amp;\dfrac{0}{1}, &amp; \dfrac{1}{2}, &amp; \dfrac{1}{1}, &amp; \dfrac{2}{1}, &amp; \dfrac{1}{0} &amp;&amp;\\<br>\dfrac{0}{1}, &amp; \dfrac{1}{3}, &amp; \dfrac{1}{2}, &amp; \dfrac{2}{3}, &amp; \dfrac{1}{1}, &amp; \dfrac{3}{2}, &amp; \dfrac{2}{1}, &amp; \dfrac{3}{1}, &amp; \dfrac{1}{0}<br>\end{array}<br>$$<br>将每次迭代中新添加的分数连结成树状结构，就得到了 Stern–Brocot Tree。如下图所示：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/rsmsg7mq.webp" srcset="/img/loading.gif" lazyload></p>
+<p>发现 Stern–Brocot Tree 深度为 $k$ 的树上节点从左到右排列，就是第 $k$ 阶 Stern-Brocot 序列的全体偶数项。  </p>
+<p>另一种等价的构造方式是以三元组<br>$$<br>\left(\dfrac{0}{1},\dfrac{1}{1},\dfrac{1}{0}\right)<br>$$<br>作为根节点，且在每个节点<br>$$<br>\left(\dfrac{a}{b},\dfrac{p}{q},\dfrac{c}{d}\right)<br>$$<br>后都分别添加<br>$$<br>\left(\dfrac{a}{b},\dfrac{a+p}{b+q},\dfrac{p}{q}\right),\ \left(\dfrac{p}{q},\dfrac{p+c}{q+d},\dfrac{c}{d}\right)<br>$$<br>为左右子节点，就可以构造出整个 Stern–Brocot Tree。Stern–Brocot Tree 的每个节点记录的三元组中，实际存储的分数是位于三元组中间的分数 $\dfrac{p}{q}$，而左右两个分数 $\dfrac{a}{b}$ 和 $\dfrac{c}{d}$ 是更早就出现过的分数．而且，考虑前一种构造就会发现，分数 $\dfrac{p}{q}$ 正是通过插入 $\dfrac{a}{b}$ 和 $\dfrac{c}{d}$ 的中位分数得到的。</p>
+<p>三元组构造意味着每个 Stern–Brocot 树上的节点都对应着一个矩阵：<br>$$<br>S &#x3D; \begin{pmatrix}<br>b &amp; d\<br>a &amp; c<br>\end{pmatrix}<br>$$<br>Stern–Brocot 树的根节点是单位矩阵 $I$，而向左子节点移动和向右子节点移动则分别对应将当前节点矩阵右乘以矩阵<br>$$<br>L&#x3D;\begin{pmatrix}<br>1 &amp; 1 \<br>0 &amp; 1<br>\end{pmatrix},~<br>R&#x3D;\begin{pmatrix}<br>1 &amp; 0 \<br>1 &amp; 1<br>\end{pmatrix}.<br>$$<br>每个节点实际对应的分数就是 $f(S)&#x3D;\dfrac{a+c}{b+d}$ ．每个节点的矩阵 $S$ 都可以写成一系列矩阵 $L$ 和 $R$ 的乘积，这也可以理解为是由 $L$ 和 $R$ 构成的字符串，表示了从根节点到达它的路径．将所有正的有理数唯一地表示为这样的字符串，这可以看作得到了正有理数的一种表示，故而也称作 <strong>Stern–Brocot 数系</strong>（Stern–Brocot number system）。</p>
+<p>接下来讨论 Stern–Brocot Tree 的性质。简而言之，Stern–Brocot Tree是包含所有正的最简有理分数的二叉搜索树，它也是分子和分母的堆，也是分母和分子构成的二元组的笛卡尔树。如果考虑前文的三元组构造中的左右端点形成的区间，则 Stern–Brocot Tree 也可以看作是 $[0,\infty]$ 上的线段树。这些陈述可以通过如下的三条基本性质导出：</p>
+<p><strong>【单调性】</strong><br>每一层的分数都是单调递增的．为此只需要归纳证明．因为如果 $\dfrac{a}{b} &lt; \dfrac{c}{d}$，那么必然有<br>$$<br>\dfrac{a}{b} &lt; \dfrac{a+c}{b+d} &lt; \dfrac{c}{d}.<br>$$<br>这一点可以通过消去不等式的分母得出．归纳起点是 $\dfrac{0}{1} &lt; \dfrac{1}{0}$，单调性也显然成立．<br><strong>【最简性】</strong><br>在上面的构造中，每个分数都是最简分数。为此同样需要归纳证明上面的构造中，每一层相邻的分数 $\dfrac{a}{b}$ 和 $\dfrac{c}{d}$ 都满足等式：<br>$$<br>bc-ad &#x3D; \begin{vmatrix}<br>b &amp; d\<br>a &amp; c<br>\end{vmatrix} &#x3D; 1.<br>$$<br>根节点处是单位矩阵，这显然成立．向下移动时，乘以的矩阵 $L$ 和 $R$ 的行列式都是 $1$，根据行列式的性质可知，在下一层同样成立<br>$$<br>\begin{vmatrix}b &amp; b+d \ a &amp; a+c \end{vmatrix} &#x3D; \begin{vmatrix}b+d &amp; d \ a+c &amp; c\end{vmatrix} &#x3D; 1.<br>$$<br>对于归纳起点 $\dfrac{0}{1}$ 和 $\dfrac{1}{0}$ 这也是显然的。由此，根据裴蜀定理，必然可知每个分数的分子和分母都是互素的，即所有分数都是最简分数。<br><strong>【完全性】</strong><br>最后，需要说明 Stern–Brocot 树包括了所有正的最简分数．因为前两条性质已经说明 Stern–Brocot 树是二叉搜索树，而任何正的最简分数 $\dfrac{p}{q}$ 必然位于 $\dfrac{0}{1}$ 和 $\dfrac{1}{0}$ 之间，根据二叉搜索树上做搜索的方法，二叉搜索树上没有 $\dfrac{p}{q}$ 的唯一可能性就是搜索过程无限长。下面将证明，对于任意正有理数 $\dfrac{p}{q}$，无限长的搜索过程是不可能的。</p>
+<p>设搜索过程中得到的 $\dfrac{p}{q}$ 的下界为 $\dfrac{a}{b}$，上界为 $\dfrac{c}{d}$ 。下界初始值为 $\dfrac{0}{1}$，上界初始值为 $\dfrac{1}{0}$，随后上下界通过 $\dfrac{a+c}{b+d}$ 和 $\dfrac{p}{q}$ 的比较结果逐步调整。若搜索无限长，则每一步都有：<br>$$<br>\dfrac{a}{b} &lt; \dfrac{p}{q} &lt; \dfrac{c}{d}<br>$$<br>那么必然在无限步内都有：<br>$$<br>bp-aq \ge 1,\ cq-dp \ge 1<br>$$<br>将两个不等式分别乘以 $(c+d)$ 和 $(a+b)$，得到：<br>$$<br>(c+d)(bp-aq) + (a+b)(cq-dp) \ge a+b+c+d<br>$$<br>利用前面已经说明的等式 $bc-ad&#x3D;1$ 可将上式化简为：<br>$$<br>p+q \ge a+b+c+d<br>$$<br>然而，每次搜索更深入一层的时候，不等式右侧都严格地增加，而左侧保持不变，因此上述条件无法在无限步内成立．因此，搜索过程会在有限步内停止。</p>
+<p>有多种 Stern-Brocot 树上查找给定分数 $\dfrac{p}{q}$（即找出在树上走到该点的路径）的算法，例如通过连分数的方法可以做到 $\mathcal O(\log \min{p,q})$，但是此题中要寻找的分数是事先不知道的，因此我们暂时跳过查找给定分数的算法，直接回到原题。  </p>
+<hr>
+<p>我们希望找到构成凸包的各向量，考虑从起点开始，寻找第一条向量（向量方向从左上到右下），然后沿着该向量移动，以这条向量的末尾为起点再寻找第二条向量，以此类推。</p>
+<p>那么我们就需要解决这样的问题：以 $(x,y)$ 为起点，找到下一条向量。  </p>
+<p>由于向量的端点都必须是整点，所以它的斜率一定是一个有理数 $\dfrac{p}{q}$。  </p>
+<p>为何这个答案是可二分的，即如何说明在 Stern-Brocot Tree 上二分的正确性？首先 Stern-Brocot 序列具有单调性，根据前面的性质，答案 $\dfrac{p}{q}$ 必然是存在的，然后设 $\dfrac{p}{q}$ 的深度为 $k$，那么二分过程的本质就是在第 $k$ 阶 Stern-Brocot 序列中进行二分，因为到第 $k$ 层遇到 $\dfrac{p}{q}$ 自然会停止，且小于 $k$ 阶的都被包含在第 $k$ 阶中。</p>
+<p>然后考虑第 $k$ 阶 Stern-Brocot 序列中的每一个分数，其中小于等于 $\dfrac{p}{q}$ 的所有分数 $\dfrac{p’}{q’}$，如果斜率的绝对值取它们，那么得到的 $(x+p’,y-q’)$ 必然在双曲线上方（且不合法，因为此时 $(p’,-q’)$ 这条向量下方必然还涵盖了 $(x+p,y-q)$ 这个不该被统计的整点）。</p>
+<p>其中大于 $\dfrac{p}{q}$ 的分数 $\dfrac{p’’}{q’’}$ ，那么得到的 $(x+p’’,y-q’’)$ 必然在双曲线下方, 考虑如果存在一个 $\dfrac{p’’}{q’’}$，那么应该二分到它，而不是 $\dfrac{p}{q}$，因为此时 $\dfrac{p}{q}$ 根本不合法。</p>
+<p>最终的一步，既然每一层都具有这样的单调性，我们怎么说明我们二分出的答案是最优的，不会在下一层继续产生更优的呢？我们会在后文构造性的说明判断二分停止的条件, 使得确定 $\dfrac{p}{q}$ 是最终答案。</p>
+<p>综上我们说明了 $\dfrac{p}{q}$ 必然可以在 Stern-Brocot Tree 中二分地找到。</p>
+<hr>
+<p>现在考虑具体过程。</p>
+<p>根据前文的讨论，我们以 $(\left\lfloor\dfrac{n}{\lfloor\sqrt{n}\rfloor}\right\rfloor,\lfloor\sqrt{n}\rfloor)$ 作为二分的起点，<strong>初始时</strong>二分的上下界为 $r&#x3D;\dfrac{0}{1},l&#x3D;\dfrac{1}{1}$，从向量的角度考虑就是 $\vec{R}&#x3D;(1,0),\vec{L}&#x3D;(1,-1)$。（注意是命名是反过来的，更符合直觉，且 $\Delta y$ 要取负）  </p>
+<p>每次取中点，设此时的 $l&#x3D;\dfrac{a}{b},r&#x3D;\dfrac{c}{d}$，则有 $\mathrm{mid}&#x3D;\dfrac{a+c}{b+d}$，从向量的角度就是 $\vec{M}&#x3D;(b+d,-a-c)$，本质就是简单地向量相加。其实 Stern-Brocot Tree 的体现就仅仅是这一步取中位分数罢了，但是我们把这个过程具象成树形后，得到了许多优美的性质，这些性质才保证了这一步的正确性，体现了这一步的精妙。  </p>
+<p>具体二分的过程很简单：</p>
+<ul>
+<li>如果从目前的位置为起点，$\vec{M}$ 的终点在双曲线的上方，那么令 $\vec{R}\gets\vec{M}$。</li>
+<li>如果 $\vec{M}$ 的终点在双曲线的下方，那么令 $\vec{L}\gets\vec{M}$。</li>
+</ul>
+<p>二分的终止条件是什么？</p>
+<p>曲线的函数表达式为 $f(x)&#x3D;\dfrac{n}{x}$，其导数为 $f’(x)&#x3D;-\dfrac{n}{x^2}$。</p>
+<p>当 $\vec{M}$ 的终点在曲线下方时，若 $\dfrac{\vec{R}_y}{\vec{R}_x}\le f’(x+\vec{M}_x)$，即 $-(x+\vec{M}_x)^2 \vec{R}_y\ge n\vec{R}_x$，则之后二分到的点无论如何都会在曲线下方，此时应终止二分。而 $\vec{R}$ 就是我们要找的下一个向量。  </p>
+<p>:::info[证明该终止条件的正确性]<br><strong>证明：</strong> 设 $\vec M,\vec R$ 为当前 Stern-Brocot 区间的两个边界方向，且 $\vec R$ 为二分得到的边界。由于 Stern-Brocot Tree 的性质，$\vec R$ 之后的任意候选方向 $\vec V$ 均可写为：<br>$$<br>\vec V&#x3D;a\vec M+b\vec R,\qquad a,b\ge0<br>$$<br>于是：<br>$$<br>\frac{V_y}{V_x}&#x3D;\frac{aM_x\frac{M_y}{M_x}+bR_x\frac{R_y}{R_x}}{aM_x+bR_x}<br>$$<br>即 $\frac{V_y}{V_x}$ 是 $\frac{M_y}{M_x}$ 与 $\frac{R_y}{R_x}$ 的加权平均。由于这些方向按 Stern-Brocot 顺序排列，故 $\vec R$ 之后的方向均满足：<br>$$<br>\frac{V_y}{V_x}\le\frac{R_y}{R_x}<br>$$<br>设 $\vec M$ 的终点为：<br>$$<br>P&#x3D;(X,Y)&#x3D;(x+M_x,y+M_y)<br>$$<br>且 $P$ 位于双曲线 $f(x)&#x3D;n&#x2F;x$ 下方，即 $Y\le f(X)$，若：<br>$$<br>\frac{R_y}{R_x}\le f’(X)&#x3D;-\frac{n}{X^2}<br>$$<br>则对任意 $t\ge0$，由 $f$ 的凸性，<br>$$<br>f(X+tR_x)\ge f(X)+tf’(X)R_x.<br>$$<br>又因为 $Y\le f(X), R_y\le f’(X)R_x$，所以：<br>$$<br>Y+tR_y<br>\le f(X)+tf’(X)R_x<br>\le f(X+tR_x)<br>$$<br>故从 $P$ 沿 $\vec R$ 的整条射线均位于双曲线下方。</p>
+<p>同理，由于 $\vec R$ 之后的任意方向 $\vec V$ 均满足<br>$$<br>\frac{V_y}{V_x}\le\frac{R_y}{R_x}\le f’(X),<br>$$<br>这些方向的射线也均不会越过双曲线。因此 $\vec R$ 之后不存在更优的候选方向，结合二分维护的边界不变量，$\vec R$ 即为所求的下一向量。<br>:::</p>
+<h4 id="4-单调栈"><a href="#4-单调栈" class="headerlink" title="4. 单调栈"></a>4. 单调栈</h4><p>由于我们维护的是凸包，斜率的绝对值要递减，同时要优化时间复杂度，我们要仔细考虑每次二分的上下界。</p>
+<p>考虑优化。开一个存储向量的<strong>单调栈</strong>，向量斜率的绝对值从栈底到栈顶单调递增。</p>
+<p>初始时，往栈中先后加入向量 $(1,0)$ 与 $(1,1)$。</p>
+<p>每次从 $(x,y)$ 开始时，先取出栈顶向量（也就是上一步找到的可行的向量），记为 $\vec{L}$。</p>
+<p>若 $(x,y)+\vec{L}$ 在曲线上方，则令 $(x,y)\gets(x,y)+\vec{L}$ 并计算贡献，继续判断新的 $(x,y)+\vec{L}$ 是否在曲线上方；否则退出循环。这一步的本质就是我们先前所说的，如果有两个方向增量不互质的，我们会人为的将其拆成 $\gcd(\Delta x,\Delta y)$ 条长度相等，方向相同的向量。这个循环执行多次便意味着 $\vec{L}$ 被重复了多次。由于斜率的绝对值要递减，所以如果能重复 $\vec{L}$ 还合法，那么选择重复显然是最优的, 且在初始时容易证明 $(1,-1)$ 是最优的。</p>
+<p>设当前栈顶为 $\vec{R}$。</p>
+<p>若 $(x,y)+\vec{R}$ 在曲线下方，则令 $\vec{L}\gets \vec{R}$，进行弹栈，并令 $\vec{R}$ 为新的栈顶，继续判断新的 $(x,y)+\vec{R}$ 是否在曲线下方；否则退出循环。</p>
+<p>这个过程的极端情况就是一直弹栈，最终 $\vec{R}&#x3D;(1,0)$，而 $(1,0)$ 无论怎样都不会出栈。</p>
+<p>然后在 $\vec{L}$ 与 $\vec{R}$ 之间二分即可。二分过程中，若 $(x,y)+\vec{M}$ 在曲线上方，则将 $\vec{M}$ 加入单调栈，显然这样加入的 $\vec{M}$ 是递减的，不会破坏单调栈的性质。</p>
+<p>以上就是整个的计算流程，当然这还没有结束。</p>
+<h4 id="5-复杂度"><a href="#5-复杂度" class="headerlink" title="5. 复杂度"></a>5. 复杂度</h4><p>记 $l&#x3D;\dfrac ab$、$r&#x3D;\dfrac cd$，对应的向量为 $\vec L&#x3D;(b,-a)$、$\vec R&#x3D;(d,-c)$，则 $\vec M&#x3D;\vec L+\vec R&#x3D;(b+d,-a-c)$。整个过程围绕<br>$$\sigma&#x3D;\vec M_x&#x3D;b+d$$<br>展开。把“取栈顶 $\vec L$、重复 $\vec L$、弹栈得到 $\vec R$、二分确定下一条向量”这一循环体称作一轮。</p>
+<p><strong>引理 1.</strong> 任何时刻 $ad-bc&#x3D;1$。<br><strong>证明：</strong> 初始 $l&#x3D;\dfrac11,r&#x3D;\dfrac01$ 时有 $ad-bc&#x3D;1\cdot1-1\cdot0&#x3D;1$。更新 $\vec L\gets\vec L+\vec R$ 把 $(a,b)$ 换成 $(a+c,b+d)$，更新 $\vec R\gets\vec L+\vec R$ 把 $(c,d)$ 换成 $(a+c,b+d)$，两者都保持 $ad-bc$ 不变。</p>
+<p><strong>引理 2.</strong> 任何时刻 $b\le x-1$、$d\le n-x+1$，从而 $\sigma\le n$。<br><strong>证明：</strong> $\vec L$ 是刚走过的凸包边的方向，这条边的起点横坐标为 $x-b$，它是遍历中到过的顶点，故 $x-b\ge 1$；$\vec R$ 的终点横坐标为 $x+d$，不越过构造凸包所用矩形的右边，故 $x+d\le n+1$。两式相加即得 $\sigma\le n$。</p>
+<p><strong>引理 3.</strong> 每次二分使 $\sigma$ 至少增加 $1$。<br><strong>证明：</strong> $\vec L\gets\vec L+\vec R$ 时 $\sigma$ 由 $b+d$ 变为 $(b+d)+d&#x3D;\sigma+d$；$\vec R\gets\vec L+\vec R$ 时变为 $b+(b+d)&#x3D;\sigma+b$。两种情形都至少增加 $1$。</p>
+<p>由引理 3，若第 $i$ 轮首、轮末的 $\sigma$ 为 $s_i,e_i$，则该轮内二分的次数不超过 $e_i-s_i$。沿 $\vec L$ 平移一次使 $x$ 增加 $b\ge1$，而 $x$ 单调不减且不超过 $n+1$，故平移次数不超过 $n$；弹栈次数不超过入栈次数，而入栈只发生在二分中令 $\vec R\gets\vec L+\vec R$ 时。</p>
+<p>只需再估计 $\displaystyle\sum_i(e_i-s_i)$。设第 $i$ 轮末 $\vec L,\vec R$ 的横坐标为 $u_i,v_i$，第 $i$ 轮首栈顶向量（即该轮第一次二分中的 $\vec R$）的横坐标为 $w_i$。轮首的 $\vec L$ 就是上一轮确定的向量，横坐标为 $v_{i-1}$，于是：<br>$$s_i&#x3D;v_{i-1}+w_i,\qquad e_i&#x3D;u_i+v_i,$$<br>合并得：<br>$$e_i-s_i&#x3D;(u_i-v_{i-1})+(v_i-w_i).$$<br>一轮内 $\vec R$ 只增不减，故 $w_i\le v_i$；又 $v_i$ 是下一轮平移所用的方向，至少把 $x$ 推进 $v_i$，故 $\displaystyle\sum_i v_i\le n$。因此<br>$$\sum_i(v_i-w_i)\le\sum_i v_i\le n .$$<br>再看 $\displaystyle\sum_i(u_i-v_{i-1})$，它是各轮中 $\vec L$ 横坐标总增量之和。若第 $i$ 轮以入栈结束，最后入栈的是 $\vec L+\vec R$，其横坐标 $u_i+w_{i+1}$ 就是 $v_i$，故 $u_i\le v_i$。若第 $i$ 轮以终止条件结束，则本轮没有再入栈，$u_i$ 至多比 $v_i$ 多出栈中相邻向量的横坐标 $w_{i+1}$，仍有 $u_i\le v_i+w_{i+1}$。于是在每一轮都有 $u_i\le v_i+w_{i+1}$，求和得：<br>$$\sum_i(u_i-v_{i-1})\le\sum_i(v_i+w_{i+1}-v_{i-1})&#x3D;v_N-v_0+\sum_i w_{i+1}\le n+n .$$<br>（以终止条件结束的轮中，$u_i$ 可能比 $v_i+w_{i+1}$ 略大，但这样的超出量之和是 $o(n)$ 所以不影响结论）</p>
+<p>两式相加得 $\displaystyle\sum_i(e_i-s_i)\le 3n$。三类操作的次数都是 $\mathcal{O}(n)$，所以算法总复杂度为 $\mathcal{O}(n)$。</p>
+<p>竟然是线性，甚至劣于数论分块。</p>
+<p>不过接下来仅需要一步简单的优化就可以迅速降低复杂度。</p>
+<h4 id="6-分治"><a href="#6-分治" class="headerlink" title="6. 分治"></a>6. 分治</h4><p>我们考虑一个阈值 $B$，先按刚才的方法找向量，直到目前点的 $y&lt;B$，停止，剩下的直接暴力求值，暴力的部分沿 $y&#x3D;x$ 翻转得到 $\sum_{i&#x3D;1}^{B}\left\lfloor\dfrac{n}{i}\right\rfloor$。</p>
+<p>论文 [1] 中证明了 $B&#x3D;n^{\frac13}$ 是量级最优，此时复杂度为：<br>$$O\left(n^{\frac13}\log n\right)$$<br>因此我们就以这个极其优异的复杂度解决了这个问题。</p>
+<h4 id="7-代码"><a href="#7-代码" class="headerlink" title="7. 代码"></a>7. 代码</h4><p>代码非常简洁，注意本题需要 <code>__int128</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> sor(i, l, r) for (int i = l; i &lt;= r; ++i)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ros(i, r, l) for (int i = r; i &gt;= l; --i)</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">namespace</span> Revitalize &#123;<br>    <span class="hljs-keyword">constexpr</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5e5</span> + <span class="hljs-number">5</span>, P = <span class="hljs-number">998244353</span>;<br>    <span class="hljs-type">int</span> T, n;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(__int128 x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">10</span>)<br>            <span class="hljs-built_in">write</span>(x / <span class="hljs-number">10</span>);<br>        <span class="hljs-built_in">putchar</span>(x % <span class="hljs-number">10</span> + <span class="hljs-string">&#x27;0&#x27;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">DIVCNT</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        __int128 ans = <span class="hljs-number">0</span>, m = <span class="hljs-built_in">floorl</span>(<span class="hljs-built_in">sqrtl</span>(n)), top = <span class="hljs-number">-1</span>;<br>        vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; ddz;<br>        ddz.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">make_pair</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br>        ddz.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">make_pair</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>));<br>        top = <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> x = n / m, y = m + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>            pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; L = ddz[top];<br>            ddz.<span class="hljs-built_in">pop_back</span>();<br>            top--;<br>            <span class="hljs-keyword">while</span> (n &lt; (x + L.first) * (y - L.second)) &#123;<br>                ans += x * L.second + (L.second + <span class="hljs-number">1</span>) * (L.first - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>                x += L.first;<br>                y -= L.second;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (y * y * y &lt;= n)<br>                <span class="hljs-keyword">break</span>;<br>            pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; R = ddz[top];<br>            <span class="hljs-keyword">while</span> (n &gt;= (x + R.first) * (y - R.second)) &#123;<br>                L = R;<br>                ddz.<span class="hljs-built_in">pop_back</span>();<br>                top--;<br>                R = ddz[top];<br>            &#125;<br>            <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>                pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; mid = &#123;L.first + R.first, L.second + R.second&#125;;<br>                <span class="hljs-keyword">if</span> (n &lt; (x + mid.first) * (y - mid.second)) &#123;<br>                    R = mid;<br>                    ddz.<span class="hljs-built_in">push_back</span>(mid);<br>                    top++;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> ((x + mid.first) * (x + mid.first) * R.second &gt;=<br>                        n * R.first)<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">else</span><br>                        L = mid;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-built_in">sor</span>(i, <span class="hljs-number">1</span>, y - <span class="hljs-number">1</span>) ans += n / i;<br>        <span class="hljs-keyword">return</span> ans * <span class="hljs-number">2</span> - m * m;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">work</span><span class="hljs-params">()</span> </span>&#123;<br>        cin &gt;&gt; T;<br>        <span class="hljs-keyword">while</span> (T--) &#123;<br>            cin &gt;&gt; n;<br>            <span class="hljs-built_in">write</span>(<span class="hljs-built_in">DIVCNT</span>(n));<br>            <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;\n&#x27;</span>);<br>        &#125;<br>    &#125;<br>&#125; <span class="hljs-comment">// namespace Revitalize</span><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>    cin.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    cout.<span class="hljs-built_in">tie</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">return</span> Revitalize::<span class="hljs-built_in">work</span>(), <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="III-What’s-More…"><a href="#III-What’s-More…" class="headerlink" title="III. What’s More…"></a>III. What’s More…</h3><p>就在前段时间（2026 年 9 月 28 日，以论文中标注日期为准），清华求真书院的 Darren Li（w33z8kqrqk8zzzx33）在论文 [2] 中提出了全新的基于 Voronoï 求和的解析算法，将该问题做到了期望时间复杂度 $\mathcal{O}(n^{\frac{9}{28}+o(1)})$，不过该算法仅理论复杂度更优，难以投入实际应用。 </p>
+<p>论文中作者明确说明：“AI disclosure. The core contribution is due to LLMs. We simplified the resulting proof.”（人工智能披露。核心贡献归功于大型语言模型。我们简化了由此得出的证明）</p>
+<h2 id="2-AFS3"><a href="#2-AFS3" class="headerlink" title="2. AFS3"></a>2. AFS3</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP33039">SP33039 AFS3</a>。<br>求出：<br>$$\sum_{i&#x3D;1}^n(\sigma_1(i)-i)$$<br>的值，其中 $\sigma_1(i)$ 是 $i$ 的因数和。  </p>
+<h3 id="I-化简原式"><a href="#I-化简原式" class="headerlink" title="I. 化简原式"></a>I. 化简原式</h3><p>先转换式子，本题的推导过程会在不省略关键步骤或观察的前提下相对简略一些：<br>$$<br>\begin{aligned}<br>&amp;\sum_{i&#x3D;1}^n(\sigma_1(i)-i)\<br>&#x3D;&amp;\sum_{i&#x3D;1}^n\sum_{d|i}d-\frac{n(n+1)}{2}\<br>&#x3D;&amp;\sum_{d&#x3D;1}^nd\left\lfloor\frac{n}{d}\right\rfloor-\frac{n(n+1)}{2}\<br>\end{aligned}<br>$$<br>问题归约于求 $\displaystyle\sum_{i&#x3D;1}^ni\left\lfloor\frac{n}{i}\right\rfloor$，数论分块显然也可以做到单组询问 $\mathcal{O}(\sqrt{n})$。  </p>
+<p>考虑其几何意义，问题从双曲线下正整数点计数变为双曲线下正整数点权值和，其权值为其横坐标。</p>
+<p>与上一题类似，我们将做贡献部分的图像分成三部分：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/rk17k2h8.webp" srcset="/img/loading.gif" lazyload></p>
+<p>正方形边长还是 $\lfloor\sqrt{n}\rfloor$，设其为 $m$。  </p>
+<p>由上题我们得知紫色部分正整点数与橙色部分正整点数相同，且每个紫色部分的正整点关于 $y&#x3D;x$ 的对称点都在橙色部分中，不重不漏，而紫色部分整点的横坐标做对称后便称为橙色部分的纵坐标。  </p>
+<p>因此我们可以得出，整个紫色+蓝色部分的贡献，等于橙色+蓝色部分的以纵坐标为权值的贡献。于是我们只需计算橙色+蓝色区域以横纵坐标和为权值的贡献，再将重复计算的一个蓝色区域贡献减去即可。</p>
+<p>容易计算出蓝色正方形的贡献为 $\dfrac{1}{2}m^2(m+1)$。</p>
+<p>现在我们需要计算的便是橙色+蓝色区域分别以横纵坐标为权值的贡献。  </p>
+<h3 id="II-计算向量贡献"><a href="#II-计算向量贡献" class="headerlink" title="II. 计算向量贡献"></a>II. 计算向量贡献</h3><p>我们依旧使用维护凸包的方法，由于双曲线没有变化，变化的只是每个整点的权值，因此构成凸包的这些向量都没有变，变的只有每个向量的贡献。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/7amjonep.webp" srcset="/img/loading.gif" lazyload></p>
+<p>由此图，向量的横纵坐标贡献可拆分为：<br>$$<br>\begin{cases}<br>\text{Row}&#x3D;{\color{#00aaff}{\dfrac{qx(x-1)}{2}}}+{\textcolor{#8800ff}{R_{\triangle}}}-(2x+p)\<br>\text{Col}&#x3D;{\color{#00aaff}{\dfrac{(x-1)q(2y-q-1)}{2}}}+{\textcolor{#8800ff}{C_{\triangle}}}-(2y-q)<br>\end{cases}<br>$$<br>最后一项为减去向量两端点的贡献。计算中矩形同时不取上边界（上闭下开），左边界（为坐标轴，不计入贡献），右边界（让相交部分贡献由三角形来计算）。  </p>
+<p>现在考虑三角形的贡献如何计算。</p>
+<p>Naive 的做法是直接计算三角形贡献，其式子为：<br>$$<br>\begin{cases}<br>\text{Row}<em>{\triangle}&#x3D;\displaystyle\sum</em>{i&#x3D;0}^p(\left\lfloor\dfrac{qi}{p}\right\rfloor+1)(x+p-i)\<br>\text{Col}<em>{\triangle}&#x3D;\displaystyle\sum</em>{i&#x3D;0}^q(\left\lfloor\dfrac{pi}{q}\right\rfloor+1)(y-i)\<br>\end{cases}<br>$$<br>然后直接用类欧 $\mathcal{O}(\log n)$ 计算，类欧的具体算法参见后续章节。  </p>
+<p>不过这样凭空多了一只 $\log$，我们希望得到一个 $\mathcal O(1)$ 计算向量对三角形贡献的做法。</p>
+<p>我们维护的所有向量，由于是在 Stern-Brocot Tree 上二分得到的，故除了最初的 $(1,-1)$ 外，其余都是由某两个向量相加而形成的。  </p>
+<p>那我们不妨考虑实现一个类似 <code>pushup</code> 的操作，使得二分的过程中 $\vec{M}$ 的贡献能由 $\vec{L},\vec{R}$ 的贡献合并得到。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/l88zkexg.webp" srcset="/img/loading.gif" lazyload></p>
+<p>考虑将 $\vec{R}$ 的起点移动到 $\vec{L}$ 的终点，这样首尾相接即可得到 $\vec{M}$，$\vec{M}$ 所贡献的部分即为青色，紫色和蓝色三部分贡献之和（注意紫色矩形不取满，这样不计算重边），减去单点 $B$ 的贡献（被计算两次）。  </p>
+<p>$\triangle ABC$ 内部（不包含三个顶点）<strong>没有整点</strong>，故没有贡献。</p>
+<p>这其实是易于理解的，回顾寻找向量的过程，容易发现任何一次二分过程的 $l,r$ 都是某一阶 Stern-Brocot 序列的相邻两个分数。如果 $\triangle ABC$ 内部有一个顶点 $F$，那么由斜率推导，向量 $\overrightarrow{AF}$ 的对应分数 $f$ 必然被夹在 $l,\mathrm{mid}$ 之间，故 $\overrightarrow{AF}$ 必能表示成 $x\vec{L}+y\vec{M}$，由于 $x,y\in\mathbb{N}^+$，$F$ 是必然在 $\triangle ABC$ 之外，与前面的反设矛盾。因此 $\triangle ABC$ 内部无贡献。  </p>
+<p>设 $A(x,y)$，$\vec{L}(p_L,q_L),\vec{R}(p_R,q_R)$。  </p>
+<p>紫色矩形的贡献是容易计算的，为：<br>$$<br>\begin{cases}<br>\text{Row}<em>{\square}&#x3D;-\dfrac{q_Rp_L(2x+p_L-1)}{2}\<br>\text{Col}</em>{\square}&#x3D;-\dfrac{p_Lq_R(2y+2q_L+q_R-1)}{2}<br>\end{cases}<br>$$</p>
+<p>然后考虑两个小三角形的贡献，由于权值是横纵坐标，向量的位置会影响三角形贡献的权值，因此我们观察向量在平移时贡献的改变量。  </p>
+<p>容易得出，其向 $x$ 轴正方向移动 $1$，其以横坐标为权值的贡献增加量即为三角形的点数，向 $y$ 轴正方向移动 $1$，其以纵坐标为权值的贡献增加量即为三角形的点数。  </p>
+<p>因此我们只需要维护每个向量在特定位置的贡献以及其对应三角形的整点数即可，后者的计算方法即运用 Pick 定理，上一题中已提到。为了方便，这个特定位置选取为<strong>使三角形上方顶点为原点</strong>的位置。</p>
+<p>综上，对于一个向量 $\vec{v}$ 的对应三角形我们需要维护三个值：$\pi_v,\alpha_v,\beta_v$，分别代表将三角移动至上方顶点与原点重合时，其内部及边界的整点数、以横坐标为权值的贡献，以纵坐标为权值的贡献。  </p>
+<p>注意在计算这个贡献的时候，由于三角形实际上是平移之后计算的，所以我们不应忽略坐标轴上的点的贡献。</p>
+<p>三者的转移由上文已经明确：<br>$$<br>\begin{cases}<br>\pi_M&#x3D;{\color{#009999}\pi_L}+{\color{#00aaff}\pi_R}+{\color{#8800ff}p_Lq_R}-1\<br>\alpha_M&#x3D;{\color{#009999}\alpha_L}+{\color{#00aaff}\alpha_R+p_L\pi_R}+{\color{#8800ff}\dfrac{q_R(p_L-1)p_L}{2}}-p_L\<br>\beta_M&#x3D;{\color{#009999}\beta_L}+{\color{#00aaff}\beta_R-q_L\pi_R}-{\color{#8800ff}\dfrac{p_L(2q_L+q_R+1)q_R}{2}}+q_L\<br>\end{cases}<br>$$<br>转移的起点即为向量 $(1,0)$ 和 $(1,1)$。</p>
+<p>注意实际计算向量贡献的时候，横纵坐标为权值的贡献要分别加上 $\pi_M$ 乘相应方向的平移量。</p>
+<p>凸包的遍历与上一题一致，$y\le n^{\frac{1}{3}}$ 的暴力即分别计算 $\displaystyle\sum_{i&lt;y} i\lfloor \frac{n}{i}\rfloor$ 和 $\displaystyle\sum_{i&lt;y}\frac{1}{2}\lfloor \frac{n}{i}\rfloor(\lfloor \frac{n}{i}\rfloor+1)$，也就是剩下部分横纵坐标的贡献。  </p>
+<p>由于合并向量贡献是常数复杂度，故复杂度不变：$\mathcal{O}(n^{\frac{1}{3}}\log n)$。</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>[1] Alcántara D, Blanco M, Criado F, Santos F. On the convex hull of integer points above the hyperbola[EB&#x2F;OL]. arXiv: 2501.19193, 2025. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2501.19193">https://arxiv.org/abs/2501.19193</a>.<br>[2] Li D. Computing the divisor summatory function in $N^{9&#x2F;28+o(1)}$[EB&#x2F;OL].  arXiv: 2609.29949, 2026. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2609.29949">https://arxiv.org/abs/2609.29949</a>.<br>[3] OI-wiki. Stern–Brocot tree[EB&#x2F;OL]. <a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/stern-brocot/">https://oi-wiki.org/math/number-theory/stern-brocot/</a>.<br>[4] Rigel. SP26073 DIVCNT1 - Counting Divisors[EB&#x2F;OL]. 洛谷专栏, 2025-12-19. <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/80p3nyn6">https://www.luogu.com.cn/article/80p3nyn6</a>.  </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OI/" class="print-no-link">#OI</a>
+      
+        <a href="/tags/Number-Theory/" class="print-no-link">#Number Theory</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Number Theory Fml Bucket</div>
+      <div>https://cwhirly.github.io/2026/10/22/OI/Number Theory/Number Theory Fml Bucket/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Weihao Cheng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年10月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/10/26/OI/Poly/Poly%20Family%20Bucket/" title="Poly Family Bucket">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Poly Family Bucket</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/10/10/OI/Data%20Structure/Dynamic%20Tree/Top%20Tree/" title="Top Tree">
+                        <span class="hidden-mobile">Top Tree</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Cwhirly/Cwhirly.github.io","repo-id":"R_kgDOQhfQWQ","category":"Announcements","category-id":"DIC_kwDOQhfQWc4CzUxJ","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <p>Nihil ego, nisi Terra et Flumina.</p> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
