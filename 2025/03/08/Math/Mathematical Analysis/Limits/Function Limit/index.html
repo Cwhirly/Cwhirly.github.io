@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          819 字
+          807 字
         
       </span>
     
@@ -293,24 +293,24 @@
             
               <div class="markdown-body">
                 
-                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><h4 id="1-函数极限"><a href="#1-函数极限" class="headerlink" title="1. 函数极限"></a>1. 函数极限</h4><p>设函数在 $(x_0-\delta,x_0)\cup(x_0,x_0+\delta)$ 内有定义，其中 $\delta&gt;0$ ,如果存在实数 A，使得对任意的 $\varepsilon&gt;0$，都存在正实数 $t$，满足对 $\forall x\in(x_0-t,x_0)\cup(x_0,x_0+t)$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $x_0$ 时，$f(x)$ 的极限为 $A$</strong>   ,记作 $\displaystyle\lim_{x\to x_0}{f(x)}&#x3D;A$。我们称 $(x_0-\delta,x_0)\cup(x_0,x_0+\delta)$ 为 $x_0$ 处的<strong>去心邻域</strong>，记作 $U_0(x_0,\delta)$ .需要注意的是，不需要 $f(x)$ 在 $x_0$ 处有定义，就可以定义 $\displaystyle\lim_{x\to x_0}{f(x)}$。  </p>
+                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><h4 id="1-函数极限"><a href="#1-函数极限" class="headerlink" title="1. 函数极限"></a>1. 函数极限</h4><p>设函数在 $(x_0-\delta,x_0)\cup(x_0,x_0+\delta)$ 内有定义，其中 $\delta&gt;0$ ,如果存在实数 A，使得对任意的 $\varepsilon&gt;0$，都存在正实数 $t$，满足对 $\forall x\in(x_0-t,x_0)\cup(x_0,x_0+t)$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $x_0$ 时，$f(x)$ 的极限为 $A$</strong>   ,记作 $\displaystyle\lim_{x\to x_0}{f(x)}=A$。我们称 $(x_0-\delta,x_0)\cup(x_0,x_0+\delta)$ 为 $x_0$ 处的<strong>去心邻域</strong>，记作 $U_0(x_0,\delta)$ .需要注意的是，不需要 $f(x)$ 在 $x_0$ 处有定义，就可以定义 $\displaystyle\lim_{x\to x_0}{f(x)}$。  </p>
 <p>特点：</p>
 <ol>
 <li>$\displaystyle\lim_{x\to x_0}{f(x)}$ 与 $f(x_0)$ 无关</li>
 <li>我们熟知的基本初等函数，大部分都连续，参见<a href="/2024/11/09/Math/Mathematical%20Analysis/Limits/Continuous/">Continuous</a></li>
 </ol>
-<h4 id="2-右极限"><a href="#2-右极限" class="headerlink" title="2. 右极限"></a>2. 右极限</h4><p>设函数在 $(x_0,x_0+\delta)$ 内有定义，其中 $\delta&gt;0$ ,如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在正实数 $t$，满足对任意的 $x\in(x_0,x_0+t)$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $x_0$ 时，$f (x)$ 的右极限为 A</strong>   ,记作 $\displaystyle\lim_{x\to x_0^+}{f(x)}&#x3D;A$ 或 $f(x_0+0)&#x3D;A$</p>
-<h4 id="3-左极限"><a href="#3-左极限" class="headerlink" title="3. 左极限"></a>3. 左极限</h4><p>设函数在 $(x_0-\delta,x_0)$ 内有定义，其中 $\delta&gt;0$ ,如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在正实数 $t$，满足对任意的 $x\in(x_0-t,x_0)$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $x_0$ 时，$f(x)$ 的左极限为 $A$</strong>   ,记作 $\displaystyle\lim_{x\to x_0^-}{f(x)}&#x3D;A$ 或 $f(x_0-0)&#x3D;A$</p>
-<p>定理：设 $f(x)$ 在 $U_0(x_0)$ 上有定义，则存在 $\displaystyle\lim_{x\to x_0}{f(x)}&#x3D;A$ 的充要条件为：<br>			$f(x_0+)&#x3D;f(x_0-)&#x3D;A$</p>
-<h4 id="4-趋于正无穷的函数极限"><a href="#4-趋于正无穷的函数极限" class="headerlink" title="4. 趋于正无穷的函数极限"></a>4. 趋于正无穷的函数极限</h4><p>设函数在 $(u,+\infty)$ 内有定义，如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在实数 $t&gt;u$，满足对任意的 $x&gt;t$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $+\infty$ 时，$f (x)$ 的极限存在且等于 $A$</strong>   ,记作 $\displaystyle\lim_{x\to +\infty}{f(x)}&#x3D;A$ 或 $f(x)\to A,x\to+\infty$</p>
-<h4 id="5-趋于负无穷的函数极限"><a href="#5-趋于负无穷的函数极限" class="headerlink" title="5. 趋于负无穷的函数极限"></a>5. 趋于负无穷的函数极限</h4><p>设函数在 $(-\infty,u)$ 内有定义，如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在实数 $t&lt;u$，满足对任意的 $x&lt;t$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $-\infty$ 时，$f (x)$ 的极限存在且等于 $A$</strong>   ,记作 $\displaystyle\lim_{x\to -\infty}{f(x)}&#x3D;A$ 或 $f(x)\to A,x\to-\infty$</p>
-<h3 id="二、定理"><a href="#二、定理" class="headerlink" title="二、定理"></a>二、定理</h3><h4 id="1-Heine-归结原理"><a href="#1-Heine-归结原理" class="headerlink" title="1. Heine 归结原理"></a>1. Heine 归结原理</h4><p>设 $x_0,\delta,A\in \mathbb{R}$, 函数 $f(x)$ 在 $x_0$ 的某个去心邻域 $U_0(x_0,\delta)$ 有定义，如果对任何满足 $x_n\to x_0$ 的序列 ${x_n}\subset U_0(x_0,\delta)$，都有 $f(x_n)\to A$，则称 $x\to x_0$ 时，函数 $f(x)$ 的极限为 $A$。</p>
+<h4 id="2-右极限"><a href="#2-右极限" class="headerlink" title="2. 右极限"></a>2. 右极限</h4><p>设函数在 $(x_0,x_0+\delta)$ 内有定义，其中 $\delta&gt;0$ ,如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在正实数 $t$，满足对任意的 $x\in(x_0,x_0+t)$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $x_0$ 时，$f (x)$ 的右极限为 A</strong>   ,记作 $\displaystyle\lim_{x\to x_0^+}{f(x)}=A$ 或 $f(x_0+0)=A$</p>
+<h4 id="3-左极限"><a href="#3-左极限" class="headerlink" title="3. 左极限"></a>3. 左极限</h4><p>设函数在 $(x_0-\delta,x_0)$ 内有定义，其中 $\delta&gt;0$ ,如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在正实数 $t$，满足对任意的 $x\in(x_0-t,x_0)$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $x_0$ 时，$f(x)$ 的左极限为 $A$</strong>   ,记作 $\displaystyle\lim_{x\to x_0^-}{f(x)}=A$ 或 $f(x_0-0)=A$</p>
+<p>定理：设 $f(x)$ 在 $U_0(x_0)$ 上有定义，则存在 $\displaystyle\lim_{x\to x_0}{f(x)}=A$ 的充要条件为：<br>			$f(x_0+)=f(x_0-)=A$</p>
+<h4 id="4-趋于正无穷的函数极限"><a href="#4-趋于正无穷的函数极限" class="headerlink" title="4. 趋于正无穷的函数极限"></a>4. 趋于正无穷的函数极限</h4><p>设函数在 $(u,+\infty)$ 内有定义，如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在实数 $t&gt;u$，满足对任意的 $x&gt;t$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $+\infty$ 时，$f (x)$ 的极限存在且等于 $A$</strong>   ,记作 $\displaystyle\lim_{x\to +\infty}{f(x)}=A$ 或 $f(x)\to A,x\to+\infty$</p>
+<h4 id="5-趋于负无穷的函数极限"><a href="#5-趋于负无穷的函数极限" class="headerlink" title="5. 趋于负无穷的函数极限"></a>5. 趋于负无穷的函数极限</h4><p>设函数在 $(-\infty,u)$ 内有定义，如果存在实数 $A$，使得对任意的 $\varepsilon&gt;0$，都存在实数 $t&lt;u$，满足对任意的 $x&lt;t$，有 $|f(x)-A|&lt;\varepsilon$ 成立，则称<strong>当 $x$ 趋近于 $-\infty$ 时，$f (x)$ 的极限存在且等于 $A$</strong>   ,记作 $\displaystyle\lim_{x\to -\infty}{f(x)}=A$ 或 $f(x)\to A,x\to-\infty$</p>
+<h3 id="二、定理"><a href="#二、定理" class="headerlink" title="二、定理"></a>二、定理</h3><h4 id="1-Heine-归结原理"><a href="#1-Heine-归结原理" class="headerlink" title="1. Heine 归结原理"></a>1. Heine 归结原理</h4><p>设 $x_0,\delta,A\in \mathbb{R}$, 函数 $f(x)$ 在 $x_0$ 的某个去心邻域 $U_0(x_0,\delta)$ 有定义，如果对任何满足 $x_n\to x_0$ 的序列 $\{x_n\}\subset U_0(x_0,\delta)$，都有 $f(x_n)\to A$，则称 $x\to x_0$ 时，函数 $f(x)$ 的极限为 $A$。</p>
 <h3 id="三、性质"><a href="#三、性质" class="headerlink" title="三、性质"></a>三、性质</h3><ol>
 <li>如果 $\displaystyle\lim_{x\to x_0}{f(x)}$ 存在，则该极限值是唯一的。</li>
-<li>设 $\displaystyle\lim_{x\to x_0}{f(x)}&#x3D;A$，$\displaystyle\lim_{x\to x_0}{g(x)}&#x3D;B$ ,如果存在 $\delta&gt;0$,，使得当 $x\in U_0(x,\delta)$ 时 $f(x)\le g(x)$，则 $A\le B$ 。</li>
+<li>设 $\displaystyle\lim_{x\to x_0}{f(x)}=A$，$\displaystyle\lim_{x\to x_0}{g(x)}=B$ ,如果存在 $\delta&gt;0$,，使得当 $x\in U_0(x,\delta)$ 时 $f(x)\le g(x)$，则 $A\le B$ 。</li>
 <li>函数极限具有四则运算</li>
 <li>夹逼原理 (同数列极限)</li>
-<li>Cauchy 收敛准则：<br> 函数 $f$ 在点 $a$ 有极限的充要条件是：对每一个给定的 $\varepsilon&gt;0$ 存在 $\delta&gt;0$, 使得对于在 $O_\delta(a)-{a}$ 中的每一对点 $x’,x’’$ 满足不等式 $|f(x’)-f(x’’)|&lt;\varepsilon$</li>
+<li>Cauchy 收敛准则：<br> 函数 $f$ 在点 $a$ 有极限的充要条件是：对每一个给定的 $\varepsilon&gt;0$ 存在 $\delta&gt;0$, 使得对于在 $O_\delta(a)-\{a\}$ 中的每一对点 $x',x''$ 满足不等式 $|f(x')-f(x'')|&lt;\varepsilon$</li>
 </ol>
 
                 

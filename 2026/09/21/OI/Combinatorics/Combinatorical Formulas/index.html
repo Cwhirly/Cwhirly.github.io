@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          227 字
+          204 字
         
       </span>
     
@@ -294,15 +294,37 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>(定义) $$<br>\binom{n}{m}&#x3D;\binom{n-1}{m}+\binom{n-1}{m-1}<br>$$</li>
-<li>$$<br>\sum_{i&#x3D;0}^n \binom{n}{i}^2&#x3D;\binom{2n}{n}<br>$$</li>
-<li>(Catalan 数) $$<br>H_n&#x3D;\sum_{i&#x3D;0}^{n-1}H_iH_{n-1-i}&#x3D;\frac{\binom{2n}{n}}{n+1}<br>$$</li>
-<li>(二项式定理) $$<br>(xa+yb)^n&#x3D;\sum_{i&#x3D;0}^n \binom{n}{i}(xa)^i(yb)^{n-i}<br>$$</li>
-<li>(Lucas 定理) $$<br>\binom{n}{m}\bmod p&#x3D;\binom{\lfloor\frac{n}{p}\rfloor}{\lfloor\frac{m}{p}\rfloor}\times\binom{n\bmod p}{m\bmod p}\bmod p<br>$$</li>
-<li>(Vandermonde 卷积)<br>$$<br>\sum_{i&#x3D;0}^k\binom{n}{i}\binom{m}{k-i}&#x3D;\binom{m+n}k{}<br>$$</li>
+<li>(定义) $$
+\binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1}
+$$</li>
+<li>$$
+\sum_{i=0}^n \binom{n}{i}^2=\binom{2n}{n}
+$$</li>
+<li>(Catalan 数) $$
+H_n=\sum_{i=0}^{n-1}H_iH_{n-1-i}=\frac{\binom{2n}{n}}{n+1}
+$$</li>
+<li>(二项式定理) $$
+(xa+yb)^n=\sum_{i=0}^n \binom{n}{i}(xa)^i(yb)^{n-i}
+$$</li>
+<li>(Lucas 定理) $$
+\binom{n}{m}\bmod p=\binom{\lfloor\frac{n}{p}\rfloor}{\lfloor\frac{m}{p}\rfloor}\times\binom{n\bmod p}{m\bmod p}\bmod p
+$$</li>
+<li>(Vandermonde 卷积)<br>$$
+\sum_{i=0}^k\binom{n}{i}\binom{m}{k-i}=\binom{m+n}k{}
+$$</li>
 <li></li>
 </ol>
-<p>$$<br>\binom{n}{r}\binom{r}{k}&#x3D;\binom{n}{k}\binom{n-k}{r-k}<br>$$<br>8.<br>$$<br>\sum_{i&#x3D;0}^n\binom{n-i}{i}&#x3D;F_{n+1}<br>$$<br>9. (李善兰恒等式)<br>$$<br>\binom{n+k}{k}^2&#x3D;\sum_{j&#x3D;0}^k\binom{k}{j}^2\binom{n+2k-j}{2k}<br>$$<br>10. (二项式反演)<br>$$<br>g_n&#x3D;\sum_{i&#x3D;0}^nf_i\binom{n}{i}\implies f_n&#x3D;\sum_{i&#x3D;0}^n(-1)^{n-i}g_i\binom{n}{i}<br>$$<br>11. (Binominal Transform) $$<br>\sum_{i&#x3D;0}^nf(i)\binom{n}{i}&#x3D;\sum_{i&#x3D;0}^nn^{\underline{i}}\frac{\Delta^if(0)}{i!}<br>$$</p>
+<p>$$
+\binom{n}{r}\binom{r}{k}=\binom{n}{k}\binom{n-k}{r-k}
+$$<br>8.<br>$$
+\sum_{i=0}^n\binom{n-i}{i}=F_{n+1}
+$$<br>9. (李善兰恒等式)<br>$$
+\binom{n+k}{k}^2=\sum_{j=0}^k\binom{k}{j}^2\binom{n+2k-j}{2k}
+$$<br>10. (二项式反演)<br>$$
+g_n=\sum_{i=0}^nf_i\binom{n}{i}\implies f_n=\sum_{i=0}^n(-1)^{n-i}g_i\binom{n}{i}
+$$<br>11. (Binominal Transform) $$
+\sum_{i=0}^nf(i)\binom{n}{i}=\sum_{i=0}^nn^{\underline{i}}\frac{\Delta^if(0)}{i!}
+$$</p>
 
                 
               </div>

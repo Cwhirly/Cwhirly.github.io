@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          418 字
+          396 字
         
       </span>
     
@@ -294,23 +294,35 @@
               <div class="markdown-body">
                 
                 <h2 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h2><ol>
-<li>设区间 $I$ 上有函数 $f(x)$。若 $F(x)$ 是区间 $I$ 上的可微函数，使得 $F’(x)&#x3D;f(x),\forall x\in l$，则称 $F(x)$ 为 $f(x)$ 的一个<mark>原函数</mark>。（<a href="/2026/10/08/Math/Mathematical%20Analysis/Derivative/Derivative%20and%20Differential/">Derivative and Differential</a>）</li>
-<li>将 $f(x)$ 的所有原函数的集合称为 $f(x)$ 的<mark>不定积分</mark>，记作 $\displaystyle\int f(x)dx&#x3D;F(x)+C$。这里的 $F(x)+C$ 表示的是 $\left{F(x)+C|C\in \mathbb{R}\right}$。</li>
-<li>（出现在积分符号中的函数保证有原函数）有$$<br>\int(af(x)+bg(x))dx&#x3D;a\int f(x)dx+b\int g(x)dx<br>$$</li>
-<li>$\displaystyle\int f^{-1}(x)dx&#x3D;xf^{-1}(x)-F[(f^{-1}(x))]+C,F’(x)&#x3D;f(x)$</li>
+<li>设区间 $I$ 上有函数 $f(x)$。若 $F(x)$ 是区间 $I$ 上的可微函数，使得 $F'(x)=f(x),\forall x\in l$，则称 $F(x)$ 为 $f(x)$ 的一个<mark>原函数</mark>。（<a href="/2026/10/08/Math/Mathematical%20Analysis/Derivative/Derivative%20and%20Differential/">Derivative and Differential</a>）</li>
+<li>将 $f(x)$ 的所有原函数的集合称为 $f(x)$ 的<mark>不定积分</mark>，记作 $\displaystyle\int f(x)dx=F(x)+C$。这里的 $F(x)+C$ 表示的是 $\left\{F(x)+C|C\in \mathbb{R}\right\}$。</li>
+<li>（出现在积分符号中的函数保证有原函数）有$$
+\int(af(x)+bg(x))dx=a\int f(x)dx+b\int g(x)dx
+$$</li>
+<li>$\displaystyle\int f^{-1}(x)dx=xf^{-1}(x)-F[(f^{-1}(x))]+C,F'(x)=f(x)$</li>
 </ol>
 <h2 id="二、换元法"><a href="#二、换元法" class="headerlink" title="二、换元法"></a>二、换元法</h2><ol>
-<li>$$<br>\int f(g(x))g’(x)dx&#x3D;F(g(x))+C<br>$$</li>
-<li>若 $\displaystyle\int f(g(x))g’(x)dx&#x3D;G(x)+C$, 则 $\displaystyle\int f(x)dx&#x3D;G(g^{-1}(x))+C$</li>
+<li>$$
+\int f(g(x))g'(x)dx=F(g(x))+C
+$$</li>
+<li>若 $\displaystyle\int f(g(x))g'(x)dx=G(x)+C$, 则 $\displaystyle\int f(x)dx=G(g^{-1}(x))+C$</li>
 </ol>
 <h2 id="三、分部积分法"><a href="#三、分部积分法" class="headerlink" title="三、分部积分法"></a>三、分部积分法</h2><ol>
-<li>$$<br>\int u(x)v’(x)dx&#x3D;u(x)v(x)-\int u’(x)v(x)dx<br>$$</li>
-<li>$$<br>\int udv&#x3D;uv-\int vdu<br>$$</li>
+<li>$$
+\int u(x)v'(x)dx=u(x)v(x)-\int u'(x)v(x)dx
+$$</li>
+<li>$$
+\int udv=uv-\int vdu
+$$</li>
 </ol>
 <h2 id="四、有理函数的积分方法"><a href="#四、有理函数的积分方法" class="headerlink" title="四、有理函数的积分方法"></a>四、有理函数的积分方法</h2><h3 id="1、有理函数"><a href="#1、有理函数" class="headerlink" title="1、有理函数"></a>1、有理函数</h3><ol>
-<li>实系数多项式 $P(x)$ 能分解为一次因式和无实根二次因式的乘积，即$$<br>P(x)&#x3D;A\prod_{i&#x3D;1}^{s}(x-x_i)^{m_i}\prod_{i&#x3D;1}^t(x^2+a_ix+b_i)^{n_i}<br>$$</li>
+<li>实系数多项式 $P(x)$ 能分解为一次因式和无实根二次因式的乘积，即$$
+P(x)=A\prod_{i=1}^{s}(x-x_i)^{m_i}\prod_{i=1}^t(x^2+a_ix+b_i)^{n_i}
+$$</li>
 <li>任何有理函数都能唯一地写成一个多项式和一个真分式的和。</li>
-<li>设真分式 $R(x)&#x3D;\frac {P(x)}{Q(x)}$, 其中 $Q(x)&#x3D;\prod_{i&#x3D;1}^{s}(x-x_i)^{m_i}\prod_{i&#x3D;1}^t(x^2+a_ix+b_i)^{n_i}$，那么存在一系列常数 $A_{ij},B_{ij},C_{ij}$，使得：$$<br>R(x)&#x3D;\sum_{i&#x3D;1}^s\sum_{j&#x3D;1}^{m_i}\frac{A_{ij}}{(x-x_i)^j}+\sum_{i&#x3D;1}^t\sum_{j&#x3D;1}^{n_i}\frac{B_{ij}x+C_{ij}}{(x^2+a_ix+b_i)^j}<br>$$</li>
+<li>设真分式 $R(x)=\frac {P(x)}{Q(x)}$, 其中 $Q(x)=\prod_{i=1}^{s}(x-x_i)^{m_i}\prod_{i=1}^t(x^2+a_ix+b_i)^{n_i}$，那么存在一系列常数 $A_{ij},B_{ij},C_{ij}$，使得：$$
+R(x)=\sum_{i=1}^s\sum_{j=1}^{m_i}\frac{A_{ij}}{(x-x_i)^j}+\sum_{i=1}^t\sum_{j=1}^{n_i}\frac{B_{ij}x+C_{ij}}{(x^2+a_ix+b_i)^j}
+$$</li>
 </ol>
 <h3 id="2、三角函数有理式"><a href="#2、三角函数有理式" class="headerlink" title="2、三角函数有理式"></a>2、三角函数有理式</h3><p>使用万能公式（<a href="/2026/03/13/Math/Mathematical%20Analysis/Other/Triangle%20Basic%20Formulas/">Triangle Basic Formulas</a>）进行替换即可。</p>
 

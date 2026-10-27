@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.4k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          13 分钟
+          12 分钟
         
       </span>
     
@@ -298,23 +298,23 @@
                 <p><em>例题引入：维护一个序列 $a$，支持单点加操作，查询区间和。</em><br><del>(我不会告诉你学完线段树后树状数组就没用了)</del></p>
 <h2 id="1-简化版本"><a href="#1-简化版本" class="headerlink" title="1.简化版本"></a>1.简化版本</h2><h3 id="0x01-无操作，查询单点值"><a href="#0x01-无操作，查询单点值" class="headerlink" title="0x01.无操作，查询单点值"></a>0x01.无操作，查询单点值</h3><p>就是一个最朴素的数组，入门语法题</p>
 <h3 id="0x02-单点加，查询单点值"><a href="#0x02-单点加，查询单点值" class="headerlink" title="0x02.单点加，查询单点值"></a>0x02.单点加，查询单点值</h3><p>还是语法题，没手都行</p>
-<h3 id="0x03-无操作，查询区间和"><a href="#0x03-无操作，查询区间和" class="headerlink" title="0x03.无操作，查询区间和"></a>0x03.无操作，查询区间和</h3><p>红题，前缀和，设。<br>$s_k&#x3D;\sum_{i&#x3D;1}^{k} a_i$<br>答案即为 $s_r-s_{l-1}$。</p>
+<h3 id="0x03-无操作，查询区间和"><a href="#0x03-无操作，查询区间和" class="headerlink" title="0x03.无操作，查询区间和"></a>0x03.无操作，查询区间和</h3><p>红题，前缀和，设。<br>$s_k=\sum_{i=1}^{k} a_i$<br>答案即为 $s_r-s_{l-1}$。</p>
 <h2 id="2-暴力"><a href="#2-暴力" class="headerlink" title="2.暴力"></a>2.暴力</h2><p>最基础的暴力就是每次查询从 $l$ 到 $r$ 挨个加起来，这样每次查询就是 $O(n)$ 的。  </p>
 <p>于是还是引进前缀和。<br>我们发现，如果修改第 $i$ 个数，那么 $s_1,s_2,\dots,s_{i-1}$,的值都不会发生改变。<br>而 $s_i,s_{i+1},\dots,s_n$ 的值则被修改。<br>于是现在查询变为了 $O(1)$，而修改变为 $O(n)$ 的了。</p>
 <p>我们想让查询和修改“中和一下”，都是 $O(\log n)$。</p>
-<h2 id="3-lowbit"><a href="#3-lowbit" class="headerlink" title="3.lowbit"></a>3.lowbit</h2><p>在引入树状数组之前，我们需要先学习这个重要的概念： lowbit。<br>一个数 $x$ 的 lowbit 被定义为，$x$ 在二进制下为 $1$ 的最低位。<br>例如 $28&#x3D;(11100)_2$ ，第一位，第二位都是 $0$，第三位是 $1$，所以第三位就是它的 lowbit，而二进制下的第三位是 $4$，所以 $28$ 的 lowbit 是 $4$ 。以此类推， $9$ 的 lowbit 是 $1$ ， $32$ 的 lowbit 是 $32$  ……</p>
-<p>如何计算 lowbit ?<br>最朴素的方法就是将这个数转换成二进制，再从低位到高位一位一位地判断，复杂度 $O(\log n)$。<br>但是这样又慢，代码又长。所以我们需要一些<del>没用的</del> CSP 第一轮的知识——二进制补码。<br>众所周知，在二进制下 $-x$ 会被转化为 $\sim x+1$ （也就是 $x$ 的每一位取反得到 $\sim x$ 然后再对 $\sim x$ 加 $1$ 。<br>举个例子：$28&#x3D;(11100)_2$，$-28&#x3D;(00100)_2$。<br>那么，每个数 $n$ 的二进制其实都是: </p>
-<p> $*****100……0$  </p>
-<p>前面的 “*“ 是无关紧要的位，当然最后的“ $0$ ”的数量也有可能是 $0$。<br>于是 $-n$ 的二进制就是：<br> $*****011……1  + 1 &#x3D; *****100……0$</p>
-<p>现在计算 $n&amp;(-n)$ ,“$&amp;$”是按位与。<br>前面的星号位都取反了，所以按位与的值都是 $0$。<br>这是很显然的。<br>而后面若干个 $0$ 与完之后仍然是 $0$。<br>故 $n&amp;(-n)$ 的二进制就是：</p>
-<p>$00……0100……0$</p>
-<p>而这个唯一的“$1$”，就是原先的 $n$ 最低的一位 $1$ ，也就是 $\text{lowbit}(n)$！<br><strong>所以得出 $\text{lowbit}(n) &#x3D; n&amp;(-n)$</strong>。<br>前面的推导不懂也没关系，把这个公式记住就行。</p>
-<h2 id="4-单点修改"><a href="#4-单点修改" class="headerlink" title="4.单点修改"></a>4.单点修改</h2><p>定义 $c_i$ 为<strong>在a数组中，以i为末尾，长度为 lowbit(i) 的区间和</strong>。<br>形式化的说，$c_i$ “管辖”了这段区间<br>比如说：<br>$c_1 &#x3D;a_1$<br>$c_2 &#x3D; a_1+ a_2$<br>$c_3&#x3D; a_3$<br>$c_4&#x3D; a_1 + a_2 + a_3 + a_4$<br>$c_5&#x3D;a_5$<br>$c_6&#x3D;a_5+a_6$<br>$c_7&#x3D;a_7$<br>$c_8&#x3D; a_1 + a_2 + a_3 + a_4 +a_5+a_6+a_7+a_8$<br>$c_9&#x3D;a_9$<br>$c_{10}&#x3D;a_9+a_{10}$<br>$c_{11}&#x3D;a_{11}$<br>$c_{12}&#x3D;a_9+a_{10}+a_{11}+a_{12}$<br>……</p>
+<h2 id="3-lowbit"><a href="#3-lowbit" class="headerlink" title="3.lowbit"></a>3.lowbit</h2><p>在引入树状数组之前，我们需要先学习这个重要的概念： lowbit。<br>一个数 $x$ 的 lowbit 被定义为，$x$ 在二进制下为 $1$ 的最低位。<br>例如 $28=(11100)_2$ ，第一位，第二位都是 $0$，第三位是 $1$，所以第三位就是它的 lowbit，而二进制下的第三位是 $4$，所以 $28$ 的 lowbit 是 $4$ 。以此类推， $9$ 的 lowbit 是 $1$ ， $32$ 的 lowbit 是 $32$  ……</p>
+<p>如何计算 lowbit ?<br>最朴素的方法就是将这个数转换成二进制，再从低位到高位一位一位地判断，复杂度 $O(\log n)$。<br>但是这样又慢，代码又长。所以我们需要一些<del>没用的</del> CSP 第一轮的知识——二进制补码。<br>众所周知，在二进制下 $-x$ 会被转化为 $\sim x+1$ （也就是 $x$ 的每一位取反得到 $\sim x$ 然后再对 $\sim x$ 加 $1$ 。<br>举个例子：$28=(11100)_2$，$-28=(00100)_2$。<br>那么，每个数 $n$ 的二进制其实都是: </p>
+<p> $*****100......0$  </p>
+<p>前面的 “*“ 是无关紧要的位，当然最后的“ $0$ ”的数量也有可能是 $0$。<br>于是 $-n$ 的二进制就是：<br> $*****011......1  + 1 = *****100......0$</p>
+<p>现在计算 $n\&amp;(-n)$ ,“$\&amp;$”是按位与。<br>前面的星号位都取反了，所以按位与的值都是 $0$。<br>这是很显然的。<br>而后面若干个 $0$ 与完之后仍然是 $0$。<br>故 $n\&amp;(-n)$ 的二进制就是：</p>
+<p>$00......0100......0$</p>
+<p>而这个唯一的“$1$”，就是原先的 $n$ 最低的一位 $1$ ，也就是 $\text{lowbit}(n)$！<br><strong>所以得出 $\text{lowbit}(n) = n\&amp;(-n)$</strong>。<br>前面的推导不懂也没关系，把这个公式记住就行。</p>
+<h2 id="4-单点修改"><a href="#4-单点修改" class="headerlink" title="4.单点修改"></a>4.单点修改</h2><p>定义 $c_i$ 为<strong>在a数组中，以i为末尾，长度为 lowbit(i) 的区间和</strong>。<br>形式化的说，$c_i$ “管辖”了这段区间<br>比如说：<br>$c_1 =a_1$<br>$c_2 = a_1+ a_2$<br>$c_3= a_3$<br>$c_4= a_1 + a_2 + a_3 + a_4$<br>$c_5=a_5$<br>$c_6=a_5+a_6$<br>$c_7=a_7$<br>$c_8= a_1 + a_2 + a_3 + a_4 +a_5+a_6+a_7+a_8$<br>$c_9=a_9$<br>$c_{10}=a_9+a_{10}$<br>$c_{11}=a_{11}$<br>$c_{12}=a_9+a_{10}+a_{11}+a_{12}$<br>……</p>
 <p>再放一个<del>清朝老</del>图：<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/9sjpnme9.png" srcset="/img/loading.gif" lazyload></p>
 <p>此时比如说我要将 $a_5$ 加上 $1$，那么 $c_5,c_6,c_8,c_{16}$ 都需要加 $1$。<br>那么如何知道修改一个 $a_i$ 后会有哪些 $c$ 数组的值发生改变呢？<br>看回这个图，发现 $c$ 数组构成了一棵树，这也就是“树状数组”名字的由来，这棵树的叶子节点是 $a_i$，而修改一个 $a_i$，从它自己到树根这条路径上的所有点值都会发生修改。<br>所以问题就转化为如何求 $c_i$ 的父亲节点。<br>观察图可得 $c_i$ 的父亲节点是 $c_{i+\text{lowbit}(i)}$ 。具体为什么我不会证。<br>所以就好了，每次修改 $a_i$ 时，从 $c_i$ 开始，一直跳父亲直到跳到根为止，跳的过程中把每个点的值修改即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span></span>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x;i&lt;=n;i+=<span class="hljs-built_in">lowbit</span>(i)) c_i += y;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>$x$ 是要修改的位置的下标，$y$ 是 $a_{x}$ 要加上的值。</p>
-<h2 id="5-查询区间和"><a href="#5-查询区间和" class="headerlink" title="5.查询区间和"></a>5.查询区间和</h2><p>其实相当于查询前缀和……<br>譬如说，要查询 $a_1$ + $a_2$ +……+ $a_{11}$。<br>首先从 $c_{11}$ 开始，发现 $c_{11} &#x3D; a_{11}$，于是 $ans \gets ans+c_{11}$。<br>然后跳到 $c_{10}$，发现 $c_{10} &#x3D; a_9 + a_{10}$ ,于是 $ans \gets ans+c_{10}$。<br>然后跳到 $c_8$，发现 $c_8 &#x3D; a_1 +…+ a_8$ ,于是 $ans \gets ans+c_8$。<br>此时， $a_1$ 到 $a_{11}$ 所有的值都被加到 $ans$ 里面了,<br>结束。</p>
+<h2 id="5-查询区间和"><a href="#5-查询区间和" class="headerlink" title="5.查询区间和"></a>5.查询区间和</h2><p>其实相当于查询前缀和……<br>譬如说，要查询 $a_1$ + $a_2$ +……+ $a_{11}$。<br>首先从 $c_{11}$ 开始，发现 $c_{11} = a_{11}$，于是 $ans \gets ans+c_{11}$。<br>然后跳到 $c_{10}$，发现 $c_{10} = a_9 + a_{10}$ ,于是 $ans \gets ans+c_{10}$。<br>然后跳到 $c_8$，发现 $c_8 = a_1 +...+ a_8$ ,于是 $ans \gets ans+c_8$。<br>此时， $a_1$ 到 $a_{11}$ 所有的值都被加到 $ans$ 里面了,<br>结束。</p>
 <p>注意到每次从 $c_i$ 跳到 $c_{i-\text{lowbit}(i)}$ ,一直跳到 $0$。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ask</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<span class="hljs-comment">//查询a_1+a_2+......+a[n];</span><br>	<span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x;i;i-=<span class="hljs-built_in">lowbit</span>(i)) ans+=c_i;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>最后如果要查询 $a_{l}+a_{l+1}+\dots+a_{r-1}+a_{r}$ ,那么就输出 $\text{ask}(r)-\text{ask}(l-1)$ 即可。</p>

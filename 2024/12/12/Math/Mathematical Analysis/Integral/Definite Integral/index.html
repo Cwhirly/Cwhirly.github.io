@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          953 字
+          920 字
         
       </span>
     
@@ -295,9 +295,9 @@
                 
                 <h1 id="一、Riemann-积分"><a href="#一、Riemann-积分" class="headerlink" title="一、Riemann 积分"></a>一、Riemann 积分</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>设 $f(x)$ 在闭区间 $[a,b]$ 有定义，$a&lt;b$</p>
 <ol>
-<li>称点集 $\Delta&#x3D;{x_0,x_1,\dots,x_n}$ 为 $[a,b]$ 的一个<strong>分划</strong>，若：$a&#x3D;x_0&lt;\cdots&lt;x_n&#x3D;b$,<br>记 $\Delta x_i&#x3D;x_i-x_{i-1},i&#x3D;1,2,\cdots,n,\lambda(\Delta)&#x3D;\displaystyle\max_{1\le i\le n}\Delta x_i$ ，表示细分的程度。</li>
-<li>设 $\Delta&#x3D;{x_0,x_1,\dots,x_n}$ 为 $[a,b]$ 的一个分划，任取 $\xi_i\in[x_{i-1},x_i]$，则称 $\displaystyle\sum_{i&#x3D;1}^nf(\xi_i)\Delta x_i$ 为 $f$ 在 $[a,b]$ 的分划 $\Delta$ 上的一个<mark>Riemann 和</mark>。</li>
-<li>若存在 $I\in\mathbb{R},\forall\varepsilon&gt;0,\exists\delta&gt;0$，对 $\lambda(\Delta)&lt;\delta$ 的分划 $\Delta$ 和·其上的任意 Riemann 和 $\displaystyle\sum_{i&#x3D;1}^nf(\xi_i)\Delta x_i$，都有 $|\displaystyle\sum_{i&#x3D;1}^nf(\xi_i)\Delta x_i-I|&lt;\varepsilon$，则称 $f$ 在区间 $[a,b]$ 上 Riemann 可积或简称<mark>可积</mark>。记为 $f\in R[a,b]$ 称 $I$ 为 $f$ 在区间 $[a,b]$ 上的 <mark>Riemann 积分</mark>或<mark>定积分</mark>，记为 $\displaystyle\int_a^bf(x)\mathrm{d}x&#x3D;I$。</li>
+<li>称点集 $\Delta=\{x_0,x_1,\dots,x_n\}$ 为 $[a,b]$ 的一个<strong>分划</strong>，若：$a=x_0&lt;\cdots&lt;x_n=b$,<br>记 $\Delta x_i=x_i-x_{i-1},i=1,2,\cdots,n,\lambda(\Delta)=\displaystyle\max_{1\le i\le n}\Delta x_i$ ，表示细分的程度。</li>
+<li>设 $\Delta=\{x_0,x_1,\dots,x_n\}$ 为 $[a,b]$ 的一个分划，任取 $\xi_i\in[x_{i-1},x_i]$，则称 $\displaystyle\sum_{i=1}^nf(\xi_i)\Delta x_i$ 为 $f$ 在 $[a,b]$ 的分划 $\Delta$ 上的一个<mark>Riemann 和</mark>。</li>
+<li>若存在 $I\in\mathbb{R},\forall\varepsilon&gt;0,\exists\delta&gt;0$，对 $\lambda(\Delta)&lt;\delta$ 的分划 $\Delta$ 和·其上的任意 Riemann 和 $\displaystyle\sum_{i=1}^nf(\xi_i)\Delta x_i$，都有 $|\displaystyle\sum_{i=1}^nf(\xi_i)\Delta x_i-I|&lt;\varepsilon$，则称 $f$ 在区间 $[a,b]$ 上 Riemann 可积或简称<mark>可积</mark>。记为 $f\in R[a,b]$ 称 $I$ 为 $f$ 在区间 $[a,b]$ 上的 <mark>Riemann 积分</mark>或<mark>定积分</mark>，记为 $\displaystyle\int_a^bf(x)\mathrm{d}x=I$。</li>
 </ol>
 <h2 id="2-定理"><a href="#2-定理" class="headerlink" title="2. 定理"></a>2. 定理</h2><ol>
 <li>如果定积分存在，则唯一。</li>
@@ -306,32 +306,50 @@
 <li>如果 $f(x)$ 在 $[a,b]$ 上单调，则 $f(x)\in R[a,b]$。</li>
 </ol>
 <h1 id="二、Darboux-理论"><a href="#二、Darboux-理论" class="headerlink" title="二、Darboux 理论"></a>二、Darboux 理论</h1><h2 id="1-定义-1"><a href="#1-定义-1" class="headerlink" title="1. 定义"></a>1. 定义</h2><ol>
-<li>$f(x)$ 在区间 $[a,b]$ 上有定义且有界，$\Delta&#x3D;{x_0,x_1,\dots,x_n}$ 为 $[a,b]$ 的一个分划。 $a&#x3D;x_0&lt;\cdots&lt;x_n&#x3D;b$，令<br>$$<br>M_i&#x3D;\sup_{x\in[x_{i-1},x_i]}{f(x)},m_i&#x3D;\inf_{x\in[x_{i-1},x_i]}{f(x)}<br>$$<br>并考虑以下的和式：<br>$$<br>\overline{S}(\Delta)&#x3D;\sum_{i&#x3D;1}^n M_i\Delta x_i,\underline{S}(\Delta)&#x3D;\sum_{i&#x3D;1}^n m_i\Delta x_i<br>$$<br>$\overline{S}(\Delta)$，$\underline{S}(\Delta)$ 分别称为 $f(x)$ 得关于分划 $\Delta$ 的 <mark>Darboux 上和</mark>与 <mark>Darboux 下和</mark>。</li>
-<li>若 $\Delta’$，$\Delta’’$ 都是区间 $[a,b]$ 的分划，且 $\Delta’\subset\Delta’’$，则称 $\Delta’’$ 是 $\Delta’$ 的<mark>细分</mark>。</li>
-<li>$$<br>\underline{\int_a^b}f(x)\mathrm{d}x&#x3D;\sup_{\Delta}(\underline{S}(\Delta)),\overline{\int_a^b}f(x)\mathrm{d}x&#x3D;\inf_{\Delta}(\overline{S}(\Delta))<br> $$ 称 $\underline{\displaystyle\int_a^b}f (x)\mathrm{d}x,\overline{\displaystyle\int_a^b}f (x)\mathrm{d}x$ 分别为 $f(x)$ 在区间 $[a,b]$ 上的<mark>下积分</mark>和<mark>上积分</mark>。</li>
-<li>$\omega_i&#x3D;M_i-m_i$ 为 $f(x)$ 在 $[x_{i-1},x_i]$ 上的<mark>振幅</mark>。</li>
+<li>$f(x)$ 在区间 $[a,b]$ 上有定义且有界，$\Delta=\{x_0,x_1,\dots,x_n\}$ 为 $[a,b]$ 的一个分划。 $a=x_0&lt;\cdots&lt;x_n=b$，令<br>$$
+M_i=\sup_{x\in[x_{i-1},x_i]}\{f(x)\},m_i=\inf_{x\in[x_{i-1},x_i]}\{f(x)\}
+$$<br>并考虑以下的和式：<br>$$
+\overline{S}(\Delta)=\sum_{i=1}^n M_i\Delta x_i,\underline{S}(\Delta)=\sum_{i=1}^n m_i\Delta x_i
+$$<br>$\overline{S}(\Delta)$，$\underline{S}(\Delta)$ 分别称为 $f(x)$ 得关于分划 $\Delta$ 的 <mark>Darboux 上和</mark>与 <mark>Darboux 下和</mark>。</li>
+<li>若 $\Delta'$，$\Delta''$ 都是区间 $[a,b]$ 的分划，且 $\Delta'\subset\Delta''$，则称 $\Delta''$ 是 $\Delta'$ 的<mark>细分</mark>。</li>
+<li>$$
+\underline{\int_a^b}f(x)\mathrm{d}x=\sup_{\Delta}(\underline{S}(\Delta)),\overline{\int_a^b}f(x)\mathrm{d}x=\inf_{\Delta}(\overline{S}(\Delta))
+	$$ 称 $\underline{\displaystyle\int_a^b}f (x)\mathrm{d}x,\overline{\displaystyle\int_a^b}f (x)\mathrm{d}x$ 分别为 $f(x)$ 在区间 $[a,b]$ 上的<mark>下积分</mark>和<mark>上积分</mark>。</li>
+<li>$\omega_i=M_i-m_i$ 为 $f(x)$ 在 $[x_{i-1},x_i]$ 上的<mark>振幅</mark>。</li>
 </ol>
 <h2 id="2-定理-1"><a href="#2-定理-1" class="headerlink" title="2. 定理"></a>2. 定理</h2><ol>
-<li>若 $\Delta’$，$\Delta’’$ 都是区间 $[a,b]$ 的分划，且 $\Delta’\subset\Delta’’$，则有：$$<br>\overline{S}(\Delta’)\ge\overline{S}(\Delta’’),\underline{S}(\Delta’)\le\underline{S}(\Delta’’)<br>$$</li>
-<li>若 $\Delta’$，$\Delta’’$ 都是区间 $[a,b]$ 的分划,，则有 $\underline{S}(\Delta’)\le\overline{S}(\Delta’’)$。</li>
-<li>（Darboux 定理）设函数 $f(x)$ 在区间 $[a,b]$ 上有界，则$$<br>\lim_{\lambda(\Delta)\to0}\overline{S}(\Delta)&#x3D;\overline{\int_a^b}f(x)\mathrm{d}x,\lim_{\lambda(\Delta)\to0}\underline{S}(\Delta)&#x3D;\underline{\int_a^b}f(x)\mathrm{d}x<br>$$</li>
-<li>设函数 $f(x)$ 在区间 $[a,b]$ 上有界，则 $f(x)\in R[a,b]$ 的充要条件是：$$<br>\overline{\int_a^b}f(x)\mathrm{d}x&#x3D;\underline{\int_a^b}f(x)\mathrm{d}x<br>$$</li>
+<li>若 $\Delta'$，$\Delta''$ 都是区间 $[a,b]$ 的分划，且 $\Delta'\subset\Delta''$，则有：$$
+\overline{S}(\Delta')\ge\overline{S}(\Delta''),\underline{S}(\Delta')\le\underline{S}(\Delta'')
+$$</li>
+<li>若 $\Delta'$，$\Delta''$ 都是区间 $[a,b]$ 的分划,，则有 $\underline{S}(\Delta')\le\overline{S}(\Delta'')$。</li>
+<li>（Darboux 定理）设函数 $f(x)$ 在区间 $[a,b]$ 上有界，则$$
+\lim_{\lambda(\Delta)\to0}\overline{S}(\Delta)=\overline{\int_a^b}f(x)\mathrm{d}x,\lim_{\lambda(\Delta)\to0}\underline{S}(\Delta)=\underline{\int_a^b}f(x)\mathrm{d}x
+$$</li>
+<li>设函数 $f(x)$ 在区间 $[a,b]$ 上有界，则 $f(x)\in R[a,b]$ 的充要条件是：$$
+\overline{\int_a^b}f(x)\mathrm{d}x=\underline{\int_a^b}f(x)\mathrm{d}x
+$$</li>
 <li>设函数 $f(x)$ 在区间 $[a,b]$ 上有界，则下面三个结论等价：<ol>
 <li>$f(x)\in R[a,b]$。</li>
-<li>$\forall\varepsilon&gt;0$，$\exists[a,b]$ 的一个分划 $\Delta$，使得 $\displaystyle\sum_{i&#x3D;1}^n \omega\Delta x_i&lt;\varepsilon$。</li>
+<li>$\forall\varepsilon&gt;0$，$\exists[a,b]$ 的一个分划 $\Delta$，使得 $\displaystyle\sum_{i=1}^n \omega\Delta x_i&lt;\varepsilon$。</li>
 <li>$\forall\varepsilon&gt;0$，$\forall\sigma&gt;0$，$\exists[a,b]$ 的一个分划 $\Delta$，使得 $\omega_i\ge\varepsilon$ 的的小区间的长度总和小于 $\sigma$。</li>
 </ol>
 </li>
 </ol>
 <h1 id="三、定积分的性质"><a href="#三、定积分的性质" class="headerlink" title="三、定积分的性质"></a>三、定积分的性质</h1><p>声明：在无特殊说明情况下，假设 $f(x)$ 在积分区间内有定义，可积。</p>
 <h2 id="1-初等性质"><a href="#1-初等性质" class="headerlink" title="1. 初等性质"></a>1. 初等性质</h2><ol>
-<li>$$<br>\int_a^bf(x)\mathrm{d}x&#x3D;\int_a^cf(x)\mathrm{d}x+\int_c^bf(x)\mathrm{d}x<br>$$</li>
-<li>$$<br>\int_a^b(nf(x)+mg(x))\mathrm{d}x&#x3D;n\int_a^bf(x)\mathrm{d}x+m\int_a^bg(x)\mathrm{d}x<br>$$</li>
-<li>$$<br>|\int_a^bf(x)\mathrm{d}x|\le\int_a^b|f(x)|\mathrm{d}x<br>$$</li>
+<li>$$
+\int_a^bf(x)\mathrm{d}x=\int_a^cf(x)\mathrm{d}x+\int_c^bf(x)\mathrm{d}x
+$$</li>
+<li>$$
+\int_a^b(nf(x)+mg(x))\mathrm{d}x=n\int_a^bf(x)\mathrm{d}x+m\int_a^bg(x)\mathrm{d}x
+$$</li>
+<li>$$
+|\int_a^bf(x)\mathrm{d}x|\le\int_a^b|f(x)|\mathrm{d}x
+$$</li>
 </ol>
 <h2 id="2-微积分基本定理"><a href="#2-微积分基本定理" class="headerlink" title="2. 微积分基本定理"></a>2. 微积分基本定理</h2><ol>
-<li>（Newton-Leibniz 公式）设函数 $f(x)$ 在区间 $[a,b]$ 内有原函数 $F(x)$，则 $\displaystyle\int_a^b f(x)\mathrm{d}x&#x3D;F(b)-F(a)$，记为 $F(x)|_a^b:&#x3D;F(b)-F(a)$。</li>
-<li>(微积分基本定理) 设 $f(x)$ 在 $x_0\in[a,b]$ 连续，记 $F(x)&#x3D;\displaystyle\int_a^x f(t)\mathrm{d}t$，则 $F’(x_0)&#x3D;f(x_0)$。</li>
+<li>（Newton-Leibniz 公式）设函数 $f(x)$ 在区间 $[a,b]$ 内有原函数 $F(x)$，则 $\displaystyle\int_a^b f(x)\mathrm{d}x=F(b)-F(a)$，记为 $F(x)|_a^b:=F(b)-F(a)$。</li>
+<li>(微积分基本定理) 设 $f(x)$ 在 $x_0\in[a,b]$ 连续，记 $F(x)=\displaystyle\int_a^x f(t)\mathrm{d}t$，则 $F'(x_0)=f(x_0)$。</li>
 </ol>
 <h1 id="四、定积分的计算"><a href="#四、定积分的计算" class="headerlink" title="四、定积分的计算"></a>四、定积分的计算</h1><p>套用 Newton-Leibniz 公式，其余与不定积分（<a href="/2024/11/23/Math/Mathematical%20Analysis/Integral/Indefinite%20Integral/">Indefinite Integral</a>）大体相同。</p>
 

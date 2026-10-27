@@ -230,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          212 字
+          190 字
         
       </span>
     
@@ -293,13 +293,15 @@
               <div class="markdown-body">
                 
                 <p><a href="/2026/10/26/OI/Poly/Poly%20Family%20Bucket/">Poly Family Bucket</a></p>
-<h3 id="等差数列"><a href="#等差数列" class="headerlink" title="等差数列"></a>等差数列</h3><p>本质是直线。<br>$a_n&#x3D;(m-n)d+a_m&#x3D;(n-1)d+a_1$。<br>$S_n&#x3D;\dfrac{(a_1+a_n)n}{2}&#x3D;\dfrac{dn^2}{2}+(a_1-\frac{d}{2})n&#x3D;An^2+Bn$，$A&#x3D;\frac{d}{2},B&#x3D;a_1-\frac{d}{2}$。<br>${\dfrac{S_n}{n}}&#x3D;An+B$。<br>等差中项：若 $m+n&#x3D;p+q$，$a_n+a_m&#x3D;a_p+a_q$。<br>$S_{2n+1}&#x3D;(2n+1)a_{n-1}$。<br>${S_m,S_{2m}-S_{m},S_{3m}-S_{2m},\cdots}$ 同样是等差数列。<br>$a_{n+1}&#x3D;pa_n+q$  </p>
+<h3 id="等差数列"><a href="#等差数列" class="headerlink" title="等差数列"></a>等差数列</h3><p>本质是直线。<br>$a_n=(m-n)d+a_m=(n-1)d+a_1$。<br>$S_n=\dfrac{(a_1+a_n)n}{2}=\dfrac{dn^2}{2}+(a_1-\frac{d}{2})n=An^2+Bn$，$A=\frac{d}{2},B=a_1-\frac{d}{2}$。<br>$\{\dfrac{S_n}{n}\}=An+B$。<br>等差中项：若 $m+n=p+q$，$a_n+a_m=a_p+a_q$。<br>$S_{2n+1}=(2n+1)a_{n-1}$。<br>$\{S_m,S_{2m}-S_{m},S_{3m}-S_{2m},\cdots\}$ 同样是等差数列。<br>$a_{n+1}=pa_n+q$  </p>
 <ol>
-<li>待定系数 $\lambda\rightarrow$ 等比，$\lambda&#x3D;\dfrac{q}{1-p}$</li>
-<li>不动点：$x_n,\exists x_k&#x3D;x_0,x_{k+1}&#x3D;f(x_0)&#x3D;x_0$</li>
-<li>分式型递推。<br>$a_{n+1}&#x3D;\dfrac{5a_n-1}{a_n+3}$，$a_{n+1}-\lambda&#x3D;\dfrac{5(a_n-\lambda)}{a_n+3}$，$\lambda$ 即为不动点，$a_{n+1}-1&#x3D;\dfrac{4(a_n-1)}{a_n+3}$.<br>$b_n&#x3D;a_n-1,b_{n+1}&#x3D;\dfrac{4b_n}{b_n+4}\Rightarrow\dfrac{1}{b_n+1}&#x3D;\dfrac{1}{4}+\dfrac{1}{b_n}$.</li>
+<li>待定系数 $\lambda\rightarrow$ 等比，$\lambda=\dfrac{q}{1-p}$</li>
+<li>不动点：$x_n,\exists x_k=x_0,x_{k+1}=f(x_0)=x_0$</li>
+<li>分式型递推。<br>$a_{n+1}=\dfrac{5a_n-1}{a_n+3}$，$a_{n+1}-\lambda=\dfrac{5(a_n-\lambda)}{a_n+3}$，$\lambda$ 即为不动点，$a_{n+1}-1=\dfrac{4(a_n-1)}{a_n+3}$.<br>$b_n=a_n-1,b_{n+1}=\dfrac{4b_n}{b_n+4}\Rightarrow\dfrac{1}{b_n+1}=\dfrac{1}{4}+\dfrac{1}{b_n}$.</li>
 </ol>
-<p>$$<br>{n\brace m} {n\brack m}\begin{pmatrix}n\m\end{pmatrix}<br>$$</p>
+<p>$$
+{n\brace m} {n\brack m}\begin{pmatrix}n\\m\end{pmatrix}
+$$</p>
 <p>1310953523</p>
 
                 

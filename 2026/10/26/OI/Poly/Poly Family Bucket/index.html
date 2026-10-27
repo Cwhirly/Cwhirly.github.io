@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          21k 字
         
       </span>
     
@@ -242,7 +242,7 @@
         
         
         
-          144 分钟
+          176 分钟
         
       </span>
     
@@ -329,7 +329,7 @@ $(x^n)^m=x^{nm}$。
 
 当然这**仅仅是一个笑话**。  
 ### PIII-3 环 
-通常用 $<R,+,\times>$ 表示 （不一定是加和乘）。    
+通常用 $&lt;R,+,\times&gt;$ 表示 （不一定是加和乘）。    
 我们设 $a+b:=f(a,b),a\times b:=g(a,b)$。（符号 “$:=$“ 的意思是“定义为”）  
 其中：  
 + $(R,+)$ 是一个阿贝尔群。  
@@ -407,18 +407,18 @@ $$
 ### PIV-4 乘法
 $$
 \begin{aligned}
-f(x)\times g(x)&=(\sum_{i=0}^na_ix^i)(\sum_{i=0}^nb_ix^i)\\
-&=\sum_{i=0}^n(a_ix^i\sum_{j=0}^nb_jx^j)\\
-&=\sum_{i=0}^n\sum_{j=0}^na_ix^ib_jx^j\\
-&=\sum_{i=0}^n\sum_{j=0}^ma_ib_jx^{i+j}\\
+f(x)\times g(x)&amp;=(\sum_{i=0}^na_ix^i)(\sum_{i=0}^nb_ix^i)\\
+&amp;=\sum_{i=0}^n(a_ix^i\sum_{j=0}^nb_jx^j)\\
+&amp;=\sum_{i=0}^n\sum_{j=0}^na_ix^ib_jx^j\\
+&amp;=\sum_{i=0}^n\sum_{j=0}^ma_ib_jx^{i+j}\\
 \end{aligned}
 $$
 这样就是一般的表示形式。   
 你也可以用卷积来表示，你需要变换枚举顺序，枚举 $s=i+j$：  
 $$
 \begin{aligned}
-&=\sum_{s=0}^{n+m}(\sum_{i+j=s}a_ib_j)x^s\\
-&=\sum_{s=0}^{n+m}c_sx^s  
+&amp;=\sum_{s=0}^{n+m}(\sum_{i+j=s}a_ib_j)x^s\\
+&amp;=\sum_{s=0}^{n+m}c_sx^s  
 \end{aligned}
 $$
 也就是，以 $a*b$ 为系数的 $n+m$ 次多项式。  
@@ -462,7 +462,7 @@ $$
 > 对于次数为 $1,2$ 的情况，结论显然成立。
 > 对于次数更高的情况，假设更小次数的已经被证明，根据代数基本定理，方程 $P(x)=0$ 必有一复数根 $c$。  
 > 若 $c$ 为实数，则 $P(x)=(x-c)Q(x),Q(x)$ 亦为实系数多项式，次数更低，得证。  
-> 若 $c$ 为虚数，则 $P(x)=(x-c)(x-\overline{c})Q(x),Q(x)$ 为实系数多项式，而 $x^2-cx-\overline{c}x+c\overline{c}$ 因为 $\Delta<0$ 显然为无实根二次式，$Q(x)$ 次数更低，也得证。  
+> 若 $c$ 为虚数，则 $P(x)=(x-c)(x-\overline{c})Q(x),Q(x)$ 为实系数多项式，而 $x^2-cx-\overline{c}x+c\overline{c}$ 因为 $\Delta&lt;0$ 显然为无实根二次式，$Q(x)$ 次数更低，也得证。  
 > $\square$
 
 （正方形是 Q.E.D. 即“证毕”的意思）  
@@ -564,16 +564,16 @@ $$
 > 主定理（Master Theorem）的描述如下：  
 > 对于递归算法的复杂度：
 > $$
-> T(n)=aT(\dfrac{n}{b})+f(n)
-> $$
+&gt; T(n)=aT(\dfrac{n}{b})+f(n)
+&gt; $$
 > 则有：
 > $$T(n)=
-> \begin{cases}
-> \Theta(n^{\log_ba}),&f(n)=O(n^{\log_ba-\varepsilon})(\varepsilon>0)\\
-> \Theta(f(n)),&f(n)=\Omega(n^{\log_ba+\varepsilon})(\varepsilon\ge0)\\
-> \Theta(n^{\log_ba}\log^{k+1}n),&f(n)=\Theta(n^{\log_ba}\log^kn)(k\ge0)\\
-> \end{cases}
-> $$
+&gt; \begin{cases}
+&gt; \Theta(n^{\log_ba}),&amp;f(n)=O(n^{\log_ba-\varepsilon})(\varepsilon&gt;0)\\
+&gt; \Theta(f(n)),&amp;f(n)=\Omega(n^{\log_ba+\varepsilon})(\varepsilon\ge0)\\
+&gt; \Theta(n^{\log_ba}\log^{k+1}n),&amp;f(n)=\Theta(n^{\log_ba}\log^kn)(k\ge0)\\
+&gt; \end{cases}
+&gt; $$
 > ---
 > 3. 如果 $\dfrac{n}{2}$ 不是整数怎么办？  
 > 我们使 $n$ 是 $2$ 的次幂，如果项数不够就在高项补系数为 $0$ 的项即可。
@@ -582,10 +582,10 @@ $$
 例如：
 $$
 \begin{aligned}
-&a_0,a_1,a_2,a_3,a_4,a_5,a_6,a_7\\
-&a_0,a_2,a_4,a_6|\ a_1,a_3,a_5,a_7\\
-&a_0,a_4|a_2,\ a_6|\ a_1,a_5|\ a_3,a_7\\
-&a_0|\ a_4|\ a_2|a_6|\ a_1|\ a_5|a_3|\ a_7\\
+&amp;a_0,a_1,a_2,a_3,a_4,a_5,a_6,a_7\\
+&amp;a_0,a_2,a_4,a_6|\ a_1,a_3,a_5,a_7\\
+&amp;a_0,a_4|a_2,\ a_6|\ a_1,a_5|\ a_3,a_7\\
+&amp;a_0|\ a_4|\ a_2|a_6|\ a_1|\ a_5|a_3|\ a_7\\
 \end{aligned}
 $$
 然后，可以注意到，$(0)_2=000,(1)_2=001,(2)_2=010,(3)_2=011,(4)_2=100,(5)_2=101,(6)_2=110,(7)_2=111$。  
@@ -598,11 +598,11 @@ $$
 \begin{bmatrix}\hat x_0\\\hat x_1\\\ \vdots\\\hat x_{n-1}\\\end{bmatrix}
 =
 \begin{bmatrix}
-1&1&1&\cdots&1\\
-1&\omega_n^1&\omega_n^2&\cdots&\omega_n^{n-1}\\
-1&\omega_n^2&\omega_n^4&\cdots&\omega_n^{2n-2}\\
-\vdots&\vdots&\vdots&&\vdots&\\
-1&\omega_n^{n-1}&\omega_n^{2n-2}&\cdots&\omega_n^{(n-1)(n-1)}\\
+1&amp;1&amp;1&amp;\cdots&amp;1\\
+1&amp;\omega_n^1&amp;\omega_n^2&amp;\cdots&amp;\omega_n^{n-1}\\
+1&amp;\omega_n^2&amp;\omega_n^4&amp;\cdots&amp;\omega_n^{2n-2}\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots&amp;\\
+1&amp;\omega_n^{n-1}&amp;\omega_n^{2n-2}&amp;\cdots&amp;\omega_n^{(n-1)(n-1)}\\
 \end{bmatrix}
 \begin{bmatrix}a_0\\a_1\\\ \vdots\\a_{n-1}\\\end{bmatrix}
 $$
@@ -612,22 +612,22 @@ $$
 \begin{bmatrix}a_0\\a_1\\\ \vdots\\a_{n-1}\\\end{bmatrix}
 =
 \begin{bmatrix}
-1&1&1&\cdots&1\\
-1&\omega_n^1&\omega_n^2&\cdots&\omega_n^{n-1}\\
-1&\omega_n^2&\omega_n^4&\cdots&\omega_n^{2n-2}\\
-\vdots&\vdots&\vdots&&\vdots&\\
-1&\omega_n^{n-1}&\omega_n^{2n-2}&\cdots&\omega_n^{(n-1)(n-1)}\\
+1&amp;1&amp;1&amp;\cdots&amp;1\\
+1&amp;\omega_n^1&amp;\omega_n^2&amp;\cdots&amp;\omega_n^{n-1}\\
+1&amp;\omega_n^2&amp;\omega_n^4&amp;\cdots&amp;\omega_n^{2n-2}\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots&amp;\\
+1&amp;\omega_n^{n-1}&amp;\omega_n^{2n-2}&amp;\cdots&amp;\omega_n^{(n-1)(n-1)}\\
 \end{bmatrix}^{-1}
 \begin{bmatrix}\hat x_0\\\hat x_1\\\ \vdots\\\hat x_{n-1}\\\end{bmatrix}
 $$
 其逆矩阵为：  
 $$
 \begin{bmatrix}
-\frac 1 n&\frac 1 n&\frac 1 n&\cdots&\frac 1 n\\
-\frac 1 n&\frac {\omega_n^{-1}} {n}&\frac{\omega_n^{-2}}{n}&\cdots&\frac{\omega_n^{1-n}}{n}\\
-\frac 1 n&\frac{\omega_n^{-2}}{n}&\frac{\omega_n^{-4}}{n}&\cdots&\frac{\omega_n^{2-2n}}{n}\\
-\vdots&\vdots&\vdots&&\vdots&\\
-\frac 1 n&\frac{\omega_n^{1-n}}{n}&\frac{\omega_n^{2-2n}}{n}&\cdots&\frac{\omega_n^{(1-n)(n-1)}}{n}\\
+\frac 1 n&amp;\frac 1 n&amp;\frac 1 n&amp;\cdots&amp;\frac 1 n\\
+\frac 1 n&amp;\frac {\omega_n^{-1}} {n}&amp;\frac{\omega_n^{-2}}{n}&amp;\cdots&amp;\frac{\omega_n^{1-n}}{n}\\
+\frac 1 n&amp;\frac{\omega_n^{-2}}{n}&amp;\frac{\omega_n^{-4}}{n}&amp;\cdots&amp;\frac{\omega_n^{2-2n}}{n}\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots&amp;\\
+\frac 1 n&amp;\frac{\omega_n^{1-n}}{n}&amp;\frac{\omega_n^{2-2n}}{n}&amp;\cdots&amp;\frac{\omega_n^{(1-n)(n-1)}}{n}\\
 \end{bmatrix}
 $$
 证明同样直接利用矩阵乘法公式立得。    
@@ -656,7 +656,7 @@ $$
 所以最常用的模数 $p$ 是：  
 $$
 \begin{aligned}
-998244353=7\times17\times2^{23}+1,&&g=3\\
+998244353=7\times17\times2^{23}+1,&amp;&amp;g=3\\
 \end{aligned}
 $$
 还有其余的如下表所示。  
@@ -666,11 +666,11 @@ $$
 ## Basic- $\text {VI}$ -位运算卷积
 ### BVI-1 位运算
 #### BVI-1-1 按位与
-按位与，又称为按位且，一般记为 $\&,\wedge$ 或 $\operatorname{and}$。  
-假设我们有两个正整数 $A,B$，我们先将它转成二进制 $(A)_2,(B)_2$，然后，对于二进制数的每一位，如果 $(A)_2,(B)_2$ 的这一位**都是** $1$，则 $(A\&B)_2$ 的这一位是 $1$，否则这一位是 $0$。  
+按位与，又称为按位且，一般记为 $\&amp;,\wedge$ 或 $\operatorname{and}$。  
+假设我们有两个正整数 $A,B$，我们先将它转成二进制 $(A)_2,(B)_2$，然后，对于二进制数的每一位，如果 $(A)_2,(B)_2$ 的这一位**都是** $1$，则 $(A\&amp;B)_2$ 的这一位是 $1$，否则这一位是 $0$。  
 例：
 $$
-100101011100\ \&\ 111000100111 = 100000000100
+100101011100\ \&amp;\ 111000100111 = 100000000100
 $$
 #### BVI-1-2 按位或
 按位或，一般记为 $|,\vee$ 或 $\operatorname{or}$。  
@@ -692,7 +692,7 @@ $$
 我们定义     
 $$
 \begin{aligned}
-\phi_x=\sum_{i\&j=x}a_ib_j\\
+\phi_x=\sum_{i\&amp;j=x}a_ib_j\\
 \psi_x=\sum_{i|j=x}a_ib_j\\
 \xi_x=\sum_{i\oplus j=x}a_ib_j\\ 
 \end{aligned}
@@ -705,16 +705,16 @@ $$
 此处 “$\times$” 就是每一项对应相乘。  
 这一步仅需在 $O(n)$ 的复杂度下从 $0$ 到 $(n-1)$ 依次遍历即可。  
 所以问题转化成如何构造 $\Phi$，以及如何快速计算 $\Phi\{a\}$。  
-令 $\Phi\{a\}_x=\displaystyle\sum_{x\&i=x(0\le i<n)}a_i$。  
+令 $\Phi\{a\}_x=\displaystyle\sum_{x\&amp;i=x(0\le i&lt;n)}a_i$。  
 验证：
 $$
 \begin{aligned}
-&\Phi\{a\}_x\times\Phi\{b\}_x\\
-=&\left(\sum_{x\&i=x(0\le i<n)}a_i\right)\left(\sum_{x\&j=x(0\le j<n)}b_j\right)\\
-=&\sum_{x\&i=x(0\le i<n)}\left(a_i\sum_{x\&j=x(0\le j<n)}b_j\right)\\
-=&\sum_{x\&i=x(0\le i<n)}\sum_{x\&j=x(0\le j<n)}a_ib_j\\
-=&\sum_{x\&(i\&j)=x(0\le i,j<n)}a_ib_j\\
-=&\Phi\{\phi\}_x
+&amp;\Phi\{a\}_x\times\Phi\{b\}_x\\
+=&amp;\left(\sum_{x\&amp;i=x(0\le i&lt;n)}a_i\right)\left(\sum_{x\&amp;j=x(0\le j&lt;n)}b_j\right)\\
+=&amp;\sum_{x\&amp;i=x(0\le i&lt;n)}\left(a_i\sum_{x\&amp;j=x(0\le j&lt;n)}b_j\right)\\
+=&amp;\sum_{x\&amp;i=x(0\le i&lt;n)}\sum_{x\&amp;j=x(0\le j&lt;n)}a_ib_j\\
+=&amp;\sum_{x\&amp;(i\&amp;j)=x(0\le i,j&lt;n)}a_ib_j\\
+=&amp;\Phi\{\phi\}_x
 \end{aligned}
 $$
 满足条件。
@@ -722,33 +722,33 @@ $$
 >  1. 两个和式乘起来的括号是可以分开的，原因是乘法对加法有分配律，故直接拆开式子即可。  
 >  2.
 > 	$$
-> 	\begin{cases}x\&i=x\\ x\&j=x\end{cases}\iff x\&(i\&j)
-> 	$$
-> 	原因是，对于每一个二进制位，如果 $x$ 的这一位是 $1$，那么 $i,j$ 的这一位也必然是 $1$，所以 $i\&j$ 的这一位也一定是 $1$。  
+&gt; 	\begin{cases}x\&amp;i=x\\ x\&amp;j=x\end{cases}\iff x\&amp;(i\&amp;j)
+&gt; 	$$
+> 	原因是，对于每一个二进制位，如果 $x$ 的这一位是 $1$，那么 $i,j$ 的这一位也必然是 $1$，所以 $i\&amp;j$ 的这一位也一定是 $1$。  
 > 	这两个条件是等价的，所以用“$\iff$”。
 
 快速计算 $\Phi\{a\}$ 的方法依然使用分治思想进行考虑。  
 依然假定 $n=2^k(k\in\mathbb{N})$。  
 对于序列的前半段 $\{a_{[0,\frac{n}{2})}\}$，它们的下标的二进制首位是 $0$，对于后半段 $\{a_{[\frac{n}{2},n)}\}$，它们的下标的二进制首位是 $1$。
 设 $\{a_{[0,\frac{n}{2}]}\}=\{u\},\{a_{[\frac{n}{2}+1,n)}\}=\{v\}$。
-首先我们可以得到 $\Phi\{a\}_i=\Phi\{v\}_i(\frac n 2\le i<n)$，因为对于 $i\&j=i$ 的 $j$ 必定也在 $[\frac{n}{2},n)$ 之间。  
-但是对于 $0\le i<\frac n 2$ 的 $i$，对应的 $j$ 的范围是没有限制的，所以此时 $\Phi\{a\}_i=\Phi\{u\}_i+\Phi\{v\}_i$。 
+首先我们可以得到 $\Phi\{a\}_i=\Phi\{v\}_i(\frac n 2\le i&lt;n)$，因为对于 $i\&amp;j=i$ 的 $j$ 必定也在 $[\frac{n}{2},n)$ 之间。  
+但是对于 $0\le i&lt;\frac n 2$ 的 $i$，对应的 $j$ 的范围是没有限制的，所以此时 $\Phi\{a\}_i=\Phi\{u\}_i+\Phi\{v\}_i$。 
 所以我们有 $\Phi\{a\}=\operatorname{merge}(\Phi\{u\}+\Phi\{v\},\Phi\{v\})$ 。  
 其中 $\operatorname{merge}$ 为将两个序列拼接。    
 那么可以递归求解，复杂度 $T(n)=2T(\frac n 2)+O(n)=O(n\log n)$。  
 ##### 按位或卷积
 同样的，定义 $\Psi\{a\}$ 是序列 $\{a_n\}$ 经过按位或意义下快速沃尔什变换后的结果。  
 此时我们希望有 $\Psi\{\psi\}=\Psi\{a\}\times\Psi\{b\}$。   
-令 $\Phi\{a\}_x=\displaystyle\sum_{x|i=x(0\le i<n)}a_i$。  
+令 $\Phi\{a\}_x=\displaystyle\sum_{x|i=x(0\le i&lt;n)}a_i$。  
 验证：
 $$
 \begin{aligned}
-&\Psi\{a\}_x\times\Psi\{b\}_x\\
-=&\left(\sum_{x|i=x(0\le i<n)}a_i\right)\left(\sum_{x|j=x(0\le j<n)}b_j\right)\\
-=&\sum_{x|i=x(0\le i<n)}\left(a_i\sum_{x|j=x(0\le j<n)}b_j\right)\\
-=&\sum_{x|i=x(0\le i<n)}\sum_{x|j=x(0\le j<n)}a_ib_j\\
-=&\sum_{x|(i|j)=x(0\le i,j<n)}a_ib_j\\
-=&\Psi\{\psi\}_x
+&amp;\Psi\{a\}_x\times\Psi\{b\}_x\\
+=&amp;\left(\sum_{x|i=x(0\le i&lt;n)}a_i\right)\left(\sum_{x|j=x(0\le j&lt;n)}b_j\right)\\
+=&amp;\sum_{x|i=x(0\le i&lt;n)}\left(a_i\sum_{x|j=x(0\le j&lt;n)}b_j\right)\\
+=&amp;\sum_{x|i=x(0\le i&lt;n)}\sum_{x|j=x(0\le j&lt;n)}a_ib_j\\
+=&amp;\sum_{x|(i|j)=x(0\le i,j&lt;n)}a_ib_j\\
+=&amp;\Psi\{\psi\}_x
 \end{aligned}
 $$
 满足条件。  
@@ -757,7 +757,7 @@ $$
 ##### 按位异或卷积
 同样的，定义 $\Xi\{a\}$ 是序列 $\{a_n\}$ 经过按位与意义下快速沃尔什变换后的结果。  
 此时我们希望有 $\Xi\{\xi\}=\Xi\{a\}\times\Xi\{b\}$。   
-令 $\Xi\{a\}_x=\displaystyle\sum_{x \circ i=0(0\le i<n)}a_i-\displaystyle\sum_{x\circ j=1(0\le j<n)}a_j$。  
+令 $\Xi\{a\}_x=\displaystyle\sum_{x \circ i=0(0\le i&lt;n)}a_i-\displaystyle\sum_{x\circ j=1(0\le j&lt;n)}a_j$。  
 其中 $x\circ y=x|y$ 的二进制中 $1$ 的数量的奇偶性。  
 由于有 $(x\circ y)\oplus(x\circ z)=x\circ(y\oplus z)$，所以上式如同前文一样可以验证。  
 仿照前文，并根据 $\circ$ 的定义，我们有 $\Xi\{a\}=\operatorname{merge}(\Xi\{u\}+\Xi\{v\},\Xi\{u\}-\Xi\{v\})$ 。  
@@ -856,10 +856,10 @@ $$
 等式两边同乘一个 $x^n$ 得：    
 $$
 \begin{aligned}
-x^nf(\frac 1 x)&=x^ng(\frac 1 x)Q(\frac 1 x)+x^nr(\frac 1 x)\\
-&=x^mg(\frac 1 x)x^{n-m}Q(\frac 1 x)+x^{n-m+1}x^{m-1}r(\frac 1 x)\\
-&=\tilde{g}(x)\tilde{Q}(x)+x^{n-m+1}\tilde{r}(x)\\
-&=\tilde{f}(x)
+x^nf(\frac 1 x)&amp;=x^ng(\frac 1 x)Q(\frac 1 x)+x^nr(\frac 1 x)\\
+&amp;=x^mg(\frac 1 x)x^{n-m}Q(\frac 1 x)+x^{n-m+1}x^{m-1}r(\frac 1 x)\\
+&amp;=\tilde{g}(x)\tilde{Q}(x)+x^{n-m+1}\tilde{r}(x)\\
+&amp;=\tilde{f}(x)
 \end{aligned}
 $$
 也就是  
@@ -954,11 +954,11 @@ $$
 仿照多项式求逆的思路，我们假定 $g(x)^2\equiv f(x)\pmod{x^n},h(x)^2\equiv f(x)\pmod{x^{\lceil\frac{n}{2}\rceil}}$。    
 $$
 \begin{aligned}
-f(x)-h(x)^2&\equiv0\pmod{x^{\lceil\frac{n}{2}\rceil}}\\
-(f(x)-h(x)^2)^2&\equiv0\pmod{x^{n}}\\
-(f(x)+h(x)^2)^2&\equiv4f(x)h(x)^2\pmod{x^{n}}\\
-\left(\frac{f(x)+h(x)^2}{2h(x)}\right)^2&\equiv f(x)\pmod{x^n}\\
-\frac{f(x)+h(x)^2}{2h(x)}&\equiv g(x)\pmod{x^n}\\
+f(x)-h(x)^2&amp;\equiv0\pmod{x^{\lceil\frac{n}{2}\rceil}}\\
+(f(x)-h(x)^2)^2&amp;\equiv0\pmod{x^{n}}\\
+(f(x)+h(x)^2)^2&amp;\equiv4f(x)h(x)^2\pmod{x^{n}}\\
+\left(\frac{f(x)+h(x)^2}{2h(x)}\right)^2&amp;\equiv f(x)\pmod{x^n}\\
+\frac{f(x)+h(x)^2}{2h(x)}&amp;\equiv g(x)\pmod{x^n}\\
 \end{aligned}
 $$
 递归向下计算，复杂度 $T(n)=T(\frac{n}{2})+O(n\log n)=O(n\log n)$。  
@@ -1027,7 +1027,7 @@ $$
 G(x,f(x))=\sum_{i\ge0}\frac{\frac{\partial^iG}{\partial y^i}(x,g(x))}{i!}(f(x)-g(x))^i\equiv0\pmod{x^n}
 $$
 因为有 $f(x)\equiv g(x)\pmod{x^{\lceil\frac{n}{2}\rceil}}$，所以 $(f(x)-g(x))$ 的最低非零次项至少是 $x^{\lceil\frac{n}{2}\rceil}$。   
-所以对 $\forall i>1$，都有 $(f(x)-g(x))^i\equiv 0\pmod{x^n}$。
+所以对 $\forall i&gt;1$，都有 $(f(x)-g(x))^i\equiv 0\pmod{x^n}$。
 所以原式等价于：
 $$
 G(x,g(x))+(f(x)-g(x))\frac{\partial G}{\partial y}(x,g(x))\equiv0\pmod{x^n}
@@ -1061,19 +1061,19 @@ $$
 然后得到式子：  
 $$
 \begin{aligned}
-f(c^j)&=\sum_{i=0}^{n-1}a_ic^{ij}\\
-&=\sum_{i=0}^{n-1}a_ic^{\binom{i+j}{2}-\binom{i}{2}-\binom{j}{2}}\\
-&=c^{-\binom{j}{2}}\sum_{i=0}^{n-1}a_ic^{\binom{i+j}{2}-\binom{i}{2}}\\
-&=c^{-\binom{j}{2}}\sum_{i=0}^{n-1}\frac{a_i}{\binom{i}{2}}c^{\binom{i+j}{2}}\\
+f(c^j)&amp;=\sum_{i=0}^{n-1}a_ic^{ij}\\
+&amp;=\sum_{i=0}^{n-1}a_ic^{\binom{i+j}{2}-\binom{i}{2}-\binom{j}{2}}\\
+&amp;=c^{-\binom{j}{2}}\sum_{i=0}^{n-1}a_ic^{\binom{i+j}{2}-\binom{i}{2}}\\
+&amp;=c^{-\binom{j}{2}}\sum_{i=0}^{n-1}\frac{a_i}{\binom{i}{2}}c^{\binom{i+j}{2}}\\
 \end{aligned}
 $$
 设 $u_i=\frac{a_i}{\binom{i}{2}},v_i=c^{\binom{n+m-2-i-j}{2}}$。  
 则有：  
 $$
 \begin{aligned}
-&=c^{-\binom{j}{2}}\sum_{i=0}^{n-1}u_iv_{n+m-2-i-j}\\
-&=c^{-\binom{j}{2}}\sum_{x+y=n+m-2-j}u_xv_y\\
-&=c^{-\binom{j}{2}}(u*v)_{n+m-2-j}\\
+&amp;=c^{-\binom{j}{2}}\sum_{i=0}^{n-1}u_iv_{n+m-2-i-j}\\
+&amp;=c^{-\binom{j}{2}}\sum_{x+y=n+m-2-j}u_xv_y\\
+&amp;=c^{-\binom{j}{2}}(u*v)_{n+m-2-j}\\
 \end{aligned}
 $$
 如果下标超过了定义域那直接赋 $0$，对于 $(u*v)$ 的计算使用 NTT。  
@@ -1115,12 +1115,12 @@ $$
 这里只介绍最快速的方法：二项式定理法。  
 $$
 \begin{aligned}
-f(x+c)&=\sum_{i=0}^{n-1}a_i(x+c)^i\\
-&=\sum_{i=0}^{n-1}a_i\sum_{j=0}^i\binom{i}{j}x^jc^{i-j}\\
-&=\sum_{j=0}^{n-1}x^j\sum_{i=j}^{n-1}\binom{i}{j}a_ic^{i-j}\\
-&=\sum_{j=0}^{n-1}x^j\sum_{i=j}^{n-1}\frac{i^{\underline{j}}}{j!}a_ic^{i-j}\\
-&=\sum_{j=0}^{n-1}x^j\sum_{i=j}^{n-1}\frac{i!}{j!(i-j)!}a_ic^{i-j}\\
-&=\sum_{j=0}^{n-1}\frac{x^j}{j!}\sum_{i=j}^{n-1}i!a_i\frac{c^{i-j}}{(i-j)!}
+f(x+c)&amp;=\sum_{i=0}^{n-1}a_i(x+c)^i\\
+&amp;=\sum_{i=0}^{n-1}a_i\sum_{j=0}^i\binom{i}{j}x^jc^{i-j}\\
+&amp;=\sum_{j=0}^{n-1}x^j\sum_{i=j}^{n-1}\binom{i}{j}a_ic^{i-j}\\
+&amp;=\sum_{j=0}^{n-1}x^j\sum_{i=j}^{n-1}\frac{i^{\underline{j}}}{j!}a_ic^{i-j}\\
+&amp;=\sum_{j=0}^{n-1}x^j\sum_{i=j}^{n-1}\frac{i!}{j!(i-j)!}a_ic^{i-j}\\
+&amp;=\sum_{j=0}^{n-1}\frac{x^j}{j!}\sum_{i=j}^{n-1}i!a_i\frac{c^{i-j}}{(i-j)!}
 \end{aligned}
 $$
 设 $u_i=(n-1-i)!a_{n-1-i},v_i=\dfrac{c^i}{i!}$。  
@@ -1185,22 +1185,22 @@ $$
 所以平移之后得到：
 $$
 \begin{aligned}
-f(x+\delta)&=\sum_{i=0}^{n-1}f(i)\prod_{j\neq i}\frac{x+\delta-j}{i-j}\\
-&=\sum_{i=0}^{n-1}f(i)\frac{\prod_{j\neq i}(x+\delta-j)}{\prod_{j\neq i}(i-j)}\\
-&=\sum_{i=0}^{n-1}f(i)\frac{\prod_{j\neq i}(x+\delta-j)}{(-1)^{n-1-i}i!(n-1-i)!}\\
-&=\sum_{i=0}^{n-1}f(i)\frac{\prod_{j\neq i}(x+\delta-j)}{(-1)^{n-1-i}i!(n-1-i)!}\\
-&=\sum_{i=0}^{n-1}\frac{f(i)(x+\delta)!}{(-1)^{n-1-i}i!(n-1-i)!(x+\delta-n)!(x+\delta-i)}\\
-&=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1}\frac{f(i)}{(-1)^{n-1-i}i!(n-1-i)!(x+\delta-i)}\\
-&=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1}\frac{f(i)}{(-1)^{n-1-i}i!(n-1-i)!}\frac{1}{x+\delta-i}\\
+f(x+\delta)&amp;=\sum_{i=0}^{n-1}f(i)\prod_{j\neq i}\frac{x+\delta-j}{i-j}\\
+&amp;=\sum_{i=0}^{n-1}f(i)\frac{\prod_{j\neq i}(x+\delta-j)}{\prod_{j\neq i}(i-j)}\\
+&amp;=\sum_{i=0}^{n-1}f(i)\frac{\prod_{j\neq i}(x+\delta-j)}{(-1)^{n-1-i}i!(n-1-i)!}\\
+&amp;=\sum_{i=0}^{n-1}f(i)\frac{\prod_{j\neq i}(x+\delta-j)}{(-1)^{n-1-i}i!(n-1-i)!}\\
+&amp;=\sum_{i=0}^{n-1}\frac{f(i)(x+\delta)!}{(-1)^{n-1-i}i!(n-1-i)!(x+\delta-n)!(x+\delta-i)}\\
+&amp;=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1}\frac{f(i)}{(-1)^{n-1-i}i!(n-1-i)!(x+\delta-i)}\\
+&amp;=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1}\frac{f(i)}{(-1)^{n-1-i}i!(n-1-i)!}\frac{1}{x+\delta-i}\\
 \end{aligned}
 $$
 设 $u_i=\dfrac{f(i)}{(-1)^{n-1-i}i!(n-1-i)!},v_i=\dfrac{1}{\delta-n+1+i}$，超出定义域设为 $0$。  
 原式则为：
 $$
 \begin{aligned}
-&=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1}u_iv_{n-1+x-i}\\
-&=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1+x}u_iv_{n-1+x-i}\\
-&=\frac{(x+\delta)!}{(x+\delta-n)!}(u*v)_{n-1+x}\\
+&amp;=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1}u_iv_{n-1+x-i}\\
+&amp;=\frac{(x+\delta)!}{(x+\delta-n)!}\sum_{i=0}^{n-1+x}u_iv_{n-1+x-i}\\
+&amp;=\frac{(x+\delta)!}{(x+\delta-n)!}(u*v)_{n-1+x}\\
 \end{aligned}
 $$
 利用 NTT 做出 $(u*v)$，预处理阶乘并计算即可，复杂度瓶颈在 NTT 为 $O(n\log n)$。  
@@ -1217,8 +1217,8 @@ $$
 将这 $n$ 个数分成两部分：  
 $$
 \begin{aligned}
-&A_0=\left\{a_1,a_2,\cdots,a_{\lfloor\frac{n}{2}\rfloor}\right\}\\
-&A_1=\left\{a_{\lfloor\frac{n}{2}\rfloor+1},\cdots,a_{n-1},a_n\right\}\\
+&amp;A_0=\left\{a_1,a_2,\cdots,a_{\lfloor\frac{n}{2}\rfloor}\right\}\\
+&amp;A_1=\left\{a_{\lfloor\frac{n}{2}\rfloor+1},\cdots,a_{n-1},a_n\right\}\\
 \end{aligned}
 $$
 构造辅助多项式 $t_0(x)=\displaystyle\prod_{a_i\in A_0}(x-a_i),t_1(x)=\displaystyle\prod_{a_i\in A_1}(x-a_i)$。  
@@ -1254,15 +1254,15 @@ $$
 因此有：     
 $$
 \begin{aligned}
-\tilde{Q}_{[l,m]}(x)&\equiv\tilde{F}(x)\tilde{D}^{-1}_{[l,m]}(x)\pmod{x^{n-m+l}}\\
-&\equiv\tilde{F}(x)\tilde{D}^{-1}_{[l,r]}(x)\tilde{D}_{[m+1,r]}(x)\pmod{x^{n-m+l}}\\
-&\equiv\tilde{Q}_{[l,r]}(x)\tilde{D}_{[m+1,r]}(x)\pmod{x^{n-m+l}}\\
+\tilde{Q}_{[l,m]}(x)&amp;\equiv\tilde{F}(x)\tilde{D}^{-1}_{[l,m]}(x)\pmod{x^{n-m+l}}\\
+&amp;\equiv\tilde{F}(x)\tilde{D}^{-1}_{[l,r]}(x)\tilde{D}_{[m+1,r]}(x)\pmod{x^{n-m+l}}\\
+&amp;\equiv\tilde{Q}_{[l,r]}(x)\tilde{D}_{[m+1,r]}(x)\pmod{x^{n-m+l}}\\
 \end{aligned}
 $$
 同理亦有：  
 $$
 \begin{aligned}
-\tilde{Q}_{[m+1,r]}(x)&\equiv\tilde{Q}_{[l,r]}(x)\tilde{D}_{[l,m]}(x)\pmod{x^{n-r+m-1}}\\
+\tilde{Q}_{[m+1,r]}(x)&amp;\equiv\tilde{Q}_{[l,r]}(x)\tilde{D}_{[l,m]}(x)\pmod{x^{n-r+m-1}}\\
 \end{aligned}
 $$
 $\tilde{{D}}^{-1}$ 可以分治乘法预处理。  
@@ -1293,7 +1293,7 @@ $$
 f(x)=\sum_{i=1}^{n}\frac{y_i}{t'(x_i)}\prod_{j\neq i}(x-x_j)
 $$
 但是这仍然是 $O(n^2)$，继续优化，考虑拆分：  
-$f_l(x)=\displaystyle\sum_{i=1}^{\lfloor\frac{n}{2}\rfloor}\frac{y_i}{t'(x_i)}\prod_{j\neq i,j\le \lfloor\frac{n}{2}\rfloor}(x-x_j),f_r(x)=\displaystyle\sum_{i=\lfloor\frac{n}{2}\rfloor+1}^{n}\frac{y_i}{t'(x_i)}\prod_{j\neq i,j> \lfloor\frac{n}{2}\rfloor}(x-x_j)$。  
+$f_l(x)=\displaystyle\sum_{i=1}^{\lfloor\frac{n}{2}\rfloor}\frac{y_i}{t'(x_i)}\prod_{j\neq i,j\le \lfloor\frac{n}{2}\rfloor}(x-x_j),f_r(x)=\displaystyle\sum_{i=\lfloor\frac{n}{2}\rfloor+1}^{n}\frac{y_i}{t'(x_i)}\prod_{j\neq i,j&gt; \lfloor\frac{n}{2}\rfloor}(x-x_j)$。  
 以及 $t_l(x)=\displaystyle\prod_{i=1}^{\lfloor\frac{n}{2}\rfloor}(x-x_i),t_r(x)=\displaystyle\prod_{i=\lfloor\frac{n}{2}\rfloor+1}^{n}(x-x_i)$ 。   
 递归到底层时，我们需要计算 $\frac{y_i}{t'(x_i)}$ 的值，对于分母 $t'(x_i)$，多点求值进行预处理即可，复杂度 $O(n\log^2n)$。  
 则有 $f(x)=f_l(x)t_r(x)+f_r(x)t_l(x)$，分治计算，复杂度 $T(n)=2T(\frac{n}{2})+O(n\log n)=O(n\log^2n)$。  
@@ -1329,7 +1329,7 @@ h=\left(\sum_{i\ge\operatorname{ord}f}a_ix^i\right)\left(\sum_{i\ge\operatorname
 $$
 仿照形式幂级数的乘法，化简，最终得到：
 $$
-h=\sum_{s>\operatorname{ord}f+\operatorname{ord}g}\sum_{i+j=s}a_ib_jx^{s}
+h=\sum_{s&gt;\operatorname{ord}f+\operatorname{ord}g}\sum_{i+j=s}a_ib_jx^{s}
 $$
 其实算是一种广义上的卷积。    
 
@@ -1371,18 +1371,18 @@ $$
 分类讨论，首先考虑 $n\neq -1$ 的情况。
 $$
 \begin{aligned}
-&\operatorname{res}(g^{n}g')\\
-=&\operatorname{res}(\frac{1}{n+1}(g^{n+1})')\\
-=&\frac{1}{n+1}\operatorname{res}((g^{n+1})')\\
-=&0
+&amp;\operatorname{res}(g^{n}g')\\
+=&amp;\operatorname{res}(\frac{1}{n+1}(g^{n+1})')\\
+=&amp;\frac{1}{n+1}\operatorname{res}((g^{n+1})')\\
+=&amp;0
 \end{aligned}
 $$
 再考虑 $n=-1$ 的情况。  
 $$
 \begin{aligned}
-&\operatorname{res}(\frac{g'}{g})\\
-=&\operatorname{ord}g\\
-=&\operatorname{res}f\operatorname{ord}g
+&amp;\operatorname{res}(\frac{g'}{g})\\
+=&amp;\operatorname{ord}g\\
+=&amp;\operatorname{res}f\operatorname{ord}g
 \end{aligned}
 $$
 于是原结论证毕。
@@ -1398,33 +1398,33 @@ $$
 根据以上引理，可以得出常见的 $4$ 个版本的拉格朗日反演，这里假定 $G=F^{\langle -1 \rangle}\in \mathbb{F}((x)),\Lambda\in\mathbb{F}((x))$：  
 $$
 \begin{aligned}
-&n[x^n]F^k=k[x^{-k}]G^{-n}\\
-&n[x^n](\Lambda\circ F)=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
-&—————————————\\
-&[x^n]F^k=[x^{-k-1}]\frac{\mathrm{d}G}{\mathrm{d}x}G^{-n-1}\\
-&[x^n](\Lambda\circ F)=[x^{n}]\Lambda\frac{\mathrm{d}G}{\mathrm{d}x}(\frac{x}{G})^{n+1}\\
+&amp;n[x^n]F^k=k[x^{-k}]G^{-n}\\
+&amp;n[x^n](\Lambda\circ F)=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
+&amp;—————————————\\
+&amp;[x^n]F^k=[x^{-k-1}]\frac{\mathrm{d}G}{\mathrm{d}x}G^{-n-1}\\
+&amp;[x^n](\Lambda\circ F)=[x^{n}]\Lambda\frac{\mathrm{d}G}{\mathrm{d}x}(\frac{x}{G})^{n+1}\\
 \end{aligned}
 $$
 此处仅证明公式 $2$，其为公式 $1$ 的推广，算是很详细的证明了：  
 $$
 \begin{aligned}
-\Rightarrow&\Lambda\circ (F\circ G)=\Lambda\\
-\Rightarrow&(\Lambda\circ F)\circ G=\Lambda\\
-\Rightarrow&(\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}\circ G)\frac{\mathrm{d}G}{\mathrm{d}x}=\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
-\Rightarrow&\frac{\mathrm{d}G}{\mathrm{d}x}\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^i=\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
-\Rightarrow&\frac{\mathrm{d}G}{\mathrm{d}x}\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^{i-n}=G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
-\Rightarrow&\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^{i-n}\frac{\mathrm{d}G}{\mathrm{d}x}=G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
-\Rightarrow&\operatorname{res}\left(\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^{i-n}\frac{\mathrm{d}G}{\mathrm{d}x}\right)=\operatorname{res}\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
-\Rightarrow&\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}\operatorname{res}\left(G^{i-n}\frac{\mathrm{d}G}{\mathrm{d}x}\right)=\operatorname{res}\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
-\Rightarrow&\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}[i-n=-1]=\operatorname{res}\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
-\Rightarrow&[x^{n-1}]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}=[x^{-1}]\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
-\Rightarrow&[x^{n-1}]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
-\Rightarrow&[x^{n-1}]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
-\Rightarrow&n[x^{n}](\Lambda\circ F)=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
+\Rightarrow&amp;\Lambda\circ (F\circ G)=\Lambda\\
+\Rightarrow&amp;(\Lambda\circ F)\circ G=\Lambda\\
+\Rightarrow&amp;(\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}\circ G)\frac{\mathrm{d}G}{\mathrm{d}x}=\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
+\Rightarrow&amp;\frac{\mathrm{d}G}{\mathrm{d}x}\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^i=\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
+\Rightarrow&amp;\frac{\mathrm{d}G}{\mathrm{d}x}\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^{i-n}=G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
+\Rightarrow&amp;\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^{i-n}\frac{\mathrm{d}G}{\mathrm{d}x}=G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\\
+\Rightarrow&amp;\operatorname{res}\left(\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}G^{i-n}\frac{\mathrm{d}G}{\mathrm{d}x}\right)=\operatorname{res}\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
+\Rightarrow&amp;\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}\operatorname{res}\left(G^{i-n}\frac{\mathrm{d}G}{\mathrm{d}x}\right)=\operatorname{res}\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
+\Rightarrow&amp;\sum_{i=0}^{\infty}[x^i]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}[i-n=-1]=\operatorname{res}\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
+\Rightarrow&amp;[x^{n-1}]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}=[x^{-1}]\left(G^{-n}\frac{\mathrm{d}\Lambda}{\mathrm{d}x}\right)\\
+\Rightarrow&amp;[x^{n-1}]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
+\Rightarrow&amp;[x^{n-1}]\frac{\mathrm{d}(\Lambda\circ F)}{\mathrm{d}x}=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
+\Rightarrow&amp;n[x^{n}](\Lambda\circ F)=[x^{n-1}]\frac{\mathrm{d}\Lambda}{\mathrm{d}x}(\frac{x}{G})^n\\
 \end{aligned}
 $$
 最后一步基于形式 Laurent 级数复合形式 Laurent 级数仍然是形式 Laurent 级数以及其形式导数的定义而得出。      
-但是，上面的式子在 $n=0,k<0$ 时无法给出常数项的值，因此拓展到公式 $3,4$。   
+但是，上面的式子在 $n=0,k&lt;0$ 时无法给出常数项的值，因此拓展到公式 $3,4$。   
 其证明过程与公式 $2$ 证明过程几乎一致。  
 ## Senior- $\text {II}$ -常系数齐次线性递推
 ### SII-1 斐波那契数列快速递推
@@ -1438,8 +1438,8 @@ $$
 因此可以得出：  
 $$
 \begin{bmatrix}
-0 & 1\\
-1 & 1\\
+0 &amp; 1\\
+1 &amp; 1\\
 \end{bmatrix}
 \begin{bmatrix}
 f_{i-1}\\ f_{i}
@@ -1455,8 +1455,8 @@ $$
 f_{n}\\f_{n+1}
 \end{bmatrix}=
 \begin{bmatrix}
-0 & 1\\
-1 & 1\\
+0 &amp; 1\\
+1 &amp; 1\\
 \end{bmatrix}^{n}
 \begin{bmatrix}
 0 \\ 1\\
@@ -1464,7 +1464,7 @@ f_{n}\\f_{n+1}
 
 
 $$
-第二个问题是，考虑如何快速计算 $\begin{bmatrix}0 & 1\\1 & 1\\\end{bmatrix}^{n}$。  
+第二个问题是，考虑如何快速计算 $\begin{bmatrix}0 &amp; 1\\1 &amp; 1\\\end{bmatrix}^{n}$。  
 直接相乘的复杂度是 $O(n)$。  
 考虑优化，对于任意底数 $a$（不要求是数域中的元素）， $a^{n}=(a^{\frac{n}{2}})^2\times a^{n\bmod 2}$，根据该式递归求解，由于平方可以 $O(1)$ 求解，因此每次递归问题规模就被缩小一半，一共最多递归 $O(\log n)$ 次，故时间复杂度为 $O(\log n)$。  
 由于 $k$ 阶矩阵乘法的复杂度是 $k^3$，因此计算 $f_n$ 的复杂度即为 $O(k^3\log n),k=2$。  
@@ -1477,10 +1477,10 @@ $$
 首先，行列式定义为：
 $$
 \begin{vmatrix}
-A_{11}&a_{12}&...&a_{1 n} \\
-A_{21}&a_{22}&...&a_{2 n} \\
-\vdots&\vdots&&\vdots\\
-A_{n 1}&a_{n 2}&\dots&a_{nn}
+A_{11}&amp;a_{12}&amp;...&amp;a_{1 n} \\
+A_{21}&amp;a_{22}&amp;...&amp;a_{2 n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+A_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}
 \end{vmatrix}
 =\displaystyle\sum_{j_1 j_2\dots j_n}(-1)^{\tau (j_1 j_2\dots j_n)}a_{1 j_1}a_{2 j_2}\dots a_{nj_n}
 $$
@@ -1491,10 +1491,10 @@ $$
 $$
 p_A(x)=\det(x\mathrm{I}_n-A)=
 \begin{vmatrix}
-x-a_{11}&-a_{12}&\cdots&-a_{1n}\\
--a_{21}&x-a_{22}&\cdots&-a_{2n}\\
-\vdots&\vdots&&\vdots\\
--a_{n1}&-a_{n2}&\cdots&x-a_{nn}\\
+x-a_{11}&amp;-a_{12}&amp;\cdots&amp;-a_{1n}\\
+-a_{21}&amp;x-a_{22}&amp;\cdots&amp;-a_{2n}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+-a_{n1}&amp;-a_{n2}&amp;\cdots&amp;x-a_{nn}\\
 \end{vmatrix}
 $$
 需要注意的是，$x$ 既可以是普通多项式中的“形式记号”，也可以是一个矩阵，它只是一个**参量**。  
@@ -1514,10 +1514,10 @@ $$
 首先定义一个 $n$ 阶矩阵 $K$ 的伴随矩阵 $K^*$ 为：
 $$
 \begin{bmatrix}
-A_{11}&A_{21}&\cdots &A_{n1}\\
-A_{12}&A_{22}&\cdots &A_{n2}\\
-\vdots&\vdots&&\vdots\\
-A_{1n}&A_{2n}&\cdots &A_{nn}\\
+A_{11}&amp;A_{21}&amp;\cdots &amp;A_{n1}\\
+A_{12}&amp;A_{22}&amp;\cdots &amp;A_{n2}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+A_{1n}&amp;A_{2n}&amp;\cdots &amp;A_{nn}\\
 \end{bmatrix}
 $$
 其中 $A_{ij}$ 为 $K$ 的 $(i,j)$ 元的代数余子式，定义为 $(-1)^{i+j}M_{ij}$，即原矩阵划去第 $i$ 行和第 $j$ 列后构成的矩阵的行列式乘 $(-1)^{i+j}$。  
@@ -1540,9 +1540,9 @@ $A_0,A_1,\cdots,A_n$ 即为该矩阵多项式的系数，$d$ 为这些多项式�
 由此得式：  
 $$
 \begin{aligned}
-&W(x)(x\mathrm{I}-A)\\
-=&\sum_{i=0}^{n-1}(W_ix^{i+1}-AW_ix^{i})\\
-=&W_{n-1}x^n+\sum_{i=1}^{n-1}(W_{i-1}-AW_{i})x^i-AW_0
+&amp;W(x)(x\mathrm{I}-A)\\
+=&amp;\sum_{i=0}^{n-1}(W_ix^{i+1}-AW_ix^{i})\\
+=&amp;W_{n-1}x^n+\sum_{i=1}^{n-1}(W_{i-1}-AW_{i})x^i-AW_0
 \end{aligned}
 $$
 不妨同时设 $p_A(x)=\displaystyle\sum_{i=0}^n a_ix^i$。  
@@ -1612,12 +1612,12 @@ $$
 对于常系数齐次线性递推数列 $f$ 来说，其转移式为：  
 $$
 \begin{bmatrix}
-0&1&0&\cdots&0&0\\
-0&0&1&\cdots&0&0\\
-\vdots&\vdots&\vdots&&\vdots&\vdots\\
-0&0&0&\cdots&1&0\\
-0&0&0&\cdots&0&1\\
-c_d&c_{d-1}&c_{d-2}&\cdots&c_2&c_1\\
+0&amp;1&amp;0&amp;\cdots&amp;0&amp;0\\
+0&amp;0&amp;1&amp;\cdots&amp;0&amp;0\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;1&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;1\\
+c_d&amp;c_{d-1}&amp;c_{d-2}&amp;\cdots&amp;c_2&amp;c_1\\
 \end{bmatrix}^n
 \begin{bmatrix}
 f_{0}\\
@@ -1723,12 +1723,12 @@ $$
 因为  $p_A(x)=\det(x\mathrm{I}_d-A)$ 即为：
 $$
 \begin{vmatrix}
-x&-1&0&\cdots&0&0\\
-0&x&-1&\cdots&0&0\\
-\vdots&\vdots&\vdots&&\vdots&\vdots\\
-0&0&0&\cdots&-1&0\\
-0&0&0&\cdots&x&-1\\
--c_d&-c_{d-1}&-c_{d-2}&\cdots&-c_2&x-c_1\\
+x&amp;-1&amp;0&amp;\cdots&amp;0&amp;0\\
+0&amp;x&amp;-1&amp;\cdots&amp;0&amp;0\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;-1&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;x&amp;-1\\
+-c_d&amp;-c_{d-1}&amp;-c_{d-2}&amp;\cdots&amp;-c_2&amp;x-c_1\\
 \end{vmatrix}
 $$
 接下来是解行列式的基本技巧。  
@@ -1736,19 +1736,19 @@ $$
 $$
 (x-c_1)
 \begin{vmatrix}
-x&-1&0&\cdots&0\\
-0&x&-1&\cdots&0\\
-\vdots&\vdots&\vdots&&\vdots\\
-0&0&0&\cdots&-1\\
-0&0&0&\cdots&x\\
+x&amp;-1&amp;0&amp;\cdots&amp;0\\
+0&amp;x&amp;-1&amp;\cdots&amp;0\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;-1\\
+0&amp;0&amp;0&amp;\cdots&amp;x\\
 \end{vmatrix}_{(d-1)\times(d-1)}
 +
 \begin{vmatrix}
-x&-1&0&\cdots&0\\
-0&x&-1&\cdots&0\\
-\vdots&\vdots&\vdots&&\vdots\\
-0&0&0&\cdots&-1\\
--c_d&-c_{d-1}&-c_{d-2}&\cdots&-c_2\\
+x&amp;-1&amp;0&amp;\cdots&amp;0\\
+0&amp;x&amp;-1&amp;\cdots&amp;0\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;-1\\
+-c_d&amp;-c_{d-1}&amp;-c_{d-2}&amp;\cdots&amp;-c_2\\
 \end{vmatrix}_{(d-1)\times(d-1)}
 $$
 对于第一个行列式，发现其为上三角行列式，值为 $x^{d-1}$。 
@@ -1798,8 +1798,8 @@ $$
 我们依然沿用 $\Gamma(x)=x^d-\displaystyle\sum_{i=0}^{d-1}c_{d-i}x^i$，根据递推式，可以构造：
 $$
 \begin{aligned}
-P(x)&=\left(\left(\sum_{i=0}^{\infty}f_ix^i\right)x^d\Gamma(x^{-1})\right)\bmod x^d\\
-Q(x)&=x^d\Gamma(x^{-1})
+P(x)&amp;=\left(\left(\sum_{i=0}^{\infty}f_ix^i\right)x^d\Gamma(x^{-1})\right)\bmod x^d\\
+Q(x)&amp;=x^d\Gamma(x^{-1})
 \end{aligned}
 $$
 注意，$\Gamma(x^{-1})$ 可能不是多项式，但是 $x^d\Gamma(x^{-1})$ 一定是。  
@@ -1814,7 +1814,7 @@ $$
 （矩阵上方的 $\mathsf{T}$ 代表其转置后的矩阵，方便排版）
 $$
 \begin{aligned}
-&\begin{bmatrix}
+&amp;\begin{bmatrix}
 \begin{bmatrix}
 f_i\\f_{i+1}\\f_{i+2}\\\vdots\\f_{i+d-1}
 \end{bmatrix}^\mathsf{T}
@@ -1824,39 +1824,39 @@ f_i\\f_{i+1}\\f_{i+2}\\\vdots\\f_{i+d-1}
 \end{bmatrix}
 \begin{bmatrix}
 \begin{bmatrix}
-0&0&0&\cdots&0&c_d\\
-1&0&0&\cdots&0&c_{d-1}\\
-0&1&0&\cdots&0&c_{d-2}\\
-0&0&1&\cdots&0&c_{d-3}\\
-\vdots&\vdots&\vdots&&\vdots\\
-0&0&0&\cdots&1&c_1
-\end{bmatrix}&
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;c_d\\
+1&amp;0&amp;0&amp;\cdots&amp;0&amp;c_{d-1}\\
+0&amp;1&amp;0&amp;\cdots&amp;0&amp;c_{d-2}\\
+0&amp;0&amp;1&amp;\cdots&amp;0&amp;c_{d-3}\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;1&amp;c_1
+\end{bmatrix}&amp;
 \begin{bmatrix}
-0&0&0&\cdots&0&0\\
-0&0&0&\cdots&0&0\\
-0&0&0&\cdots&0&0\\
-0&0&0&\cdots&0&0\\
-\vdots&\vdots&\vdots&&\vdots\\
-0&0&0&\cdots&0&0
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;0\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;0
 \end{bmatrix}\\
 \begin{bmatrix}
-0&0&0&\cdots&0&p_0\\
-0&0&0&\cdots&0&p_1\\
-0&0&0&\cdots&0&p_2\\
-0&0&0&\cdots&0&p_3\\
-\vdots&\vdots&\vdots&&\vdots\\
-0&0&0&\cdots&0&p_m
-\end{bmatrix}&
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;p_0\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;p_1\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;p_2\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;p_3\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;0&amp;p_m
+\end{bmatrix}&amp;
 \begin{bmatrix}
-\binom{0}{0}&\binom{1}{0}&\binom{2}{0}&\cdots&\binom{m}{0}\\
-0&\binom{1}{1}&\binom{2}{1}&\cdots&\binom{m}{1}\\
-0&0&\binom{2}{2}&\cdots&\binom{m}{2}\\
-0&0&0&\cdots&\binom{m}{3}\\
-\vdots&\vdots&\vdots&&\vdots\\
-0&0&0&\cdots&\binom{m}{m}
+\binom{0}{0}&amp;\binom{1}{0}&amp;\binom{2}{0}&amp;\cdots&amp;\binom{m}{0}\\
+0&amp;\binom{1}{1}&amp;\binom{2}{1}&amp;\cdots&amp;\binom{m}{1}\\
+0&amp;0&amp;\binom{2}{2}&amp;\cdots&amp;\binom{m}{2}\\
+0&amp;0&amp;0&amp;\cdots&amp;\binom{m}{3}\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+0&amp;0&amp;0&amp;\cdots&amp;\binom{m}{m}
 \end{bmatrix}
 \end{bmatrix}\\
-&=\begin{bmatrix}
+&amp;=\begin{bmatrix}
 \begin{bmatrix}
 f_{i+1}\\f_{i+2}\\f_{i+3}\\\vdots\\f_{i+d}
 \end{bmatrix}^\mathsf{T}
@@ -1867,16 +1867,16 @@ f_{i+1}\\f_{i+2}\\f_{i+3}\\\vdots\\f_{i+d}
 \end{aligned}
 $$
 设中间的转移矩阵为 $\mathscr{B}$。
-为了简便，我们设 $\mathscr{B}=\begin{bmatrix}S&T\\U&V\end{bmatrix}$。
+为了简便，我们设 $\mathscr{B}=\begin{bmatrix}S&amp;T\\U&amp;V\end{bmatrix}$。
 我们仿照 Fiduccia 算法的证明思路进行拓展，即无论是齐次还是非齐次情况，只需要找到转移矩阵的特征多项式 $G$，用 $x^n \bmod G$ 的系数向量再点乘 $(f_0,f_1,\cdots,f_{siz-1})$，就可以得到 $f_n$，其中 $siz$ 为特征多项式 $G$ 的次数。  
 我们希望得到 $\mathscr{B}$ 的特征多项式 $p_{\mathscr{B}}(x)$。  
 根据分块矩阵的特征多项式，$p_{\mathscr{B}}(x)=p_{S}(x)p_{V}(x)-p_{T}(x)p_{U}(x)=p_{S}(x)p_{V}(x)$。  
 也就是 $|x\mathrm{I}-S||x\mathrm{I}-V|=(x^d+\displaystyle\sum_{i=0}^{d-1}c_{d-i}x_i)(x-1)^{m+1}$。    
 但是我们目前只有 $f_0,f_1,\cdots,f_{d-1}$，所以还需要求出 $f_d,f_{d+1},\cdots,f_{d+m}$。    
 回顾原式 $f_i=P(i)+\displaystyle\sum_{j=1}^dc_jf_{i-j}$，我们不妨记 $\tau_i=P(i)$。  
-于是原式可化为 $f_i=\tau_i+\displaystyle\sum_{j=1}^ic_jf_{i-j}$。（求和上界变为 $i$，因此不妨令 $j>d$ 时 $c_j=0$）  
-但是上式存在问题，即当 $i<d$ 的时候 $f_i$ 是已定的，不遵循递推式。  
-因此我们仅仅令 $i\ge d$ 时 $\tau_i=P(i)$，当 $i<d$ 时 $\tau_i=f_i-\displaystyle\sum_{j=1}^ic_jf_{i-j}$，这样 $i<d$ 时就能将后面的和式消掉，从而使得原式良定义。  
+于是原式可化为 $f_i=\tau_i+\displaystyle\sum_{j=1}^ic_jf_{i-j}$。（求和上界变为 $i$，因此不妨令 $j&gt;d$ 时 $c_j=0$）  
+但是上式存在问题，即当 $i&lt;d$ 的时候 $f_i$ 是已定的，不遵循递推式。  
+因此我们仅仅令 $i\ge d$ 时 $\tau_i=P(i)$，当 $i&lt;d$ 时 $\tau_i=f_i-\displaystyle\sum_{j=1}^ic_jf_{i-j}$，这样 $i&lt;d$ 时就能将后面的和式消掉，从而使得原式良定义。  
 不妨设 $\chi(x)=\displaystyle\sum_{i=0}^{\infty}c_i,T(x)=\displaystyle\sum_{i=0}^{\infty}\tau_i,F(x)=\displaystyle\sum_{i=0}^{\infty}f_i$。  
 注意到 $\displaystyle\sum_{j=1}^ic_jf_{i-j}=[x^i](\chi\times F)$。  
 因此我们有 $F=T+\chi F$，即 $F=\dfrac{T}{1-\chi}$。  
@@ -1893,14 +1893,14 @@ $$
 | $C(x)$            | $F\cdot D \bmod x^k$                |
 | $t_j$             | $P$ 的牛顿系数 $\Delta^jP(0)$            |
 | $R(x)$            | $P(n)$ 的齐次化分子，$\deg R\le d$         |
-| $\mathcal P_k(x)$ | $\sum_{n<k}P(n)x^n$                 |
+| $\mathcal P_k(x)$ | $\sum_{n&lt;k}P(n)x^n$                 |
 | $W(x)$            | $(1-x)^{d+1}$                       |
 用 $D$ 乘 $F$，$x^n$ 的系数正好是 $a_n$ 减去递推式右边那串：
 $$F\cdot D=\sum_{n\ge0}\left(a_n-\sum_{i=1}^{k}c_ia_{n-i}\right)x^n$$
 当 $n\ge k$ 时它就是 $P(n)$，所以
-$$F\cdot D=\underbrace{\sum_{n<k}\left(a_n-\sum_{i=1}^{k}c_ia_{n-i}\right)x^n}_{C(x)\ =\ (F\cdot D)\bmod x^k}+\sum_{n\ge k}P(n)x^n .$$
+$$F\cdot D=\underbrace{\sum_{n&lt;k}\left(a_n-\sum_{i=1}^{k}c_ia_{n-i}\right)x^n}_{C(x)\ =\ (F\cdot D)\bmod x^k}+\sum_{n\ge k}P(n)x^n .$$
 $C$ 只由初值决定：把 $F$ 截到 $x^k$ 再乘 $D$、再截到 $x^k$ 即可，即
-$$C(x)=\left(\left(\sum_{i<k}a_ix^i\right)\cdot D(x)\right)\bmod x^k .$$
+$$C(x)=\left(\left(\sum_{i&lt;k}a_ix^i\right)\cdot D(x)\right)\bmod x^k .$$
 于是 $F=\dfrac{C}{D}+\dfrac{1}{D}\displaystyle\sum_{n\ge k}P(n)x^n$。麻烦都在第二项。
 $P$ 是 $d$ 次多项式，被一阶差分算子 $(\mathrm E-1)^{d+1}$ 灭掉（$\mathrm E$ 是 $f(n)\mapsto f(n+1)$，在生成函数上是乘 $(1-x)^{-1}$）。等价地
 $$\sum_{n\ge0}P(n)x^n=\frac{R(x)}{(1-x)^{d+1}} .$$
@@ -1908,9 +1908,9 @@ $$\sum_{n\ge0}P(n)x^n=\frac{R(x)}{(1-x)^{d+1}} .$$
 又 $\displaystyle\sum_{n\ge0}\dbinom{n}{j}x^n=\dfrac{x^j}{(1-x)^{j+1}}$，代入并通分：
 $$
 \begin{aligned}
-&\sum_{n\ge0}P(n)x^n=\sum_{j=0}^{d}\frac{t_jx^j}{(1-x)^{j+1}}
+&amp;\sum_{n\ge0}P(n)x^n=\sum_{j=0}^{d}\frac{t_jx^j}{(1-x)^{j+1}}
 =\frac{1}{(1-x)^{d+1}}\sum_{j=0}^{d}t_jx^j(1-x)^{d-j}\\
-\ \implies &\
+\ \implies &amp;\
 R(x)=\sum_{j=0}^{d}t_jx^j(1-x)^{d-j}
 \end{aligned}
 $$
@@ -1920,9 +1920,9 @@ $$\mathcal P_k(x)=\sum_{n=0}^{k-1}P(n)x^n=\left(R(x)\cdot(1-x)^{-(d+1)}\right)\b
 （$R\cdot(1-x)^{-d-1}$ 就是 $\displaystyle\sum_nP(n)x^n$，截断到 $k$ 项即可。这一步不需要多点求值：$(1-x)^{-(d+1)}=\displaystyle\sum_t\dbinom{d+t}{t}x^t$，一次卷积即可。）
 整理得到：
 $$\begin{aligned}
-F&=\frac{C}{D}+\frac{1}{D}\left(\sum_{n\ge0}P(n)x^n-\mathcal P_k\right)
+F&amp;=\frac{C}{D}+\frac{1}{D}\left(\sum_{n\ge0}P(n)x^n-\mathcal P_k\right)
 =\frac{C}{D}+\frac{R\cdot(1-x)^{-d-1}-\mathcal P_k}{D}\\
-&=\frac{\overbrace{(C-\mathcal P_k)(1-x)^{d+1}+R}^{A(x)}}{\underbrace{(1-x)^{d+1}D(x)}_{B(x)}}
+&amp;=\frac{\overbrace{(C-\mathcal P_k)(1-x)^{d+1}+R}^{A(x)}}{\underbrace{(1-x)^{d+1}D(x)}_{B(x)}}
 \end{aligned}$$
 于是改递推数列就被转化成了化成了有理函数系数的形式！直接 Bostan-Mori 即可，实测速度比前面的做法快了将近 $6$ 倍。  
 

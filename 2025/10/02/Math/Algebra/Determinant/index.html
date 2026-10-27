@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          678 字
+          660 字
         
       </span>
     
@@ -294,18 +294,88 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>$$<br>\begin{vmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1n} \<br>a_{21}&amp;a_{22}&amp;…&amp;a_{2n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}<br>\end{vmatrix}<br>&#x3D;\displaystyle\sum_{j_1j_2\dots j_n}(-1)^{\tau(j_1j_2\dots j_n)}a_{1j_1}a_{2j_2}\dots a_{nj_n}<br>$$</li>
+<li>$$
+\begin{vmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1n} \\
+a_{21}&amp;a_{22}&amp;...&amp;a_{2n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}
+\end{vmatrix}
+=\displaystyle\sum_{j_1j_2\dots j_n}(-1)^{\tau(j_1j_2\dots j_n)}a_{1j_1}a_{2j_2}\dots a_{nj_n}
+$$</li>
 <li>上&#x2F;下三角行列式的值等于它主对角线的数的乘积</li>
-<li>设 $$\begin{pmatrix}<br>a_{11}&amp;a_{21}&amp;…&amp;a_{n1} \<br>a_{12}&amp;a_{22}&amp;…&amp;a_{n2} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{1n}&amp;a_{2n}&amp;\dots&amp;a_{nn}<br>\end{pmatrix}$$ 是矩阵 $$<br>A&#x3D;\begin{pmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1n} \<br>a_{21}&amp;a_{22}&amp;…&amp;a_{2n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}<br>\end{pmatrix}<br>$$ 的<strong>转置</strong>，记作 $A’$，则有 $|A|&#x3D;|A’|$</li>
-<li>$$<br>\begin{vmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1n} \<br>a_{21}&amp;a_{22}&amp;…&amp;a_{2n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>ka_{i1}&amp;ka_{i2}&amp;\dots&amp;ka_{in}\<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}<br>\end{vmatrix}&#x3D;<br>k\begin{vmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1n} \<br>a_{21}&amp;a_{22}&amp;…&amp;a_{2n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{i1}&amp;a_{i2}&amp;\dots&amp;a_{in}\<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}<br>\end{vmatrix}<br>$$</li>
-<li>$$ \begin{vmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1 n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>b_1+c_1&amp;b_2+c_2&amp;\dots&amp;b_n+c_n\<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}<br>\end{vmatrix}&#x3D;\begin{vmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1 n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>b_1&amp;b_2&amp;\dots&amp;b_n\<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}<br>\end{vmatrix}+\begin{vmatrix}<br>a_{11}&amp;a_{12}&amp;…&amp;a_{1 n} \<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>c_1&amp;c_2&amp;\dots&amp;c_n\<br>\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}<br>\end{vmatrix}$$</li>
+<li>设 $$\begin{pmatrix}
+a_{11}&amp;a_{21}&amp;...&amp;a_{n1} \\
+a_{12}&amp;a_{22}&amp;...&amp;a_{n2} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{1n}&amp;a_{2n}&amp;\dots&amp;a_{nn}
+\end{pmatrix}$$ 是矩阵 $$
+A=\begin{pmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1n} \\
+a_{21}&amp;a_{22}&amp;...&amp;a_{2n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}
+\end{pmatrix}
+$$ 的<strong>转置</strong>，记作 $A'$，则有 $|A|=|A'|$</li>
+<li>$$
+\begin{vmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1n} \\
+a_{21}&amp;a_{22}&amp;...&amp;a_{2n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+ka_{i1}&amp;ka_{i2}&amp;\dots&amp;ka_{in}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}
+\end{vmatrix}=
+k\begin{vmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1n} \\
+a_{21}&amp;a_{22}&amp;...&amp;a_{2n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{i1}&amp;a_{i2}&amp;\dots&amp;a_{in}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{nn}
+\end{vmatrix}
+$$</li>
+<li>$$ \begin{vmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1 n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+b_1+c_1&amp;b_2+c_2&amp;\dots&amp;b_n+c_n\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}
+\end{vmatrix}=\begin{vmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1 n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+b_1&amp;b_2&amp;\dots&amp;b_n\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}
+\end{vmatrix}+\begin{vmatrix}
+a_{11}&amp;a_{12}&amp;...&amp;a_{1 n} \\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+c_1&amp;c_2&amp;\dots&amp;c_n\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n 1}&amp;a_{n 2}&amp;\dots&amp;a_{nn}
+\end{vmatrix}$$</li>
 <li>交换行列式的两行，行列式的值取相反数。</li>
 <li>两行成比例，行列式的值为 $0$。</li>
 <li>把一行的倍数加到另一行上，行列式的值不变。</li>
-<li>$|A|&#x3D;\displaystyle\sum_{j&#x3D;1}^n a_{ij}A_{ij}&#x3D;\displaystyle\sum_{i&#x3D;1}^n a_{ij}A_{ij}$，其中 $A_{ij}&#x3D;(-1)^{i+j}M_{ij}$，称为 $(i,j)$ 元的代数余子式。</li>
-<li>$\displaystyle\sum_{j&#x3D;1}^n a_{ij}A_{kj}&#x3D;\displaystyle\sum_{i&#x3D;1}^n a_{ij}A_{il}&#x3D;0$，前式要求 $i\neq k$，后式要求 $j\neq l$。</li>
-<li>Vandermonde 行列式<br>$$<br>\begin{vmatrix}<br>1&amp;1&amp;1&amp;\dots&amp;1\<br>a_1&amp;a_2&amp;a_3&amp;\dots&amp;a_n\<br>a_1^2&amp;a_2^2&amp;a_3^2&amp;\dots&amp;a_n^2\<br>\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\<br>a_1^{n-1}&amp;a_2^{n-1}&amp;a_3^{n-1}&amp;\dots&amp;a_n^{n-1}<br>\end{vmatrix}&#x3D;\prod_{1\le j&lt;i\le n}(a_i-a_j)<br>$$</li>
-<li>(Cramer Rule) 一个 $n$ 元 $n$ 个方程的线性方程组有唯一解 $\iff$ 它的系数矩阵 $A$ 的行列式 $|A|\neq0$。且解为：<br>$$<br>\begin{cases}<br>x_1&#x3D;\frac{|B_1|}{|A|},\<br>x_2&#x3D;\frac{|B_2|}{|A|},\<br>\dots\<br>x_n&#x3D;\frac{|B_n|}{|A|}\<br>\end{cases}<br>$$ 其中 $B_i$ 为 $A$ 用 $b_1,b_2,\dots,b_n$ 代替第 $i$ 列的矩阵。</li>
+<li>$|A|=\displaystyle\sum_{j=1}^n a_{ij}A_{ij}=\displaystyle\sum_{i=1}^n a_{ij}A_{ij}$，其中 $A_{ij}=(-1)^{i+j}M_{ij}$，称为 $(i,j)$ 元的代数余子式。</li>
+<li>$\displaystyle\sum_{j=1}^n a_{ij}A_{kj}=\displaystyle\sum_{i=1}^n a_{ij}A_{il}=0$，前式要求 $i\neq k$，后式要求 $j\neq l$。</li>
+<li>Vandermonde 行列式<br>$$
+\begin{vmatrix}
+1&amp;1&amp;1&amp;\dots&amp;1\\
+a_1&amp;a_2&amp;a_3&amp;\dots&amp;a_n\\
+a_1^2&amp;a_2^2&amp;a_3^2&amp;\dots&amp;a_n^2\\
+\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_1^{n-1}&amp;a_2^{n-1}&amp;a_3^{n-1}&amp;\dots&amp;a_n^{n-1}
+\end{vmatrix}=\prod_{1\le j&lt;i\le n}(a_i-a_j)
+$$</li>
+<li>(Cramer Rule) 一个 $n$ 元 $n$ 个方程的线性方程组有唯一解 $\iff$ 它的系数矩阵 $A$ 的行列式 $|A|\neq0$。且解为：<br>$$
+\begin{cases}
+x_1=\frac{|B_1|}{|A|},\\
+x_2=\frac{|B_2|}{|A|},\\
+\dots\\
+x_n=\frac{|B_n|}{|A|}\\
+\end{cases}
+$$ 其中 $B_i$ 为 $A$ 用 $b_1,b_2,\dots,b_n$ 代替第 $i$ 列的矩阵。</li>
 </ol>
 
                 

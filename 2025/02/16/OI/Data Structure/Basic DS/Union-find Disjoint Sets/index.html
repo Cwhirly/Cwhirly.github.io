@@ -296,7 +296,7 @@
               <div class="markdown-body">
                 
                 <p> <em><strong>例题引入：有 $n$ 个点，$m$ 条无向边连接，求联通块数</strong></em><br><del>假设我不会 DFS</del></p>
-<h2 id="1-暴力-n-2"><a href="#1-暴力-n-2" class="headerlink" title="1.暴力 $n^2$"></a>1.暴力 $n^2$</h2><p>给每个点加一个点权（或可称之为颜色）$w[i]$,<br>初始时 $w[i] &#x3D; i$。<br>若连接两个点权相等的点，不管。<br>若连接两个点权不相等的点 $i$ 、 $j$ ，那么遍历 $n$ 个点，将所有点权为 $w[j]$ 的点改为 $w[i]$。</p>
+<h2 id="1-暴力-n-2"><a href="#1-暴力-n-2" class="headerlink" title="1.暴力 $n^2$"></a>1.暴力 $n^2$</h2><p>给每个点加一个点权（或可称之为颜色）$w[i]$,<br>初始时 $w[i] = i$。<br>若连接两个点权相等的点，不管。<br>若连接两个点权不相等的点 $i$ 、 $j$ ，那么遍历 $n$ 个点，将所有点权为 $w[j]$ 的点改为 $w[i]$。</p>
 <p>最后数一下有多少个不同的点权即可。<br>其实可以理解为每次连边都暴力地把即将连在一起的连通块染成一色。</p>
 <p>考虑优化连边</p>
 <h2 id="2-还是暴力-n-2"><a href="#2-还是暴力-n-2" class="headerlink" title="2.还是暴力 $n^2$"></a>2.还是暴力 $n^2$</h2><p>将每个点看作是一个人，每个连通块看作是一个集体。</p>
@@ -304,19 +304,19 @@
 <p>具体操作：</p>
 <ol>
 <li>设第i个人的直接上司是 $id[i]$</li>
-<li>初始时 $\forall i\le n$ , $id[i]&#x3D;i$</li>
+<li>初始时 $\forall i\le n$ , $id[i]=i$</li>
 <li>合并时,譬如说要合并编号为u,v的两个人所在的集体</li>
-<li>先一步一步递归地找到 $id[id[…[u]…]]&#x3D;fu$, 直到使得 $fu$ 的上司是它自己，此时 $fu$ 就是 $u$ 的集体的老大。同理找到 $fv$ 为 $v$ 的集体的老大</li>
-<li>执行 $id[fv] &#x3D; fu$</li>
+<li>先一步一步递归地找到 $id[id[...[u]...]]=fu$, 直到使得 $fu$ 的上司是它自己，此时 $fu$ 就是 $u$ 的集体的老大。同理找到 $fv$ 为 $v$ 的集体的老大</li>
+<li>执行 $id[fv] = fu$</li>
 <li>合并完成</li>
 <li>最后统计不同的老大数，即集体的数量，即联通块的数量。</li>
 </ol>
 <p>来看一下第四步找老大怎么写  </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(id[x]!=x) <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(id[x]);<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> x;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="3-路径压缩-Theta-n-log-n"><a href="#3-路径压缩-Theta-n-log-n" class="headerlink" title="3.路径压缩 $\Theta(n\log n)$"></a>3.路径压缩 $\Theta(n\log n)$</h2><p>主要是第四步递归中 $id[id[id[…[u]…]]]$ 太慢了，优化它。<br>考虑让 $u$，$u$ 的上司，$u$ 的上司的上司……直接认老大为直接上司，下次再查询 $u$ 或其上司和下属时，时间直接下降很多。<br><img src="https://oi-wiki.org/ds/images/disjoint-set-compress.svg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-路径压缩-Theta-n-log-n"><a href="#3-路径压缩-Theta-n-log-n" class="headerlink" title="3.路径压缩 $\Theta(n\log n)$"></a>3.路径压缩 $\Theta(n\log n)$</h2><p>主要是第四步递归中 $id[id[id[...[u]...]]]$ 太慢了，优化它。<br>考虑让 $u$，$u$ 的上司，$u$ 的上司的上司……直接认老大为直接上司，下次再查询 $u$ 或其上司和下属时，时间直接下降很多。<br><img src="https://oi-wiki.org/ds/images/disjoint-set-compress.svg" srcset="/img/loading.gif" lazyload></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">finds</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(id[x]!=x) id[x]=<span class="hljs-built_in">finds</span>(id[x]);<br>	<span class="hljs-keyword">return</span> id[x];<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>复杂度是$\Theta(n\log n)$ ,<del>我不会证</del></p>
-<h2 id="4-按秩合并-n-alpha-n"><a href="#4-按秩合并-n-alpha-n" class="headerlink" title="4.按秩合并 $n\alpha(n)$"></a>4.按秩合并 $n\alpha(n)$</h2><p>$\alpha(n)$ 是反阿克曼函数，即若 $A(m,m)&#x3D;n$，则 $\alpha(n)&#x3D;m$。 $A$ 是阿克曼函数。<br>这个大小其实已经可以近似为 $O(1)$<br>可以发现每个集体都可以看作是一棵树，树根是老大<br>记录每棵树的深度，每次让深度小的树的老大认深度大的树的老大当直接上司。这样合并下来的树深度会相对较小<br><del>实际上这个优化没什么用，毕竟多带个log问题也不大……</del></p>
+<h2 id="4-按秩合并-n-alpha-n"><a href="#4-按秩合并-n-alpha-n" class="headerlink" title="4.按秩合并 $n\alpha(n)$"></a>4.按秩合并 $n\alpha(n)$</h2><p>$\alpha(n)$ 是反阿克曼函数，即若 $A(m,m)=n$，则 $\alpha(n)=m$。 $A$ 是阿克曼函数。<br>这个大小其实已经可以近似为 $O(1)$<br>可以发现每个集体都可以看作是一棵树，树根是老大<br>记录每棵树的深度，每次让深度小的树的老大认深度大的树的老大当直接上司。这样合并下来的树深度会相对较小<br><del>实际上这个优化没什么用，毕竟多带个log问题也不大……</del></p>
 <p>然后最基本的并查集就说完了</p>
 <h2 id="5-带权并查集"><a href="#5-带权并查集" class="headerlink" title="5.带权并查集"></a>5.带权并查集</h2><p>过了“银河英雄传说”就差不多了……没什么好说的…<br>主要思想就是要维护每个点和其树上的父节点（也就是上司）的一些关系，注重考虑如何合并即可</p>
 <h2 id="6-扩展域并查集"><a href="#6-扩展域并查集" class="headerlink" title="6.扩展域并查集"></a>6.扩展域并查集</h2><p>这个好玩。  </p>

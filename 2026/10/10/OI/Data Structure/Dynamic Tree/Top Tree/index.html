@@ -382,7 +382,7 @@
 <p>由于轻子树不是最大的子树，所以轻子树大小不会超过整棵树大小的一半，所以从根往下走经过的路径最多只能包含 $\mathcal O(\log n)$ 个轻边，就会走到子树大小为 $1$ 的叶子，而这也就意味着，最多只能走 $\mathcal{O}(\log n)$ 条重链。每条重链贡献 $\mathcal{O}(\log n)$ 的 Top Tree 上深度，那么它们在 Top Tree 上拼起来深度就达到了 $\mathcal O(\log^2 n)$。    </p>
 <p>一个显然的 Hack：</p>
 <p><img src="https://cdn.luogu.com.cn/upload/image_hosting/nthf6y6i.png" srcset="/img/loading.gif" lazyload></p>
-<p>令 $n&#x3D;2^k$，那么上图所显示的树的 Top Tree 单单 Compress Node 的深度贡献就达到了 $\sum_{i&#x3D;1}^{\log n}(\log n-i)&#x3D;\frac{\log^2n-\log n}{2}&#x3D;\mathcal{O}(\log^2 n)$。  </p>
+<p>令 $n=2^k$，那么上图所显示的树的 Top Tree 单单 Compress Node 的深度贡献就达到了 $\sum_{i=1}^{\log n}(\log n-i)=\frac{\log^2n-\log n}{2}=\mathcal{O}(\log^2 n)$。  </p>
 <p>因此，考虑全局平衡二叉树的思想。在 Compress 重链和 Rake 轻子树的时候做带权二分，而非严格二分，权值即为轻子树的大小。</p>
 <p>此处仅仅举例 Rake 时的带权二分，Compress 时的带权二分是完全同理的，注意二者的带权二分缺一不可，如果其中任意一个使用普通二分，就可能导致复杂度退化。</p>
 <p>考虑一个具有 $x$ 个轻儿子的原树节点 $u$，这些轻子树的 Top Tree 均已被建出，这 $x$ 棵 Top Tree 的根编号（注意是 Top Tree 中的编号而非原树中的）分别为 $t_1,t_2,\cdots,t_{x-1},t_x$。在前面的错误做法中，我们的二分方法是，对于一个在 Top Tree 上涵盖了 $t_{[l,r]}$ 作为后代的 Rake Node $\alpha$，其左儿子和右儿子分别涵盖 $t_{[l,\lfloor\frac{l+r}{2}\rfloor]},t_{(\lfloor\frac{l+r}{2}\rfloor,r]}$。  </p>
@@ -394,23 +394,31 @@
 <p>严格证明并不困难。</p>
 <p>首先我们需要证明：对于局部的 Rake 树，从任何一个轻叶子（即某个原树节点轻子树的 Top Tree 的根）向上走到局部 Rake 树根的深度受到其权重比例的严格控制。</p>
 <blockquote>
-<p><strong>引理</strong><br>设当前待合并的序列总权重为 $W&#x3D;\sum_{i&#x3D;l}^r w_i$。按前缀和寻找满足第一个满足 $\sum_{i&#x3D;l}^{\xi}w_i\ge\frac{W}{2}$ 的带权中点 $\xi$ 进行二分分治。<br>那么对于其中任意一个权重为 $w_i$ 的点，其在生成的这棵局部树中的深度 $d_i$ 满足 $d_i\le2\log\left(\dfrac{W}{w_i}\right)+\mathcal O(1)$。</p>
+<p><strong>引理</strong><br>设当前待合并的序列总权重为 $W=\sum_{i=l}^r w_i$。按前缀和寻找满足第一个满足 $\sum_{i=l}^{\xi}w_i\ge\frac{W}{2}$ 的带权中点 $\xi$ 进行二分分治。<br>那么对于其中任意一个权重为 $w_i$ 的点，其在生成的这棵局部树中的深度 $d_i$ 满足 $d_i\le2\log\left(\dfrac{W}{w_i}\right)+\mathcal O(1)$。</p>
 </blockquote>
 <p>证明考虑，每次二分将区间划分为 $[l, \xi]$ 与 $(\xi,r]$，两部分的权重分别为 $W_L$ 与 $W_R$。由“带权中点”定义，右半部分显然满足 $W_R\le\frac{W}{2}$。</p>
 <p>对于左半部分：</p>
 <ul>
 <li>若 $i \neq \xi$，因为 $\xi$ 是第一个使前缀和 $\ge\frac{W}{2}$ 的位置，所以 $i$ 所在的区间 $[l, \xi - 1]$ 的总权重严格 $&lt;\frac{W}{2}$；</li>
-<li>若 $i &#x3D; \xi$，在下一次分治中 $\xi$ 就会作为单点直接成为叶子（不再继续细分）。</li>
+<li>若 $i = \xi$，在下一次分治中 $\xi$ 就会作为单点直接成为叶子（不再继续细分）。</li>
 </ul>
-<p>因此，在局部树中每向下走至多 $2$ 步，包含节点 $i$ 的子区间总权重至少减半（$\le \frac{W}{2}$），或者节点 $i$ 已经被分离为叶子。<br>引理得证，初始权重为 $W$，当区间权重缩减到 $w_i$ 时必然成为单点叶子，因此向下走的步数至多为 $2\log(W)-2\log(w_i)+\mathcal O(1)&#x3D;2\log\left(\frac{W}{w_i}\right)+\mathcal O(1)$。</p>
+<p>因此，在局部树中每向下走至多 $2$ 步，包含节点 $i$ 的子区间总权重至少减半（$\le \frac{W}{2}$），或者节点 $i$ 已经被分离为叶子。<br>引理得证，初始权重为 $W$，当区间权重缩减到 $w_i$ 时必然成为单点叶子，因此向下走的步数至多为 $2\log(W)-2\log(w_i)+\mathcal O(1)=2\log\left(\frac{W}{w_i}\right)+\mathcal O(1)$。</p>
 <hr>
 <p>然后考虑全局树高的证明。</p>
-<p>考虑原树中任意一个叶子节点 $u$（初始大小 $w&#x3D;1$），它在 Top Tree 中一路向上跳到全局根（总大小 $W&#x3D;n$）：</p>
+<p>考虑原树中任意一个叶子节点 $u$（初始大小 $w=1$），它在 Top Tree 中一路向上跳到全局根（总大小 $W=n$）：</p>
 <p>路径上会依次经过多棵局部二叉树（可能是轻儿子合并的 Rake 树，也可能是重链压缩的 Compress 树）。</p>
 <p>以下所说的节点均指 Top Tree 中的节点。</p>
 <p>设刚开始跳到路径上第 $j$ 棵局部树的“叶子”，即“入口”上时，目前跳到的节点的子树所代表的原树中簇大小为 $S_j^{\text{in}}$，跳到这棵局部树的“出口”时目前点的子树在原树上的对应簇大小为 $S_j^{\text{out}}$。由引理可知：在第 $j$ 棵局部树内的深度 $\le2\log\left(\frac{S_j^{\text{out}}}{S_j^{\text{in}}}\right)+\mathcal O(1)$，当从第 $j$ 棵树跳到上一级第 $j+1$ 棵树时，上一级的“入口”簇必然包含了当前簇，即 $S_{j+1}^{\text{in}} \ge S_j^{\text{out}}$。</p>
 <p>根据重链剖分性质，从叶到根最多跨越 $\mathcal O(\log n)$ 条重链（即只有 $\mathcal O(\log n)$ 棵局部树，常数项总和为 $\mathcal O(\log n)$）。</p>
-<p>将沿途所有局部树内的深度累加：<br>$$<br>\begin{aligned}<br>\text{Ans}&amp;&#x3D;\sum_{j}\left(2\log\left(\frac{S_j^{\text{out}}}{S_j^{\text{in}}}\right)+\mathcal O(1)\right)\<br>&amp;\le2\sum_{j}\left(\log S_j^{\text{out}}-\log S_j^{\text{in}}\right)+\mathcal O(\log n)\<br>&amp;\le2\left(\log S_{\text{root}}-\log S_{\text{leaf}}\right)+\mathcal O(\log n) \<br>&amp;&#x3D;2\log\left(\frac{n}{1}\right)+\mathcal O(\log n)\<br>&amp;&#x3D;\mathcal{O}(\log n)<br>\end{aligned}<br>$$<br>从第二步到第三步的裂项相消是关键。</p>
+<p>将沿途所有局部树内的深度累加：<br>$$
+\begin{aligned}
+\text{Ans}&amp;=\sum_{j}\left(2\log\left(\frac{S_j^{\text{out}}}{S_j^{\text{in}}}\right)+\mathcal O(1)\right)\\
+&amp;\le2\sum_{j}\left(\log S_j^{\text{out}}-\log S_j^{\text{in}}\right)+\mathcal O(\log n)\\
+&amp;\le2\left(\log S_{\text{root}}-\log S_{\text{leaf}}\right)+\mathcal O(\log n) \\
+&amp;=2\log\left(\frac{n}{1}\right)+\mathcal O(\log n)\\
+&amp;=\mathcal{O}(\log n)
+\end{aligned}
+$$<br>从第二步到第三步的裂项相消是关键。</p>
 <p>得证。</p>
 <hr>
 <p>根据这个建树方法，就可以像线段树一样，极其方便地解决很多树上问题。</p>
@@ -588,9 +596,9 @@
 <p>这也是仙人掌 Top Tree 和树的 Top Tree 在结构上唯一需要额外小心的地方：Rake 与 Twist 有先后依赖——必须先把旁支 Rake 干净，再 Twist。</p>
 <h4 id="3-静态仙人掌簇的信息"><a href="#3-静态仙人掌簇的信息" class="headerlink" title="3. 静态仙人掌簇的信息"></a>3. 静态仙人掌簇的信息</h4><p>对于”两点间最短路”这一类查询，一个簇需要记录的东西其实很少：两个界点 $u,v$、它们之间最短路的长度 $d$、以及簇内点的聚合量。三种合并分别做：</p>
 <ul>
-<li><strong>Compress</strong>：两段路径首尾相接，$d&#x3D;d_a+d_b$；</li>
+<li><strong>Compress</strong>：两段路径首尾相接，$d=d_a+d_b$；</li>
 <li><strong>Rake</strong>：$d$ 不变，只把旁支的聚合量并进来；</li>
-<li><strong>Twist</strong>：$d&#x3D;\min(d_a,d_b)$，并在 $d_a&#x3D;d_b$ 时打上一个”最短路不唯一”的标记。</li>
+<li><strong>Twist</strong>：$d=\min(d_a,d_b)$，并在 $d_a=d_b$ 时打上一个”最短路不唯一”的标记。</li>
 </ul>
 <p>最后这个标记必须一路往上传：如果最终包含 $u,v$ 的那个簇被打上了标记，就说明 $u,v$ 之间的最短路不唯一，查询应该直接返回 $-2$。这正是动态版本里 $flag$ 字段的来源。</p>
 <h3 id="II-动态仙人掌"><a href="#II-动态仙人掌" class="headerlink" title="II. 动态仙人掌"></a>II. 动态仙人掌</h3><h4 id="1-从树到仙人掌"><a href="#1-从树到仙人掌" class="headerlink" title="1. 从树到仙人掌"></a>1. 从树到仙人掌</h4><p>前面的 SATT 只能维护树，想搬到仙人掌上，唯一的额外困难就是环：树上两点之间的路径唯一，所以在 Compress 时我们无需担心”该往哪边走”；而仙人掌上同一个环的两个点之间有两条路径，路径查询必须在环上二选一。也就是说，仙人掌相对于树<strong>只多出一种情况</strong>：</p>
@@ -652,7 +660,7 @@
 <blockquote>
 <p><strong><code>isrt</code> 的含义</strong><br>这份代码里 <code>isrt(x)</code> 写的是 <code>type(x) != type(fa(x))</code>，它并不是在判断”$x$ 是不是左右儿子”，而是在判断<strong>这条父子边是不是 Splay 边</strong>。类型相同的父子关系才是 Splay 树内部的边；类型不同的父子关系（比如 <code>c</code> 的父亲是 <code>r</code>，或者 <code>c</code> 的儿子是 <code>b</code>、<code>t</code>）相当于 LCT 里的虚边，属于 Top Tree 的结构性连边，不参与旋转。<br>正因如此，<code>c/b/r/t</code> 才能共用同一个数组：<code>pushup</code> 对 <code>son[0]/son[1]</code> 一视同仁地当作”簇的两端”，信息既能沿 Splay 边流动，也能沿结构边流动。<br>在这份实现中，只有 <code>c-c</code> 与 <code>r-r</code> 之间会出现 Splay 边，<code>b</code>、<code>t</code> 在 Splay 意义下永远是叶子（这一条是对随机数据实测得到的）。</p>
 </blockquote>
-<h4 id="3-簇的信息与四种运算"><a href="#3-簇的信息与四种运算" class="headerlink" title="3. 簇的信息与四种运算"></a>3. 簇的信息与四种运算</h4><p>一个簇 $C$ 需要记录这些东西：<br>$$F(C)&#x3D;(u,v,d,P,T,flag)$$</p>
+<h4 id="3-簇的信息与四种运算"><a href="#3-簇的信息与四种运算" class="headerlink" title="3. 簇的信息与四种运算"></a>3. 簇的信息与四种运算</h4><p>一个簇 $C$ 需要记录这些东西：<br>$$F(C)=(u,v,d,P,T,flag)$$</p>
 <ul>
 <li>$u,v$：簇的两个界点；</li>
 <li>$d$：两个界点之间最短路（也就是簇路径）的长度；</li>
@@ -660,15 +668,15 @@
 <li>$T$：簇内不在簇路径上的点集，用 <code>tsiz,tmin,tsum</code> 表示；</li>
 <li>$flag$：最短路是否不唯一。</li>
 </ul>
-<p>在实现里 $P$ 是这样攒出来的：Compress Tree 子树里的每个 <code>c</code> 结点恰好贡献一次自己的 <code>val</code>（<code>compress</code> 的第三个参数或单点簇的 <code>insert</code>），而一个簇的两个界点正好是这棵子树里最外层的 <code>c</code> 结点，所以它们也被算在 $P$ 里。$T$ 则是”挂在这些结点上的所有旁支，加上环上被舍弃的那条路”。于是恒有 $P\cup T$ 等于簇内所有点、$P\cap T&#x3D;\varnothing$——这解释了为什么只需要维护两套聚合量：<code>query1/add1</code> 只看 $P$，<code>query2/add2</code> 只看 $T$（配合 <code>ms</code>），两边几乎天然对应。</p>
+<p>在实现里 $P$ 是这样攒出来的：Compress Tree 子树里的每个 <code>c</code> 结点恰好贡献一次自己的 <code>val</code>（<code>compress</code> 的第三个参数或单点簇的 <code>insert</code>），而一个簇的两个界点正好是这棵子树里最外层的 <code>c</code> 结点，所以它们也被算在 $P$ 里。$T$ 则是”挂在这些结点上的所有旁支，加上环上被舍弃的那条路”。于是恒有 $P\cup T$ 等于簇内所有点、$P\cap T=\varnothing$——这解释了为什么只需要维护两套聚合量：<code>query1/add1</code> 只看 $P$，<code>query2/add2</code> 只看 $T$（配合 <code>ms</code>），两边几乎天然对应。</p>
 <p><img src="/images/notes/Cactus-Merge.png" srcset="/img/loading.gif" lazyload></p>
 <p>四种运算就是簇上的四则运算：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">dat <span class="hljs-title">compress</span><span class="hljs-params">(<span class="hljs-type">const</span> dat &amp;a, <span class="hljs-type">const</span> dat &amp;b, <span class="hljs-type">int</span> w)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> &#123;a.u, b.v, a.dis + b.dis,<br>            a.tsiz + b.tsiz, <span class="hljs-built_in">min</span>(a.tmin, b.tmin), a.tsum + b.tsum,<br>            a.psiz + b.psiz + <span class="hljs-number">1</span>, <span class="hljs-built_in">min</span>(&#123;a.pmin, b.pmin, w&#125;),<br>            a.psum + b.psum + w, a.flag || b.flag&#125;;<br>&#125;<br><span class="hljs-function">dat <span class="hljs-title">rake</span><span class="hljs-params">(<span class="hljs-type">const</span> dat &amp;a, <span class="hljs-type">const</span> dat &amp;b)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> &#123;a.u, a.v, a.dis,<br>            a.tsiz + b.tsiz, <span class="hljs-built_in">min</span>(a.tmin, b.tmin), a.tsum + b.tsum,<br>            a.psiz, a.pmin, a.psum, a.flag&#125;;<br>&#125;<br><span class="hljs-function">dat <span class="hljs-title">twist</span><span class="hljs-params">(dat a, dat b)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (a.dis &gt; b.dis)<br>        <span class="hljs-built_in">swap</span>(a, b);<br>    <span class="hljs-keyword">if</span> (a.dis == b.dis)<br>        <span class="hljs-keyword">return</span> &#123;a.u, a.v, a.dis,<br>                a.tsiz + b.tsiz, <span class="hljs-built_in">min</span>(a.tmin, b.tmin), a.tsum + b.tsum,<br>                a.psiz + b.psiz, <span class="hljs-built_in">min</span>(a.pmin, b.pmin), a.psum + b.psum, <span class="hljs-number">1</span>&#125;;<br>    b = b.<span class="hljs-built_in">move</span>();<br>    <span class="hljs-keyword">return</span> &#123;a.u, a.v, a.dis,<br>            a.tsiz + b.tsiz, <span class="hljs-built_in">min</span>(a.tmin, b.tmin), a.tsum + b.tsum,<br>            a.psiz, a.pmin, a.psum, a.flag&#125;;<br>&#125;<br><span class="hljs-function">dat <span class="hljs-title">move</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> &#123;u, v, dis, tsiz + psiz, <span class="hljs-built_in">min</span>(tmin, pmin), tsum + psum,<br>            <span class="hljs-number">0</span>, MAX, <span class="hljs-number">0</span>, flag&#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li><strong>Compress</strong>：两段首尾相接的路径拼起来，$w$ 是中间那个顶点。$d&#x3D;d_a+d_b$，$P&#x3D;P_a\cup P_b\cup{w}$，$T&#x3D;T_a\cup T_b$，$flag&#x3D;flag_a\lor flag_b$。</li>
-<li><strong>Rake</strong>：把旁支 $b$ 挂到主链 $a$ 上。路径完全不变（$u,v,d,P$ 全取 $a$），$T&#x3D;T_a\cup T_b$。</li>
-<li><strong>Twist</strong>：两个界点相同的簇合成一个环。若 $d_a&gt;d_b$ 就交换，于是 $a$ 是较短的那条；$d_a&#x3D;d_b$ 时两条都是最短路，$flag&#x3D;1$；否则 $d&#x3D;d_a$、$P&#x3D;P_a$，而另一条整条路径都变成旁支，对它做一次 <code>move</code> 即可：$T&#x3D;T_a\cup T_b\cup P_b$。</li>
+<li><strong>Compress</strong>：两段首尾相接的路径拼起来，$w$ 是中间那个顶点。$d=d_a+d_b$，$P=P_a\cup P_b\cup\{w\}$，$T=T_a\cup T_b$，$flag=flag_a\lor flag_b$。</li>
+<li><strong>Rake</strong>：把旁支 $b$ 挂到主链 $a$ 上。路径完全不变（$u,v,d,P$ 全取 $a$），$T=T_a\cup T_b$。</li>
+<li><strong>Twist</strong>：两个界点相同的簇合成一个环。若 $d_a&gt;d_b$ 就交换，于是 $a$ 是较短的那条；$d_a=d_b$ 时两条都是最短路，$flag=1$；否则 $d=d_a$、$P=P_a$，而另一条整条路径都变成旁支，对它做一次 <code>move</code> 即可：$T=T_a\cup T_b\cup P_b$。</li>
 <li><strong>Move</strong>：$P\to T$，把”原本在路径上的东西”整体变成”旁支”，即把 $p$ 三个量并进 $t$ 三个量后清空 $p$。</li>
 </ul>
 <blockquote>
@@ -701,11 +709,11 @@
 </li>
 <li><p><code>r</code>：Rake 结点整体都是旁支，所以 <code>tlaz</code> 要发给所有儿子；但它的<strong>中儿子是一条路径</strong>，对这一份 <code>tlaz</code> 来说，中儿子既要加到树信息、又要加到路径信息，所以中儿子除 <code>{w,0}</code> 之外还要额外收到 <code>{0,w}</code>。这就是 <code>r</code> 的 <code>pushdown</code> 看起来像重复发了一次标记的原因。</p>
 </li>
-<li><p><code>t</code>：环上的点归 $P$ 还是 $T$ 要看哪条路径短。代码用 $w&#x3D;f(ls).dis-f(rs).dis$ 判断：</p>
+<li><p><code>t</code>：环上的点归 $P$ 还是 $T$ 要看哪条路径短。代码用 $w=f(ls).dis-f(rs).dis$ 判断：</p>
 <ul>
 <li>$w&lt;0$：左儿子是簇路径，拿完整标记；右儿子整条都是旁支，拿 <code>laz.move()</code>，把 <code>plaz</code> 全部转成 <code>tlaz</code>；</li>
 <li>$w&gt;0$：对称；</li>
-<li>$w&#x3D;0$：两条都是最短路，两边都拿完整标记（<code>w&lt;=0</code> 与 <code>w&gt;=0</code> 同时成立）。</li>
+<li>$w=0$：两条都是最短路，两边都拿完整标记（<code>w&lt;=0</code> 与 <code>w&gt;=0</code> 同时成立）。</li>
 </ul>
 <p>这三个分支与 <code>twist</code> 里的比较是同一件事在两个位置的体现。</p>
 </li>
@@ -734,7 +742,7 @@
 <h4 id="7-link-与-cut"><a href="#7-link-与-cut" class="headerlink" title="7. link 与 cut"></a>7. link 与 cut</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">link</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> w)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (x == y)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">makeroot</span>(x);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">findroot</span>(y) == x) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">cir</span>(x))<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">fa</span>(<span class="hljs-built_in">rs</span>(x)) = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">splay</span>(y), <span class="hljs-built_in">setf</span>(y, x, <span class="hljs-number">1</span>);<br>        <span class="hljs-type">int</span> z = <span class="hljs-built_in">newnode</span>(<span class="hljs-string">&#x27;t&#x27;</span>), e = <span class="hljs-built_in">newnode</span>(<span class="hljs-string">&#x27;b&#x27;</span>);<br>        <span class="hljs-built_in">f</span>(e) = &#123;x, y, w, <span class="hljs-number">0</span>, MAX, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, MAX, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;<br>        <span class="hljs-built_in">pushdown</span>(y);<br>        <span class="hljs-built_in">setf</span>(<span class="hljs-built_in">ls</span>(y), z, <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">setf</span>(e, z, <span class="hljs-number">1</span>);<br>        <span class="hljs-built_in">pushup</span>(z), <span class="hljs-built_in">setf</span>(z, y, <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">pushup</span>(y), <span class="hljs-built_in">pushup</span>(x);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">access</span>(x), <span class="hljs-built_in">access</span>(y);<br>        <span class="hljs-type">int</span> e = <span class="hljs-built_in">newnode</span>(<span class="hljs-string">&#x27;b&#x27;</span>);<br>        <span class="hljs-built_in">f</span>(e) = &#123;y, x, w, <span class="hljs-number">0</span>, MAX, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, MAX, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;<br>        <span class="hljs-built_in">setf</span>(e, x, <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">pushup</span>(x), <span class="hljs-built_in">setf</span>(x, y, <span class="hljs-number">1</span>);<br>        <span class="hljs-built_in">pushup</span>(y);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>$x&#x3D;y$ 直接非法（自环）。</li>
+<li>$x=y$ 直接非法（自环）。</li>
 <li><code>makeroot(x)</code> 之后 <code>findroot(y) != x</code> 说明两点不连通：直接造一个 <code>b</code> 结点当 $x$ 的左儿子，再把 $x$ 挂成 $y$ 的右儿子，没有环。</li>
 <li>否则加边一定会成环。此时先看 <code>cir(x)</code>：如果这条根路径上已经含环，再加一条边会让某些边属于两个环，不再合法，直接失败——这就是 <code>cir</code> 唯一的用途。合法的话，先断开 $x$ 的右儿子（保证 $x,y$ 是路径的两端），再造<strong>一个 <code>t</code> 结点和一个 <code>b</code> 结点</strong>：<code>b</code> 就是新边，<code>t</code> 的左儿子是从 $y$ 上剥下来的旧路径、右儿子是新的 <code>b</code>，最后把 <code>t</code> 挂回 $y$ 的左边。</li>
 </ul>
